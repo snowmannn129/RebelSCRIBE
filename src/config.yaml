@@ -1,0 +1,88 @@
+ai:
+  anthropic:
+    api_key: ''
+    max_tokens: 4000
+    model: claude-3-opus-20240229
+    temperature: 0.7
+  local:
+    device: cpu
+    model_path: ''
+  openai:
+    api_key: ''
+    max_tokens: 4000
+    model: gpt-4
+    temperature: 0.7
+  provider: anthropic
+application:
+  autosave_interval: 300
+  backup:
+    directory: C:\Users\snowm\.rebelscribe\backups
+    enabled: true
+    interval: 3600
+    max_backups: 10
+  data_directory: C:\Users\snowm\.rebelscribe
+  name: RebelSCRIBE
+  version: 0.3.0
+cloud_storage:
+  dropbox:
+    api_key: ''
+    folder: /RebelSCRIBE
+  enabled: false
+  google_drive:
+    credentials_file: ''
+    folder: RebelSCRIBE
+  onedrive:
+    client_id: ''
+    folder: RebelSCRIBE
+  provider: dropbox
+editor:
+  auto_save: true
+  auto_save_interval: 60
+  font_family: Courier New
+  font_size: 12
+  line_spacing: 1.5
+  show_line_numbers: true
+export:
+  default_format: docx
+  docx:
+    include_metadata: true
+    page_size: A4
+    template: ''
+  epub:
+    include_cover: true
+    include_toc: true
+  html:
+    include_css: true
+    template: ''
+  markdown:
+    flavor: github
+  pdf:
+    include_metadata: true
+    page_size: A4
+    template: ''
+ui:
+  color_theme: system
+  colors:
+    danger: '#dc3545'
+    info: '#17a2b8'
+    primary: '#007bff'
+    secondary: '#6c757d'
+    success: '#28a745'
+    warning: '#ffc107'
+  distraction_free_mode:
+    background_color: '#2d2d2d'
+    hide_ui_elements: true
+    text_color: '#f8f8f2'
+  editor:
+    auto_save: true
+    highlight_current_line: true
+    line_numbers: true
+    spell_check: true
+    word_wrap: true
+  font:
+    editor: Consolas
+    editor_size: 12
+    ui: Segoe UI
+    ui_size: 10
+  show_statusbar: true
+  show_toolbar: true

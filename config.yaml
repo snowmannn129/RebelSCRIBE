@@ -1,0 +1,164 @@
+ai:
+  api_keys:
+    anthropic: ''
+    google: ''
+    openai: ''
+  default_params:
+    frequency_penalty: 0.5
+    max_tokens: 1000
+    presence_penalty: 0.5
+    temperature: 0.7
+    top_p: 0.9
+  local:
+    device: cpu
+    model_path: ''
+  models:
+    anthropic:
+      chat: claude-3-opus-20240229
+      completion: claude-3-opus-20240229
+    google:
+      chat: gemini-1.5-pro
+      completion: gemini-1.5-pro
+      embedding: embedding-001
+    local:
+      chat: llama3-70b
+      completion: llama3-70b
+      embedding: all-MiniLM-L6-v2
+      image: stable-diffusion-3
+    openai:
+      chat: gpt-4-turbo
+      completion: gpt-4-turbo
+      embedding: text-embedding-3-small
+      image: dall-e-3
+  provider: openai
+  rate_limits:
+    anthropic: 5
+    google: 10
+    local: 20
+    openai: 10
+application:
+  autosave_interval: 300
+  backup:
+    directory: ~/.rebelscribe/backups
+    enabled: true
+    interval: 3600
+    max_backups: 10
+  data_directory: ~/.rebelscribe
+  name: RebelSCRIBE
+  version: 0.3.0
+cloud_storage:
+  dropbox:
+    api_key: ''
+    folder: /RebelSCRIBE
+  enabled: false
+  google_drive:
+    credentials_file: ''
+    folder: RebelSCRIBE
+  onedrive:
+    client_id: ''
+    folder: RebelSCRIBE
+  provider: dropbox
+editor:
+  auto_save: true
+  auto_save_interval: 60
+  font_family: Courier New
+  font_size: 12
+  line_spacing: 1.5
+  show_line_numbers: true
+export:
+  default_format: docx
+  docx:
+    include_metadata: true
+    page_size: A4
+    template: ''
+  epub:
+    include_cover: true
+    include_toc: true
+  html:
+    include_css: true
+    template: ''
+  markdown:
+    flavor: github
+  pdf:
+    include_metadata: true
+    page_size: A4
+    template: ''
+ui:
+  color_theme: system
+  colors:
+    danger: '#dc3545'
+    info: '#17a2b8'
+    primary: '#007bff'
+    secondary: '#6c757d'
+    success: '#28a745'
+    warning: '#ffc107'
+  distraction_free_mode:
+    background_color: '#2d2d2d'
+    hide_ui_elements: true
+    text_color: '#f8f8f2'
+  editor:
+    auto_save: true
+    highlight_current_line: true
+    line_numbers: true
+    spell_check: true
+    word_wrap: true
+  font:
+    editor: Consolas
+    editor_size: 12
+    ui: Segoe UI
+    ui_size: 10
+  show_statusbar: true
+  show_toolbar: true
+error_handler:
+  ui_treatments:
+    INFO:
+      dialog_type: NOTIFICATION
+      use_non_blocking: true
+      timeout: 5000
+      position: TOP_RIGHT
+    WARNING:
+      dialog_type: NOTIFICATION
+      use_non_blocking: true
+      timeout: 10000
+      position: TOP_RIGHT
+    ERROR:
+      dialog_type: MODAL
+      use_non_blocking: false
+      timeout: null
+      position: null
+    CRITICAL:
+      dialog_type: MODAL
+      use_non_blocking: false
+      timeout: null
+      position: null
+  error_aggregation:
+    enabled: true
+    timeout: 5000
+    pattern_matching: false
+  rate_limiting:
+    enabled: true
+    threshold: 5
+    time_window: 60000
+    use_exponential_backoff: true
+  notification_manager:
+    max_notifications: 5
+    spacing: 10
+    animation_duration: 250
+    fade_effect: true
+    slide_effect: true
+    stacking_order: newest_on_top
+    default_timeouts:
+      INFO: 5000
+      WARNING: 10000
+      ERROR: 15000
+      CRITICAL: null
+  error_reporting:
+    service: local
+    endpoint_url: ''
+    api_key: ''
+    smtp_server: ''
+    smtp_port: 587
+    smtp_username: ''
+    smtp_password: ''
+    from_email: ''
+    to_email: ''

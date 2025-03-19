@@ -1,0 +1,116 @@
+================================================================================
+RebelSCRIBE UI Test Report - 2025-03-13 00:45:36
+================================================================================
+
+Test Summary:
+  Tests run: 78
+  Errors: 5
+  Failures: 0
+  Skipped: 0
+  Success rate: 93.59%
+
+Errors:
+  1. tests.ui.test_benchmark_dialog (unittest.loader._FailedTest.tests.ui.test_benchmark_dialog)
+     ImportError: Failed to import test module: tests.ui.test_benchmark_dialog
+Traceback (most recent call last):
+  File "C:\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\tests\ui\test_benchmark_dialog.py", line 16, in <module>
+    from src.ui.main_window import MainWindow
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 50, in <module>
+    class MainWindow(QMainWindow):
+    ...<1527 lines>...
+            )
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 1541, in MainWindow
+    def _on_ui_state_changed(self, state_key: str, state_value: Any):
+                                                                ^^^
+NameError: name 'Any' is not defined. Did you mean: 'any'?
+
+
+
+  2. tests.ui.test_comprehensive_ui (unittest.loader._FailedTest.tests.ui.test_comprehensive_ui)
+     ImportError: Failed to import test module: tests.ui.test_comprehensive_ui
+Traceback (most recent call last):
+  File "C:\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\tests\ui\test_comprehensive_ui.py", line 28, in <module>
+    from src.ui.main_window import MainWindow
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 50, in <module>
+    class MainWindow(QMainWindow):
+    ...<1527 lines>...
+            )
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 1541, in MainWindow
+    def _on_ui_state_changed(self, state_key: str, state_value: Any):
+                                                                ^^^
+NameError: name 'Any' is not defined. Did you mean: 'any'?
+
+
+
+  3. tests.ui.test_main_window (unittest.loader._FailedTest.tests.ui.test_main_window)
+     ImportError: Failed to import test module: tests.ui.test_main_window
+Traceback (most recent call last):
+  File "C:\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\tests\ui\test_main_window.py", line 18, in <module>
+    from src.ui.main_window import MainWindow
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 50, in <module>
+    class MainWindow(QMainWindow):
+    ...<1527 lines>...
+            )
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 1541, in MainWindow
+    def _on_ui_state_changed(self, state_key: str, state_value: Any):
+                                                                ^^^
+NameError: name 'Any' is not defined. Did you mean: 'any'?
+
+
+
+  4. tests.ui.test_main_window_ai_actions (unittest.loader._FailedTest.tests.ui.test_main_window_ai_actions)
+     ImportError: Failed to import test module: tests.ui.test_main_window_ai_actions
+Traceback (most recent call last):
+  File "C:\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\tests\ui\test_main_window_ai_actions.py", line 19, in <module>
+    from src.ui.main_window import MainWindow
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 50, in <module>
+    class MainWindow(QMainWindow):
+    ...<1527 lines>...
+            )
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 1541, in MainWindow
+    def _on_ui_state_changed(self, state_key: str, state_value: Any):
+                                                                ^^^
+NameError: name 'Any' is not defined. Did you mean: 'any'?
+
+
+
+  5. tests.ui.test_main_window_enhanced (unittest.loader._FailedTest.tests.ui.test_main_window_enhanced)
+     ImportError: Failed to import test module: tests.ui.test_main_window_enhanced
+Traceback (most recent call last):
+  File "C:\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\tests\ui\test_main_window_enhanced.py", line 22, in <module>
+    from src.ui.main_window import MainWindow
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 50, in <module>
+    class MainWindow(QMainWindow):
+    ...<1527 lines>...
+            )
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 1541, in MainWindow
+    def _on_ui_state_changed(self, state_key: str, state_value: Any):
+                                                                ^^^
+NameError: name 'Any' is not defined. Did you mean: 'any'?
+
+

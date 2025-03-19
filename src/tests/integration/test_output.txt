@@ -1,0 +1,20 @@
+test_export_project (test_export_integration.TestExportIntegration.test_export_project)
+Test exporting an entire project. ... ok
+test_export_service_error_handling (test_export_integration.TestExportIntegration.test_export_service_error_handling)
+Test error handling in export service. ... Invalid export format: xyz
+ok
+test_export_single_document (test_export_integration.TestExportIntegration.test_export_single_document)
+Test exporting a single document. ... ok
+test_export_with_custom_settings (test_export_integration.TestExportIntegration.test_export_with_custom_settings)
+Test exporting with custom settings. ... ok
+test_export_with_filtering (test_export_integration.TestExportIntegration.test_export_with_filtering)
+Test exporting with document filtering. ... skipped 'Format markdown is not available'
+test_export_with_metadata (test_export_integration.TestExportIntegration.test_export_with_metadata)
+Test exporting with metadata. ... ok
+test_export_with_template (test_export_integration.TestExportIntegration.test_export_with_template)
+Test exporting with a template. ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.022s
+
+OK (skipped=1)

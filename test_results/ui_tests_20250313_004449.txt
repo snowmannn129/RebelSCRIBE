@@ -1,0 +1,33 @@
+test_document_created_event (tests.ui.test_event_bus.TestUIEventBus.test_document_created_event)
+Test document_created event. ... ok
+test_document_deleted_event (tests.ui.test_event_bus.TestUIEventBus.test_document_deleted_event)
+Test document_deleted event. ... ok
+test_document_loaded_event (tests.ui.test_event_bus.TestUIEventBus.test_document_loaded_event)
+Test document_loaded event. ... ok
+test_document_modified_event (tests.ui.test_event_bus.TestUIEventBus.test_document_modified_event)
+Test document_modified event. ... ok
+test_document_saved_event (tests.ui.test_event_bus.TestUIEventBus.test_document_saved_event)
+Test document_saved event. ... ok
+test_document_selected_event (tests.ui.test_event_bus.TestUIEventBus.test_document_selected_event)
+Test document_selected event. ... ok
+test_error_occurred_event (tests.ui.test_event_bus.TestUIEventBus.test_error_occurred_event)
+Test error_occurred event. ... ok
+test_project_closed_event (tests.ui.test_event_bus.TestUIEventBus.test_project_closed_event)
+Test project_closed event. ... ok
+test_project_created_event (tests.ui.test_event_bus.TestUIEventBus.test_project_created_event)
+Test project_created event. ... ok
+test_project_loaded_event (tests.ui.test_event_bus.TestUIEventBus.test_project_loaded_event)
+Test project_loaded event. ... ok
+test_project_saved_event (tests.ui.test_event_bus.TestUIEventBus.test_project_saved_event)
+Test project_saved event. ... ok
+test_singleton_pattern (tests.ui.test_event_bus.TestUIEventBus.test_singleton_pattern)
+Test that get_event_bus returns the same instance each time. ... ok
+test_ui_state_changed_event (tests.ui.test_event_bus.TestUIEventBus.test_ui_state_changed_event)
+Test ui_state_changed event. ... ok
+test_ui_theme_changed_event (tests.ui.test_event_bus.TestUIEventBus.test_ui_theme_changed_event)
+Test ui_theme_changed event. ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.023s
+
+OK

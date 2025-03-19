@@ -1,0 +1,79 @@
+application:
+  name: RebelSCRIBE
+  version: 0.1.0
+  data_directory: C:\Users\snowm\.rebelscribe
+  autosave_interval: 300
+  backup:
+    enabled: true
+    interval: 3600
+    max_backups: 10
+    directory: C:\Users\snowm\.rebelscribe\backups
+ui:
+  theme: system
+  font:
+    editor: Consolas
+    editor_size: 12
+    ui: Segoe UI
+    ui_size: 10
+  colors:
+    primary: '#007bff'
+    secondary: '#6c757d'
+    success: '#28a745'
+    danger: '#dc3545'
+    warning: '#ffc107'
+    info: '#17a2b8'
+  distraction_free_mode:
+    background_color: '#2d2d2d'
+    text_color: '#f8f8f2'
+    hide_ui_elements: true
+  editor:
+    line_numbers: true
+    highlight_current_line: true
+    word_wrap: true
+    spell_check: true
+    auto_save: true
+ai:
+  provider: anthropic
+  anthropic:
+    api_key: ''
+    model: claude-3-opus-20240229
+    temperature: 0.7
+    max_tokens: 4000
+  openai:
+    api_key: ''
+    model: gpt-4
+    temperature: 0.7
+    max_tokens: 4000
+  local:
+    model_path: ''
+    device: cpu
+cloud_storage:
+  enabled: false
+  provider: dropbox
+  dropbox:
+    api_key: ''
+    folder: /RebelSCRIBE
+  google_drive:
+    credentials_file: ''
+    folder: RebelSCRIBE
+  onedrive:
+    client_id: ''
+    folder: RebelSCRIBE
+export:
+  default_format: docx
+  docx:
+    template: ''
+    include_metadata: true
+    page_size: A4
+  pdf:
+    template: ''
+    include_metadata: true
+    page_size: A4
+  markdown:
+    flavor: github
+  html:
+    template: ''
+    include_css: true
+  epub:
+    include_cover: true
+    include_toc: true

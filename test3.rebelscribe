@@ -1,0 +1,53 @@
+{
+  "id": "ace9343f-46fc-4214-a70e-8704eaff9ae0",
+  "title": "test3",
+  "description": "blaw",
+  "author": "jason",
+  "created_at": "2025-03-11T18:27:17.371356",
+  "updated_at": "2025-03-11T18:29:09.670184",
+  "word_count_goal": null,
+  "deadline": null,
+  "genre": "",
+  "tags": [],
+  "path": "C:\\Users\\snowm\\Desktop\\RebelSCRIBE\\test3.rebelscribe",
+  "version": "1.0.0",
+  "language": "en",
+  "status": "In Progress",
+  "metadata": {
+    "genre": "scifi",
+    "language": "English",
+    "copyright": "",
+    "publisher": "",
+    "keywords": [],
+    "structure": {
+      "create_chapters": true,
+      "create_characters": true,
+      "create_locations": true,
+      "create_research": true,
+      "create_notes": true,
+      "create_trash": true,
+      "templates": {
+        "chapter": "Chapter with Synopsis",
+        "character": "Basic Character",
+        "location": "Basic Location"
+      }
+    },
+    "compilation": {
+      "include_title_page": true,
+      "include_toc": true,
+      "include_synopsis": true,
+      "include_notes": true,
+      "include_comments": true,
+      "selected_documents": []
+    },
+    "formatting": {
+      "font_name": "Times New Roman",
+      "font_size": 12,
+      "line_spacing": "1.5 Lines",
+      "paragraph_spacing": 12,
+      "first_line_indent": 36,
+      "page_size": "Letter",
+      "margin": 1
+    }
+  }
+}

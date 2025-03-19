@@ -1,0 +1,43 @@
+test_check_session_timeout (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_check_session_timeout)
+Test checking session timeout. ... ok
+test_count_words (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_count_words)
+Test counting words in text. ... ok
+test_create_goal (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_create_goal)
+Test creating a writing goal. ... ok
+test_delete_goal (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_delete_goal)
+Test deleting a goal. ... ok
+test_end_writing_session (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_end_writing_session)
+Test ending a writing session. ... ok
+test_export_statistics (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_export_statistics)
+Test exporting statistics. ... ok
+test_get_active_goals (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_get_active_goals)
+Test getting active goals. ... ok
+test_get_completed_goals (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_get_completed_goals)
+Test getting completed goals. ... ok
+test_get_document_word_count (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_get_document_word_count)
+Test getting document word count. ... ok
+test_get_goal (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_get_goal)
+Test getting a goal by ID. ... ok
+test_get_total_word_count (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_get_total_word_count)
+Test getting total word count. ... ok
+test_get_visualization_data (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_get_visualization_data)
+Test getting visualization data. ... ok
+test_get_word_count_history (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_get_word_count_history)
+Test getting word count history. ... ok
+test_get_writing_sessions (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_get_writing_sessions)
+Test getting writing sessions. ... ok
+test_get_writing_stats (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_get_writing_stats)
+Test getting writing statistics. ... ok
+test_save_and_load_statistics (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_save_and_load_statistics)
+Test saving and loading statistics. ... ok
+test_start_writing_session (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_start_writing_session)
+Test starting a writing session. ... ok
+test_update_all_goals (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_update_all_goals)
+Test updating all goals. ... ok
+test_update_document_word_count (src.tests.backend.services.test_statistics_service.TestStatisticsService.test_update_document_word_count)
+Test updating document word count. ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.072s
+
+OK

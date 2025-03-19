@@ -1,0 +1,21 @@
+test_clear_all_state (tests.ui.test_state_manager.TestUIStateManager.test_clear_all_state)
+Test clear_all_state method. ... ok
+test_clear_state (tests.ui.test_state_manager.TestUIStateManager.test_clear_state)
+Test clear_state method. ... ok
+test_clear_state_non_existent (tests.ui.test_state_manager.TestUIStateManager.test_clear_state_non_existent)
+Test clear_state method with non-existent key. ... ok
+test_get_state (tests.ui.test_state_manager.TestUIStateManager.test_get_state)
+Test get_state method. ... ok
+test_get_state_default (tests.ui.test_state_manager.TestUIStateManager.test_get_state_default)
+Test get_state method with default value. ... ok
+test_set_state (tests.ui.test_state_manager.TestUIStateManager.test_set_state)
+Test set_state method. ... ok
+test_set_state_no_change (tests.ui.test_state_manager.TestUIStateManager.test_set_state_no_change)
+Test set_state method with no change. ... ok
+test_singleton_pattern (tests.ui.test_state_manager.TestUIStateManager.test_singleton_pattern)
+Test that get_state_manager returns the same instance each time. ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.019s
+
+OK

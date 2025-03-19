@@ -1,0 +1,445 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.1, pytest-8.3.5, pluggy-1.5.0 -- C:\Users\snowm\Desktop\VisualStudioTest\RebelSCRIBE_Milestone_20250309_045420\venv\Scripts\python.exe
+cachedir: .pytest_cache
+PyQt6 6.8.1 -- Qt runtime 6.8.2 -- Qt compiled 6.8.2
+rootdir: C:\Users\snowm\Desktop\VisualStudioTest\RebelSCRIBE_Milestone_20250309_045420
+configfile: pyproject.toml
+plugins: anyio-4.8.0, cov-6.0.0, mock-3.14.0, qt-4.4.0
+collecting ... collected 18 items
+
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_init PASSED   [  5%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_provider_tab PASSED [ 11%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_sync_tab PASSED [ 16%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_files_tab PASSED [ 22%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_enable_cloud_storage_toggled FAILED [ 27%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_provider_changed FAILED [ 33%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_auto_sync_toggled FAILED [ 38%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_get_current_settings PASSED [ 44%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_save_settings FAILED [ 50%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_connect_button FAILED [ 55%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_sync_now FAILED [ 61%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_refresh_files FAILED [ 66%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_format_file_size PASSED [ 72%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_download_file FAILED [ 77%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_upload_file FAILED [ 83%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_delete_file FAILED [ 88%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_accept PASSED [ 94%]
+test_cloud_storage_dialog.py::TestCloudStorageDialog::test_apply PASSED  [100%]
+
+================================== FAILURES ===================================
+__________ TestCloudStorageDialog.test_enable_cloud_storage_toggled ___________
+
+self = <src.tests.ui.test_cloud_storage_dialog.TestCloudStorageDialog object at 0x000001F1D23B39B0>
+qtbot = <pytestqt.qtbot.QtBot object at 0x000001F1D1BE3360>
+dialog = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D2434410>
+
+    def test_enable_cloud_storage_toggled(self, qtbot, dialog):
+        """Test toggling the enable cloud storage checkbox."""
+        # Initially disabled
+        assert not dialog.enable_cloud_storage_checkbox.isChecked()
+        assert not dialog.provider_radios[CloudProvider.DROPBOX.value].isEnabled()
+    
+        # Toggle on
+        qtbot.mouseClick(dialog.enable_cloud_storage_checkbox, Qt.MouseButton.LeftButton)
+    
+        # Check that provider radio buttons are enabled
+>       assert dialog.enable_cloud_storage_checkbox.isChecked()
+E       assert False
+E        +  where False = <built-in method isChecked of QCheckBox object at 0x000001F1D2434690>()
+E        +    where <built-in method isChecked of QCheckBox object at 0x000001F1D2434690> = <PyQt6.QtWidgets.QCheckBox object at 0x000001F1D2434690>.isChecked
+E        +      where <PyQt6.QtWidgets.QCheckBox object at 0x000001F1D2434690> = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D2434410>.enable_cloud_storage_checkbox
+
+test_cloud_storage_dialog.py:184: AssertionError
+________________ TestCloudStorageDialog.test_provider_changed _________________
+
+self = <src.tests.ui.test_cloud_storage_dialog.TestCloudStorageDialog object at 0x000001F1D2312F10>
+qtbot = <pytestqt.qtbot.QtBot object at 0x000001F1D242A450>
+dialog = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D2408CD0>
+
+    def test_provider_changed(self, qtbot, dialog):
+        """Test changing the provider."""
+        # Enable cloud storage first
+        dialog.enable_cloud_storage_checkbox.setChecked(True)
+    
+        # Initially Dropbox
+        assert dialog.provider_radios[CloudProvider.DROPBOX.value].isChecked()
+>       assert dialog.dropbox_settings_widget.isVisible()
+E       assert False
+E        +  where False = <built-in method isVisible of QWidget object at 0x000001F1D24094F0>()
+E        +    where <built-in method isVisible of QWidget object at 0x000001F1D24094F0> = <PyQt6.QtWidgets.QWidget object at 0x000001F1D24094F0>.isVisible
+E        +      where <PyQt6.QtWidgets.QWidget object at 0x000001F1D24094F0> = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D2408CD0>.dropbox_settings_widget
+
+test_cloud_storage_dialog.py:201: AssertionError
+________________ TestCloudStorageDialog.test_auto_sync_toggled ________________
+
+self = <src.tests.ui.test_cloud_storage_dialog.TestCloudStorageDialog object at 0x000001F1D2313130>
+qtbot = <pytestqt.qtbot.QtBot object at 0x000001F1D4B307C0>
+dialog = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D4AC1F90>
+
+    def test_auto_sync_toggled(self, qtbot, dialog):
+        """Test toggling the auto sync checkbox."""
+        # Initially disabled
+        assert not dialog.auto_sync_checkbox.isChecked()
+        assert not dialog.sync_interval_spin.isEnabled()
+    
+        # Toggle on
+        qtbot.mouseClick(dialog.auto_sync_checkbox, Qt.MouseButton.LeftButton)
+    
+        # Check that sync interval spinner is enabled
+>       assert dialog.auto_sync_checkbox.isChecked()
+E       assert False
+E        +  where False = <built-in method isChecked of QCheckBox object at 0x000001F1D4AC3570>()
+E        +    where <built-in method isChecked of QCheckBox object at 0x000001F1D4AC3570> = <PyQt6.QtWidgets.QCheckBox object at 0x000001F1D4AC3570>.isChecked
+E        +      where <PyQt6.QtWidgets.QCheckBox object at 0x000001F1D4AC3570> = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D4AC1F90>.auto_sync_checkbox
+
+test_cloud_storage_dialog.py:233: AssertionError
+__________________ TestCloudStorageDialog.test_save_settings __________________
+
+self = <src.tests.ui.test_cloud_storage_dialog.TestCloudStorageDialog object at 0x000001F1D2345C50>
+mock_message_box = <MagicMock name='QMessageBox' id='2138167139968'>
+dialog = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D4B24190>
+mock_cloud_storage_service = <MagicMock spec='CloudStorageService' id='2138167136944'>
+
+    @patch('src.ui.cloud_storage_dialog.QMessageBox')
+    def test_save_settings(self, mock_message_box, dialog, mock_cloud_storage_service):
+        """Test saving settings."""
+        # Set some values
+        dialog.enable_cloud_storage_checkbox.setChecked(True)
+        dialog.provider_radios[CloudProvider.GOOGLE_DRIVE.value].setChecked(True)
+        dialog.auto_sync_checkbox.setChecked(True)
+        dialog.sync_interval_spin.setValue(60)
+    
+        # Mock config
+        with patch('src.ui.cloud_storage_dialog.config') as mock_config:
+            mock_config.get_config.return_value = {}
+    
+            # Call save settings
+            result = dialog._save_settings()
+    
+            # Check that config was updated
+            mock_config.save_config.assert_called_once()
+    
+            # Check that cloud storage service was updated
+            mock_cloud_storage_service.update_settings.assert_called_once()
+    
+            # Check result
+>           assert result is True
+E           assert False is True
+
+test_cloud_storage_dialog.py:291: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    src.ui.cloud_storage_dialog:cloud_storage_dialog.py:676 Error saving cloud storage settings: CloudStorageDialog.settings_changed[dict].emit(): argument 1 has unexpected type 'MagicMock'
+_________________ TestCloudStorageDialog.test_connect_button __________________
+
+self = <MagicMock name='mock.authenticate_user' id='2138167136272'>
+
+    def assert_called_once(self):
+        """assert that the mock was called only once.
+        """
+        if not self.call_count == 1:
+            msg = ("Expected '%s' to have been called once. Called %s times.%s"
+                   % (self._mock_name or 'mock',
+                      self.call_count,
+                      self._calls_repr()))
+>           raise AssertionError(msg)
+E           AssertionError: Expected 'authenticate_user' to have been called once. Called 0 times.
+
+C:\Python313\Lib\unittest\mock.py:956: AssertionError
+
+During handling of the above exception, another exception occurred:
+
+self = <src.tests.ui.test_cloud_storage_dialog.TestCloudStorageDialog object at 0x000001F1D22FE3F0>
+mock_message_box = <MagicMock name='QMessageBox' id='2138167136608'>
+qtbot = <pytestqt.qtbot.QtBot object at 0x000001F1D2346E50>
+dialog = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D4B49630>
+mock_cloud_storage_service = <MagicMock spec='CloudStorageService' id='2138126008400'>
+
+    @patch('src.ui.cloud_storage_dialog.QMessageBox')
+    def test_connect_button(self, mock_message_box, qtbot, dialog, mock_cloud_storage_service):
+        """Test the connect button."""
+        # Enable cloud storage
+        dialog.enable_cloud_storage_checkbox.setChecked(True)
+    
+        # Mock authentication success
+        mock_cloud_storage_service.authenticate_user.return_value = True
+    
+        # Click connect button
+        qtbot.mouseClick(dialog.connect_button, Qt.MouseButton.LeftButton)
+    
+        # Check that authenticate_user was called
+>       mock_cloud_storage_service.authenticate_user.assert_called_once()
+E       AssertionError: Expected 'authenticate_user' to have been called once. Called 0 times.
+
+test_cloud_storage_dialog.py:306: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    src.ui.cloud_storage_dialog:cloud_storage_dialog.py:676 Error saving cloud storage settings: ConfigManager.get() missing 1 required positional argument: 'section'
+____________________ TestCloudStorageDialog.test_sync_now _____________________
+
+self = <MagicMock name='mock.sync_project' id='2138167143328'>
+args = ('/test/project',), kwargs = {}
+msg = "Expected 'sync_project' to be called once. Called 0 times."
+
+    def assert_called_once_with(self, /, *args, **kwargs):
+        """assert that the mock was called exactly once and that that call was
+        with the specified arguments."""
+        if not self.call_count == 1:
+            msg = ("Expected '%s' to be called once. Called %s times.%s"
+                   % (self._mock_name or 'mock',
+                      self.call_count,
+                      self._calls_repr()))
+>           raise AssertionError(msg)
+E           AssertionError: Expected 'sync_project' to be called once. Called 0 times.
+
+C:\Python313\Lib\unittest\mock.py:988: AssertionError
+
+During handling of the above exception, another exception occurred:
+
+self = <src.tests.ui.test_cloud_storage_dialog.TestCloudStorageDialog object at 0x000001F1D22FE5D0>
+mock_message_box = <MagicMock name='QMessageBox' id='2138167132912'>
+mock_file_dialog = <MagicMock name='QFileDialog' id='2138167142656'>
+qtbot = <pytestqt.qtbot.QtBot object at 0x000001F1D22FE7B0>
+dialog = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D4B48870>
+mock_cloud_storage_service = <MagicMock spec='CloudStorageService' id='2138167135264'>
+
+    @patch('src.ui.cloud_storage_dialog.QFileDialog')
+    @patch('src.ui.cloud_storage_dialog.QMessageBox')
+    def test_sync_now(self, mock_message_box, mock_file_dialog, qtbot, dialog, mock_cloud_storage_service):
+        """Test the sync now button."""
+        # Mock is_connected to return True
+        mock_cloud_storage_service.is_connected.return_value = True
+    
+        # Mock file dialog to return a directory
+        mock_file_dialog.getExistingDirectory.return_value = "/test/project"
+    
+        # Mock sync_project to return success
+        mock_cloud_storage_service.sync_project.return_value = {
+            "success": True,
+            "uploaded": ["file1.txt", "file2.txt"],
+            "downloaded": [],
+            "errors": [],
+            "timestamp": "2025-03-10T14:57:00"
+        }
+    
+        # Click sync now button
+        qtbot.mouseClick(dialog.sync_now_button, Qt.MouseButton.LeftButton)
+    
+        # Check that sync_project was called
+>       mock_cloud_storage_service.sync_project.assert_called_once_with("/test/project")
+E       AssertionError: Expected 'sync_project' to be called once. Called 0 times.
+
+test_cloud_storage_dialog.py:334: AssertionError
+__________________ TestCloudStorageDialog.test_refresh_files __________________
+
+self = <MagicMock name='mock.list_files' id='2138167146016'>
+
+    def assert_called_once(self):
+        """assert that the mock was called only once.
+        """
+        if not self.call_count == 1:
+            msg = ("Expected '%s' to have been called once. Called %s times.%s"
+                   % (self._mock_name or 'mock',
+                      self.call_count,
+                      self._calls_repr()))
+>           raise AssertionError(msg)
+E           AssertionError: Expected 'list_files' to have been called once. Called 0 times.
+
+C:\Python313\Lib\unittest\mock.py:956: AssertionError
+
+During handling of the above exception, another exception occurred:
+
+self = <src.tests.ui.test_cloud_storage_dialog.TestCloudStorageDialog object at 0x000001F1D232F230>
+mock_message_box = <MagicMock name='QMessageBox' id='2138167145680'>
+qtbot = <pytestqt.qtbot.QtBot object at 0x000001F1D4B10050>
+dialog = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D2435090>
+mock_cloud_storage_service = <MagicMock spec='CloudStorageService' id='2138167143664'>
+
+    @patch('src.ui.cloud_storage_dialog.QMessageBox')
+    def test_refresh_files(self, mock_message_box, qtbot, dialog, mock_cloud_storage_service):
+        """Test the refresh files button."""
+        # Mock is_connected to return True
+        mock_cloud_storage_service.is_connected.return_value = True
+    
+        # Mock list_files to return some files
+        mock_cloud_storage_service.list_files.return_value = [
+            {"name": "file1.txt", "type": "file", "size": 1024, "modified": "2025-03-10"},
+            {"name": "folder1", "type": "folder", "size": 0, "modified": "2025-03-09"}
+        ]
+    
+        # Click refresh files button
+        qtbot.mouseClick(dialog.refresh_files_button, Qt.MouseButton.LeftButton)
+    
+        # Check that list_files was called
+>       mock_cloud_storage_service.list_files.assert_called_once()
+E       AssertionError: Expected 'list_files' to have been called once. Called 0 times.
+
+test_cloud_storage_dialog.py:358: AssertionError
+__________________ TestCloudStorageDialog.test_download_file __________________
+
+self = <MagicMock name='mock.download_file' id='2138167839776'>
+args = ('file1.txt', '/test/download/file1.txt'), kwargs = {}
+msg = "Expected 'download_file' to be called once. Called 0 times."
+
+    def assert_called_once_with(self, /, *args, **kwargs):
+        """assert that the mock was called exactly once and that that call was
+        with the specified arguments."""
+        if not self.call_count == 1:
+            msg = ("Expected '%s' to be called once. Called %s times.%s"
+                   % (self._mock_name or 'mock',
+                      self.call_count,
+                      self._calls_repr()))
+>           raise AssertionError(msg)
+E           AssertionError: Expected 'download_file' to be called once. Called 0 times.
+
+C:\Python313\Lib\unittest\mock.py:988: AssertionError
+
+During handling of the above exception, another exception occurred:
+
+self = <src.tests.ui.test_cloud_storage_dialog.TestCloudStorageDialog object at 0x000001F1D23C5A50>
+mock_message_box = <MagicMock name='QMessageBox' id='2138167838768'>
+mock_file_dialog = <MagicMock name='QFileDialog' id='2138167839104'>
+qtbot = <pytestqt.qtbot.QtBot object at 0x000001F1D4B3AA50>
+dialog = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D240A3F0>
+mock_cloud_storage_service = <MagicMock spec='CloudStorageService' id='2138167836752'>
+
+    @patch('src.ui.cloud_storage_dialog.QFileDialog')
+    @patch('src.ui.cloud_storage_dialog.QMessageBox')
+    def test_download_file(self, mock_message_box, mock_file_dialog, qtbot, dialog, mock_cloud_storage_service):
+        """Test downloading a file."""
+        # Mock is_connected to return True
+        mock_cloud_storage_service.is_connected.return_value = True
+    
+        # Add a file to the table
+        dialog.files_table.setRowCount(1)
+        name_item = QTableWidgetItem("file1.txt")
+        type_item = QTableWidgetItem("file")
+        dialog.files_table.setItem(0, 0, name_item)
+        dialog.files_table.setItem(0, 1, type_item)
+    
+        # Select the file
+        dialog.files_table.setCurrentCell(0, 0)
+    
+        # Mock file dialog to return a file path
+        mock_file_dialog.getSaveFileName.return_value = ("/test/download/file1.txt", "")
+    
+        # Mock download_file to return success
+        mock_cloud_storage_service.download_file.return_value = True
+    
+        # Click download file button
+        qtbot.mouseClick(dialog.download_file_button, Qt.MouseButton.LeftButton)
+    
+        # Check that download_file was called
+>       mock_cloud_storage_service.download_file.assert_called_once_with("file1.txt", "/test/download/file1.txt")
+E       AssertionError: Expected 'download_file' to be called once. Called 0 times.
+
+test_cloud_storage_dialog.py:403: AssertionError
+___________________ TestCloudStorageDialog.test_upload_file ___________________
+
+self = <MagicMock name='mock.upload_file' id='2138167841120'>
+args = ('/test/upload/file1.txt', 'file1.txt'), kwargs = {}
+msg = "Expected 'upload_file' to be called once. Called 0 times."
+
+    def assert_called_once_with(self, /, *args, **kwargs):
+        """assert that the mock was called exactly once and that that call was
+        with the specified arguments."""
+        if not self.call_count == 1:
+            msg = ("Expected '%s' to be called once. Called %s times.%s"
+                   % (self._mock_name or 'mock',
+                      self.call_count,
+                      self._calls_repr()))
+>           raise AssertionError(msg)
+E           AssertionError: Expected 'upload_file' to be called once. Called 0 times.
+
+C:\Python313\Lib\unittest\mock.py:988: AssertionError
+
+During handling of the above exception, another exception occurred:
+
+self = <src.tests.ui.test_cloud_storage_dialog.TestCloudStorageDialog object at 0x000001F1D2067950>
+mock_message_box = <MagicMock name='QMessageBox' id='2138167840112'>
+mock_file_dialog = <MagicMock name='QFileDialog' id='2138167840448'>
+qtbot = <pytestqt.qtbot.QtBot object at 0x000001F1D4B89710>
+dialog = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D23BA7B0>
+mock_cloud_storage_service = <MagicMock spec='CloudStorageService' id='2138167146352'>
+
+    @patch('src.ui.cloud_storage_dialog.QFileDialog')
+    @patch('src.ui.cloud_storage_dialog.QMessageBox')
+    def test_upload_file(self, mock_message_box, mock_file_dialog, qtbot, dialog, mock_cloud_storage_service):
+        """Test uploading a file."""
+        # Mock is_connected to return True
+        mock_cloud_storage_service.is_connected.return_value = True
+    
+        # Mock file dialog to return a file path
+        mock_file_dialog.getOpenFileName.return_value = ("/test/upload/file1.txt", "")
+    
+        # Mock upload_file to return success
+        mock_cloud_storage_service.upload_file.return_value = True
+    
+        # Click upload file button
+        qtbot.mouseClick(dialog.upload_file_button, Qt.MouseButton.LeftButton)
+    
+        # Check that upload_file was called
+>       mock_cloud_storage_service.upload_file.assert_called_once_with("/test/upload/file1.txt", "file1.txt")
+E       AssertionError: Expected 'upload_file' to be called once. Called 0 times.
+
+test_cloud_storage_dialog.py:429: AssertionError
+___________________ TestCloudStorageDialog.test_delete_file ___________________
+
+self = <MagicMock name='QMessageBox.question' id='2138167844480'>
+
+    def assert_called_once(self):
+        """assert that the mock was called only once.
+        """
+        if not self.call_count == 1:
+            msg = ("Expected '%s' to have been called once. Called %s times.%s"
+                   % (self._mock_name or 'mock',
+                      self.call_count,
+                      self._calls_repr()))
+>           raise AssertionError(msg)
+E           AssertionError: Expected 'question' to have been called once. Called 0 times.
+
+C:\Python313\Lib\unittest\mock.py:956: AssertionError
+
+During handling of the above exception, another exception occurred:
+
+self = <src.tests.ui.test_cloud_storage_dialog.TestCloudStorageDialog object at 0x000001F1D2067AD0>
+mock_message_box = <MagicMock name='QMessageBox' id='2138167843472'>
+qtbot = <pytestqt.qtbot.QtBot object at 0x000001F1D4C40050>
+dialog = <src.ui.cloud_storage_dialog.CloudStorageDialog object at 0x000001F1D4CACCD0>
+mock_cloud_storage_service = <MagicMock spec='CloudStorageService' id='2138167841456'>
+
+    @patch('src.ui.cloud_storage_dialog.QMessageBox')
+    def test_delete_file(self, mock_message_box, qtbot, dialog, mock_cloud_storage_service):
+        """Test deleting a file."""
+        # Mock is_connected to return True
+        mock_cloud_storage_service.is_connected.return_value = True
+    
+        # Add a file to the table
+        dialog.files_table.setRowCount(1)
+        name_item = QTableWidgetItem("file1.txt")
+        dialog.files_table.setItem(0, 0, name_item)
+    
+        # Select the file
+        dialog.files_table.setCurrentCell(0, 0)
+    
+        # Mock message box to return Yes
+        mock_message_box.question.return_value = mock_message_box.StandardButton.Yes
+    
+        # Click delete file button
+        qtbot.mouseClick(dialog.delete_file_button, Qt.MouseButton.LeftButton)
+    
+        # Check that message box was shown
+>       mock_message_box.question.assert_called_once()
+E       AssertionError: Expected 'question' to have been called once. Called 0 times.
+
+test_cloud_storage_dialog.py:459: AssertionError
+=========================== short test summary info ===========================
+FAILED test_cloud_storage_dialog.py::TestCloudStorageDialog::test_enable_cloud_storage_toggled
+FAILED test_cloud_storage_dialog.py::TestCloudStorageDialog::test_provider_changed
+FAILED test_cloud_storage_dialog.py::TestCloudStorageDialog::test_auto_sync_toggled
+FAILED test_cloud_storage_dialog.py::TestCloudStorageDialog::test_save_settings
+FAILED test_cloud_storage_dialog.py::TestCloudStorageDialog::test_connect_button
+FAILED test_cloud_storage_dialog.py::TestCloudStorageDialog::test_sync_now - ...
+FAILED test_cloud_storage_dialog.py::TestCloudStorageDialog::test_refresh_files
+FAILED test_cloud_storage_dialog.py::TestCloudStorageDialog::test_download_file
+FAILED test_cloud_storage_dialog.py::TestCloudStorageDialog::test_upload_file
+FAILED test_cloud_storage_dialog.py::TestCloudStorageDialog::test_delete_file
+======================== 10 failed, 8 passed in 0.72s =========================

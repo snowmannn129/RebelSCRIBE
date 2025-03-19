@@ -1,0 +1,936 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Document Manager Service for RebelSCRIBE.
+
+This module provides functionality for creating, loading, saving, and managing documents.
+"""
+
+import os
+import json
+import logging
+from src.utils.logging_utils import get_logger
+import datetime
+import shutil
+from pathlib import Path
+from typing import Dict, List, Optional, Any, Tuple, Set, Union
+
+from ..models.document import Document
+from src.utils import file_utils
+from src.utils.config_manager import ConfigManager
+
+logger = get_logger(__name__)
+
+class DocumentManager:
+    """
+    Manages documents in RebelSCRIBE.
+    
+    This class provides functionality for creating, loading, saving,
+    and managing documents, including versioning and metadata.
+    """
+    
+    # Document file extension
+    DOCUMENT_FILE_EXTENSION = ".rsdoc"
+    
+    # Version file extension
+    VERSION_FILE_EXTENSION = ".rsver"
+    
+    # Maximum number of versions to keep
+    DEFAULT_MAX_VERSIONS = 10
+    
+    def __init__(self, project_path: Optional[str] = None):
+        """
+        Initialize the DocumentManager.
+        
+        Args:
+            project_path: The path to the project directory. If None, documents will be
+                          managed independently of a project.
+        """
+        self.config_manager = ConfigManager()
+        self.config = self.config_manager.get_config()
+        self.project_path = project_path
+        self.documents: Dict[str, Document] = {}
+        self.modified_documents: Set[str] = set()
+        
+        # Get max versions from config or use default
+        self.max_versions = self.config.get("documents", "max_versions", self.DEFAULT_MAX_VERSIONS)
+        
+        # Initialize document directory
+        if self.project_path:
+            self.documents_dir = os.path.join(self.project_path, "documents")
+            self.versions_dir = os.path.join(self.project_path, "versions")
+            file_utils.ensure_directory(self.documents_dir)
+            file_utils.ensure_directory(self.versions_dir)
+        else:
+            # If no project path, use default data directory
+            data_dir = self.config.get("application", "data_directory")
+            self.documents_dir = os.path.join(data_dir, "documents")
+            self.versions_dir = os.path.join(data_dir, "versions")
+            file_utils.ensure_directory(self.documents_dir)
+            file_utils.ensure_directory(self.versions_dir)
+    
+    def set_project_path(self, project_path: str) -> None:
+        """
+        Set the project path.
+        
+        Args:
+            project_path: The path to the project directory.
+        """
+        self.project_path = project_path
+        self.documents_dir = os.path.join(project_path, "documents")
+        self.versions_dir = os.path.join(project_path, "versions")
+        file_utils.ensure_directory(self.documents_dir)
+        file_utils.ensure_directory(self.versions_dir)
+        
+        # Clear current documents
+        self.documents = {}
+        self.modified_documents = set()
+        
+        logger.info(f"Set project path to: {project_path}")
+    
+    def create_document(self, title: str, doc_type: str = Document.TYPE_SCENE,
+                       parent_id: Optional[str] = None, content: str = "") -> Optional[Document]:
+        """
+        Create a new document.
+        
+        Args:
+            title: The document title.
+            doc_type: The document type.
+            parent_id: The parent document ID, or None for a root document.
+            content: The document content.
+            
+        Returns:
+            The created document, or None if creation failed.
+        """
+        try:
+            # Create document
+            document = Document(
+                title=title,
+                type=doc_type,
+                content=content,
+                parent_id=parent_id,
+                created_at=datetime.datetime.now(),
+                updated_at=datetime.datetime.now()
+            )
+            
+            # Add to documents
+            self.documents[document.id] = document
+            self.modified_documents.add(document.id)
+            
+            logger.info(f"Created document: {title}")
+            return document
+        
+        except Exception as e:
+            logger.error(f"Error creating document: {e}", exc_info=True)
+            return None
+    
+    def load_document(self, document_id: str) -> Optional[Document]:
+        """
+        Load a document by ID.
+        
+        Args:
+            document_id: The document ID.
+            
+        Returns:
+            The loaded document, or None if loading failed.
+        """
+        # Check if document is already loaded
+        if document_id in self.documents:
+            return self.documents[document_id]
+        
+        try:
+            # Construct document path
+            doc_path = os.path.join(self.documents_dir, f"{document_id}.json")
+            
+            # Check if file exists
+            if not file_utils.file_exists(doc_path):
+                logger.error(f"Document file not found: {doc_path}")
+                return None
+            
+            # Load document data
+            doc_data = file_utils.read_json_file(doc_path)
+            if not doc_data:
+                logger.error(f"Failed to read document data from: {doc_path}")
+                return None
+            
+            # Create document from data
+            document = Document.from_dict(doc_data)
+            
+            # Add to documents
+            self.documents[document.id] = document
+            
+            logger.info(f"Loaded document: {document.title}")
+            return document
+        
+        except Exception as e:
+            logger.error(f"Error loading document: {e}", exc_info=True)
+            return None
+    
+    def load_all_documents(self) -> Dict[str, Document]:
+        """
+        Load all documents in the project.
+        
+        Returns:
+            A dictionary of document IDs to documents.
+        """
+        try:
+            # Clear current documents
+            self.documents = {}
+            self.modified_documents = set()
+            
+            # Check if documents directory exists
+            if not file_utils.directory_exists(self.documents_dir):
+                logger.warning(f"Documents directory not found: {self.documents_dir}")
+                return {}
+            
+            # Load document files
+            document_files = file_utils.list_files(self.documents_dir, "*.json")
+            for doc_file in document_files:
+                try:
+                    # Load document data
+                    doc_data = file_utils.read_json_file(doc_file)
+                    if not doc_data:
+                        logger.warning(f"Failed to read document data from: {doc_file}")
+                        continue
+                    
+                    # Create document from data
+                    document = Document.from_dict(doc_data)
+                    self.documents[document.id] = document
+                
+                except Exception as e:
+                    logger.error(f"Error loading document {doc_file}: {e}", exc_info=True)
+            
+            logger.info(f"Loaded {len(self.documents)} documents")
+            return self.documents
+        
+        except Exception as e:
+            logger.error(f"Error loading all documents: {e}", exc_info=True)
+            return {}
+    
+    def save_document(self, document_id: str, create_version: bool = True) -> bool:
+        """
+        Save a document.
+        
+        Args:
+            document_id: The document ID.
+            create_version: Whether to create a version of the document.
+            
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        document = self.documents.get(document_id)
+        if not document:
+            logger.error(f"Document not found: {document_id}")
+            return False
+        
+        try:
+            # Update document timestamp
+            document.updated_at = datetime.datetime.now()
+            
+            # Create version if requested
+            if create_version:
+                self._create_document_version(document)
+            
+            # Save document data
+            doc_path = os.path.join(self.documents_dir, f"{document_id}.json")
+            doc_data = document.to_dict()
+            success = file_utils.write_json_file(doc_path, doc_data)
+            if not success:
+                logger.error(f"Failed to write document data to: {doc_path}")
+                return False
+            
+            # Remove from modified documents
+            if document_id in self.modified_documents:
+                self.modified_documents.remove(document_id)
+            
+            logger.info(f"Saved document: {document.title}")
+            return True
+        
+        except Exception as e:
+            logger.error(f"Error saving document: {e}", exc_info=True)
+            return False
+    
+    def save_all_documents(self, create_versions: bool = True) -> bool:
+        """
+        Save all modified documents.
+        
+        Args:
+            create_versions: Whether to create versions of the documents.
+            
+        Returns:
+            bool: True if all documents were saved successfully, False otherwise.
+        """
+        if not self.modified_documents:
+            logger.info("No modified documents to save")
+            return True
+        
+        try:
+            # Save each modified document
+            success = True
+            for doc_id in list(self.modified_documents):
+                if not self.save_document(doc_id, create_versions):
+                    success = False
+            
+            return success
+        
+        except Exception as e:
+            logger.error(f"Error saving all documents: {e}", exc_info=True)
+            return False
+    
+    def _create_document_version(self, document: Document) -> bool:
+        """
+        Create a version of a document.
+        
+        Args:
+            document: The document to create a version of.
+            
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        try:
+            # Create version directory for document
+            doc_versions_dir = os.path.join(self.versions_dir, document.id)
+            file_utils.ensure_directory(doc_versions_dir)
+            
+            # Create version filename with timestamp
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            version_path = os.path.join(doc_versions_dir, f"{timestamp}.json")
+            
+            # Save document data to version file
+            doc_data = document.to_dict()
+            success = file_utils.write_json_file(version_path, doc_data)
+            if not success:
+                logger.error(f"Failed to write version data to: {version_path}")
+                return False
+            
+            # Manage version count
+            self._manage_version_count(doc_versions_dir)
+            
+            logger.debug(f"Created version of document: {document.title}")
+            return True
+        
+        except Exception as e:
+            logger.error(f"Error creating document version: {e}", exc_info=True)
+            return False
+    
+    def _manage_version_count(self, versions_dir: str) -> None:
+        """
+        Manage the number of versions kept for a document.
+        
+        Args:
+            versions_dir: The directory containing the document versions.
+        """
+        try:
+            # List version files
+            version_files = file_utils.list_files(versions_dir, "*.json")
+            
+            # If number of versions exceeds max, delete oldest
+            if len(version_files) > self.max_versions:
+                # Sort by filename (which includes timestamp)
+                version_files.sort()
+                
+                # Delete oldest versions
+                num_to_delete = len(version_files) - self.max_versions
+                for i in range(num_to_delete):
+                    try:
+                        os.remove(version_files[i])
+                        logger.debug(f"Deleted old version: {version_files[i]}")
+                    except Exception as e:
+                        logger.error(f"Error deleting old version {version_files[i]}: {e}")
+        
+        except Exception as e:
+            logger.error(f"Error managing version count: {e}", exc_info=True)
+    
+    def get_document_versions(self, document_id: str) -> List[Dict[str, Any]]:
+        """
+        Get a list of versions for a document.
+        
+        Args:
+            document_id: The document ID.
+            
+        Returns:
+            A list of version metadata dictionaries.
+        """
+        versions = []
+        
+        try:
+            # Check if document exists
+            if document_id not in self.documents:
+                logger.error(f"Document not found: {document_id}")
+                return versions
+            
+            # Check if versions directory exists
+            doc_versions_dir = os.path.join(self.versions_dir, document_id)
+            if not file_utils.directory_exists(doc_versions_dir):
+                return versions
+            
+            # List version files
+            version_files = file_utils.list_files(doc_versions_dir, "*.json")
+            
+            # Sort by filename (which includes timestamp) in reverse order
+            version_files.sort(reverse=True)
+            
+            # Extract version info
+            for version_file in version_files:
+                try:
+                    # Get timestamp from filename
+                    filename = os.path.basename(version_file)
+                    timestamp = filename.split(".")[0]
+                    
+                    # Format timestamp for display
+                    display_date = datetime.datetime.strptime(timestamp, "%Y%m%d_%H%M%S")
+                    display_date_str = display_date.strftime("%Y-%m-%d %H:%M:%S")
+                    
+                    # Add version info
+                    versions.append({
+                        "id": timestamp,
+                        "date": display_date_str,
+                        "path": version_file
+                    })
+                
+                except Exception as e:
+                    logger.error(f"Error processing version file {version_file}: {e}")
+            
+            return versions
+        
+        except Exception as e:
+            logger.error(f"Error getting document versions: {e}", exc_info=True)
+            return versions
+    
+    def load_document_version(self, document_id: str, version_id: str) -> Optional[Document]:
+        """
+        Load a specific version of a document.
+        
+        Args:
+            document_id: The document ID.
+            version_id: The version ID (timestamp).
+            
+        Returns:
+            The loaded document version, or None if loading failed.
+        """
+        try:
+            # Construct version path
+            version_path = os.path.join(self.versions_dir, document_id, f"{version_id}.json")
+            
+            # Check if file exists
+            if not file_utils.file_exists(version_path):
+                logger.error(f"Version file not found: {version_path}")
+                return None
+            
+            # Load version data
+            version_data = file_utils.read_json_file(version_path)
+            if not version_data:
+                logger.error(f"Failed to read version data from: {version_path}")
+                return None
+            
+            # Create document from data
+            document = Document.from_dict(version_data)
+            
+            logger.info(f"Loaded document version: {document.title} ({version_id})")
+            return document
+        
+        except Exception as e:
+            logger.error(f"Error loading document version: {e}", exc_info=True)
+            return None
+    
+    def restore_document_version(self, document_id: str, version_id: str) -> bool:
+        """
+        Restore a document to a specific version.
+        
+        Args:
+            document_id: The document ID.
+            version_id: The version ID (timestamp).
+            
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        try:
+            # Load the version
+            version_doc = self.load_document_version(document_id, version_id)
+            if not version_doc:
+                return False
+            
+            # Check if document exists
+            if document_id not in self.documents:
+                logger.error(f"Document not found: {document_id}")
+                return False
+            
+            # Create a version of the current document before restoring
+            current_doc = self.documents[document_id]
+            self._create_document_version(current_doc)
+            
+            # Update the current document with version data
+            self.documents[document_id] = version_doc
+            self.modified_documents.add(document_id)
+            
+            # Save the restored document
+            success = self.save_document(document_id, False)  # Don't create another version
+            
+            logger.info(f"Restored document to version: {version_id}")
+            return success
+        
+        except Exception as e:
+            logger.error(f"Error restoring document version: {e}", exc_info=True)
+            return False
+    
+    def delete_document(self, document_id: str, delete_versions: bool = True) -> bool:
+        """
+        Delete a document.
+        
+        Args:
+            document_id: The document ID.
+            delete_versions: Whether to delete the document versions.
+            
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        try:
+            # Check if document exists
+            if document_id not in self.documents:
+                logger.error(f"Document not found: {document_id}")
+                return False
+            
+            # Delete document file
+            doc_path = os.path.join(self.documents_dir, f"{document_id}.json")
+            if file_utils.file_exists(doc_path):
+                try:
+                    os.remove(doc_path)
+                except Exception as e:
+                    logger.error(f"Error deleting document file {doc_path}: {e}")
+                    return False
+            
+            # Delete versions if requested
+            if delete_versions:
+                doc_versions_dir = os.path.join(self.versions_dir, document_id)
+                if file_utils.directory_exists(doc_versions_dir):
+                    try:
+                        shutil.rmtree(doc_versions_dir)
+                    except Exception as e:
+                        logger.error(f"Error deleting versions directory {doc_versions_dir}: {e}")
+            
+            # Remove from documents
+            document = self.documents.pop(document_id)
+            
+            # Remove from modified documents
+            if document_id in self.modified_documents:
+                self.modified_documents.remove(document_id)
+            
+            logger.info(f"Deleted document: {document.title}")
+            return True
+        
+        except Exception as e:
+            logger.error(f"Error deleting document: {e}", exc_info=True)
+            return False
+    
+    def update_document(self, document_id: str, **kwargs) -> bool:
+        """
+        Update a document.
+        
+        Args:
+            document_id: The document ID.
+            **kwargs: The document properties to update.
+            
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        document = self.documents.get(document_id)
+        if not document:
+            logger.error(f"Document not found: {document_id}")
+            return False
+        
+        try:
+            # Update properties
+            for key, value in kwargs.items():
+                if hasattr(document, key):
+                    setattr(document, key, value)
+            
+            # Update timestamp
+            document.updated_at = datetime.datetime.now()
+            
+            # Mark as modified
+            self.modified_documents.add(document_id)
+            
+            logger.info(f"Updated document: {document.title}")
+            return True
+        
+        except Exception as e:
+            logger.error(f"Error updating document: {e}", exc_info=True)
+            return False
+    
+    def update_document_content(self, document_id: str, content: str) -> bool:
+        """
+        Update a document's content.
+        
+        Args:
+            document_id: The document ID.
+            content: The new content.
+            
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        document = self.documents.get(document_id)
+        if not document:
+            logger.error(f"Document not found: {document_id}")
+            return False
+        
+        try:
+            # Update content
+            document.set_content(content)
+            
+            # Mark as modified
+            self.modified_documents.add(document_id)
+            
+            logger.info(f"Updated content for document: {document.title}")
+            return True
+        
+        except Exception as e:
+            logger.error(f"Error updating document content: {e}", exc_info=True)
+            return False
+    
+    def append_document_content(self, document_id: str, content: str) -> bool:
+        """
+        Append content to a document.
+        
+        Args:
+            document_id: The document ID.
+            content: The content to append.
+            
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        document = self.documents.get(document_id)
+        if not document:
+            logger.error(f"Document not found: {document_id}")
+            return False
+        
+        try:
+            # Append content
+            document.append_content(content)
+            
+            # Mark as modified
+            self.modified_documents.add(document_id)
+            
+            logger.info(f"Appended content to document: {document.title}")
+            return True
+        
+        except Exception as e:
+            logger.error(f"Error appending document content: {e}", exc_info=True)
+            return False
+    
+    def get_document(self, document_id: str) -> Optional[Document]:
+        """
+        Get a document by ID.
+        
+        Args:
+            document_id: The document ID.
+            
+        Returns:
+            The document, or None if not found.
+        """
+        # Check if document is already loaded
+        if document_id in self.documents:
+            return self.documents[document_id]
+        
+        # Try to load the document
+        return self.load_document(document_id)
+    
+    def get_documents_by_type(self, doc_type: str) -> List[Document]:
+        """
+        Get all documents of a specific type.
+        
+        Args:
+            doc_type: The document type.
+            
+        Returns:
+            A list of documents of the specified type.
+        """
+        return [doc for doc in self.documents.values() if doc.type == doc_type]
+    
+    def get_documents_by_tag(self, tag: str) -> List[Document]:
+        """
+        Get all documents with a specific tag.
+        
+        Args:
+            tag: The tag to search for.
+            
+        Returns:
+            A list of documents with the specified tag.
+        """
+        return [doc for doc in self.documents.values() if tag in doc.tags]
+    
+    def get_documents_by_metadata(self, key: str, value: Any) -> List[Document]:
+        """
+        Get all documents with a specific metadata value.
+        
+        Args:
+            key: The metadata key.
+            value: The metadata value.
+            
+        Returns:
+            A list of documents with the specified metadata value.
+        """
+        return [doc for doc in self.documents.values() if doc.get_metadata(key) == value]
+    
+    def get_modified_documents(self) -> List[Document]:
+        """
+        Get all modified documents.
+        
+        Returns:
+            A list of modified documents.
+        """
+        return [self.documents[doc_id] for doc_id in self.modified_documents if doc_id in self.documents]
+    
+    def export_document(self, document_id: str, export_path: str, format: str = "txt") -> bool:
+        """
+        Export a document to a file.
+        
+        Args:
+            document_id: The document ID.
+            export_path: The path to export to.
+            format: The export format (txt, md, html, etc.).
+            
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        document = self.documents.get(document_id)
+        if not document:
+            logger.error(f"Document not found: {document_id}")
+            return False
+        
+        try:
+            # Ensure export directory exists
+            export_dir = os.path.dirname(export_path)
+            file_utils.ensure_directory(export_dir)
+            
+            # Export based on format
+            if format == "txt":
+                # Simple text export
+                with open(export_path, "w", encoding="utf-8") as f:
+                    f.write(document.content)
+            
+            elif format == "md":
+                # Markdown export
+                with open(export_path, "w", encoding="utf-8") as f:
+                    f.write(f"# {document.title}\n\n")
+                    if document.synopsis:
+                        f.write(f"*{document.synopsis}*\n\n")
+                    f.write(document.content)
+            
+            elif format == "html":
+                # HTML export
+                with open(export_path, "w", encoding="utf-8") as f:
+                    f.write(f"<!DOCTYPE html>\n<html>\n<head>\n<title>{document.title}</title>\n</head>\n<body>\n")
+                    f.write(f"<h1>{document.title}</h1>\n")
+                    if document.synopsis:
+                        f.write(f"<p><em>{document.synopsis}</em></p>\n")
+                    
+                    # Convert content to HTML paragraphs
+                    paragraphs = document.content.split("\n\n")
+                    for p in paragraphs:
+                        if p.strip():
+                            f.write(f"<p>{p}</p>\n")
+                    
+                    f.write("</body>\n</html>")
+            
+            else:
+                logger.error(f"Unsupported export format: {format}")
+                return False
+            
+            logger.info(f"Exported document to: {export_path}")
+            return True
+        
+        except Exception as e:
+            logger.error(f"Error exporting document: {e}", exc_info=True)
+            return False
+    
+    def import_document(self, import_path: str, title: Optional[str] = None, 
+                       doc_type: str = Document.TYPE_SCENE, parent_id: Optional[str] = None) -> Optional[Document]:
+        """
+        Import a document from a file.
+        
+        Args:
+            import_path: The path to import from.
+            title: The document title. If None, uses the filename.
+            doc_type: The document type.
+            parent_id: The parent document ID, or None for a root document.
+            
+        Returns:
+            The imported document, or None if import failed.
+        """
+        try:
+            # Check if file exists
+            if not file_utils.file_exists(import_path):
+                logger.error(f"Import file not found: {import_path}")
+                return None
+            
+            # Get title from filename if not provided
+            if not title:
+                title = os.path.basename(import_path)
+                title = os.path.splitext(title)[0]  # Remove extension
+            
+            # Read file content
+            with open(import_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            
+            # Create document
+            document = self.create_document(title, doc_type, parent_id, content)
+            
+            logger.info(f"Imported document from: {import_path}")
+            return document
+        
+        except Exception as e:
+            logger.error(f"Error importing document: {e}", exc_info=True)
+            return None
+    
+    def duplicate_document(self, document_id: str, new_title: Optional[str] = None) -> Optional[Document]:
+        """
+        Duplicate a document.
+        
+        Args:
+            document_id: The document ID.
+            new_title: The title for the duplicate. If None, uses "Copy of [original title]".
+            
+        Returns:
+            The duplicated document, or None if duplication failed.
+        """
+        document = self.documents.get(document_id)
+        if not document:
+            logger.error(f"Document not found: {document_id}")
+            return None
+        
+        try:
+            # Create title for duplicate
+            if not new_title:
+                new_title = f"Copy of {document.title}"
+            
+            # Create duplicate
+            duplicate = self.create_document(
+                title=new_title,
+                doc_type=document.type,
+                parent_id=document.parent_id,
+                content=document.content
+            )
+            
+            if not duplicate:
+                return None
+            
+            # Copy other properties
+            duplicate.synopsis = document.synopsis
+            duplicate.status = document.status
+            duplicate.color = document.color
+            duplicate.is_included_in_compile = document.is_included_in_compile
+            duplicate.tags = document.tags.copy()
+            duplicate.metadata = document.metadata.copy()
+            
+            # Mark as modified
+            self.modified_documents.add(duplicate.id)
+            
+            logger.info(f"Duplicated document: {document.title} -> {duplicate.title}")
+            return duplicate
+        
+        except Exception as e:
+            logger.error(f"Error duplicating document: {e}", exc_info=True)
+            return None
+    
+    def merge_documents(self, document_ids: List[str], title: str, 
+                       doc_type: str = Document.TYPE_SCENE, parent_id: Optional[str] = None) -> Optional[Document]:
+        """
+        Merge multiple documents into a new document.
+        
+        Args:
+            document_ids: The IDs of the documents to merge.
+            title: The title for the merged document.
+            doc_type: The document type.
+            parent_id: The parent document ID, or None for a root document.
+            
+        Returns:
+            The merged document, or None if merging failed.
+        """
+        if not document_ids:
+            logger.error("No documents to merge")
+            return None
+        
+        try:
+            # Collect documents
+            documents = []
+            for doc_id in document_ids:
+                document = self.documents.get(doc_id)
+                if not document:
+                    logger.error(f"Document not found: {doc_id}")
+                    return None
+                documents.append(document)
+            
+            # Merge content
+            merged_content = ""
+            for document in documents:
+                if merged_content:
+                    merged_content += "\n\n"
+                merged_content += document.content
+            
+            # Create merged document
+            merged_doc = self.create_document(title, doc_type, parent_id, merged_content)
+            
+            logger.info(f"Merged {len(documents)} documents into: {title}")
+            return merged_doc
+        
+        except Exception as e:
+            logger.error(f"Error merging documents: {e}", exc_info=True)
+            return None
+    
+    def split_document(self, document_id: str, split_points: List[Tuple[int, str]]) -> List[Document]:
+        """
+        Split a document into multiple documents.
+        
+        Args:
+            document_id: The document ID.
+            split_points: A list of tuples containing (position, title) for each split point.
+            
+        Returns:
+            A list of the resulting documents, or an empty list if splitting failed.
+        """
+        document = self.documents.get(document_id)
+        if not document:
+            logger.error(f"Document not found: {document_id}")
+            return []
+        
+        try:
+            # Sort split points by position
+            split_points.sort(key=lambda x: x[0])
+            
+            # Add end of document as final split point
+            content_length = len(document.content)
+            split_positions = [pos for pos, _ in split_points] + [content_length]
+            
+            # Create new documents
+            new_documents = []
+            
+            # Extract content segments
+            start_pos = 0
+            for i, (end_pos, title) in enumerate(zip(split_positions, [title for _, title in split_points] + [""])):
+                # Get content segment
+                segment = document.content[start_pos:end_pos].strip()
+                
+                if i == 0:
+                    # Update original document
+                    self.update_document_content(document_id, segment)
+                    new_documents.append(document)
+                elif segment:  # Only create new document if segment has content
+                    # Create new document for segment
+                    new_doc = self.create_document(
+                        title=title,
+                        doc_type=document.type,
+                        parent_id=document.parent_id,
+                        content=segment
+                    )
+                    if new_doc:
+                        new_documents.append(new_doc)
+                
+                # Update start position for next segment
+                start_pos = end_pos
+            
+            logger.info(f"Split document '{document.title}' into {len(new_documents)} documents")
+            return new_documents
+            
+        except Exception as e:
+            logger.error(f"Error splitting document: {e}", exc_info=True)
+            return []

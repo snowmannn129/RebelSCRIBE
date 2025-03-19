@@ -1,0 +1,20 @@
+test_enhanced_error_handler (unittest.loader._FailedTest.test_enhanced_error_handler) ... ERROR
+
+======================================================================
+ERROR: test_enhanced_error_handler (unittest.loader._FailedTest.test_enhanced_error_handler)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_enhanced_error_handler
+Traceback (most recent call last):
+  File "C:\Python313\Lib\unittest\loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\tests\ui\test_enhanced_error_handler.py", line 23, in <module>
+    from ui.enhanced_error_handler import (
+    ...<4 lines>...
+    )
+ModuleNotFoundError: No module named 'ui'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

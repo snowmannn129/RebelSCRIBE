@@ -1,0 +1,17 @@
+test_handle_error (tests.ui.test_error_handler.TestUIErrorHandler.test_handle_error)
+Test handle_error method. ... ok
+test_handle_error_no_dialog (tests.ui.test_error_handler.TestUIErrorHandler.test_handle_error_no_dialog)
+Test handle_error method with show_dialog=False. ... ok
+test_handle_exception (tests.ui.test_error_handler.TestUIErrorHandler.test_handle_exception)
+Test handle_exception method. ... ok
+test_handle_exception_no_dialog (tests.ui.test_error_handler.TestUIErrorHandler.test_handle_exception_no_dialog)
+Test handle_exception method with show_dialog=False. ... ok
+test_handle_exception_with_context (tests.ui.test_error_handler.TestUIErrorHandler.test_handle_exception_with_context)
+Test handle_exception method with context. ... ok
+test_singleton_pattern (tests.ui.test_error_handler.TestUIErrorHandler.test_singleton_pattern)
+Test that get_error_handler returns the same instance each time. ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.023s
+
+OK

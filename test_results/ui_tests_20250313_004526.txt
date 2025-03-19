@@ -1,0 +1,266 @@
+test_adapter_tab (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_adapter_tab)
+Test the adapter tab. ... ok
+test_adapter_type_changed (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_adapter_type_changed)
+Test changing the adapter type. ... ok
+test_add_conversation (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_add_conversation)
+Test adding a conversation. ... ok
+test_add_instruction_row (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_add_instruction_row)
+Test adding an instruction row. ... ok
+test_browse_dataset_file (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_browse_dataset_file)
+Test browsing for a dataset file. ... ok
+test_browse_eval_file (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_browse_eval_file)
+Test browsing for an evaluation file. ... ok
+test_browse_output_dir (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_browse_output_dir)
+Test browsing for an output directory. ... ok
+test_dataset_format_changed (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_dataset_format_changed)
+Test changing the dataset format. ... ok
+test_dataset_source_changed (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_dataset_source_changed)
+Test changing the dataset source. ... ok
+test_dataset_tab (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_dataset_tab)
+Test the dataset tab. ... ok
+test_evaluation_tab (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_evaluation_tab)
+Test the evaluation tab. ... ok
+test_get_current_configuration (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_get_current_configuration)
+Test getting the current configuration. ... ok
+test_init (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_init)
+Test initialization of the dialog. ... ok
+test_load_results_button (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_load_results_button)
+Test the load results button functionality. ... ok
+test_load_results_button_exists (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_load_results_button_exists)
+Test that the load results button exists and has the correct text. ... ok
+test_remove_conversation (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_remove_conversation)
+Test removing a conversation. ... ok
+test_remove_instruction_row (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_remove_instruction_row)
+Test removing an instruction row. ... ok
+test_separate_eval_toggled (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_separate_eval_toggled)
+Test toggling the separate evaluation dataset checkbox. ... ok
+test_training_tab (tests.ui.test_adapter_config_dialog.TestAdapterConfigDialog.test_training_tab)
+Test the training tab. ... ok
+test_adapter_to_training_integration (tests.ui.test_adapter_to_training_integration.TestAdapterToTrainingIntegration.test_adapter_to_training_integration)
+Test the integration between adapter config dialog and training visualization dialog. ... ok
+test_adapter_config_validation (tests.ui.test_adapter_training_integration.TestAdapterTrainingIntegration.test_adapter_config_validation)
+Test validation of adapter configuration before starting training. ... ok
+test_adapter_type_change (tests.ui.test_adapter_training_integration.TestAdapterTrainingIntegration.test_adapter_type_change)
+Test changing adapter type updates UI elements. ... ok
+test_load_training_results_integration (tests.ui.test_adapter_training_integration.TestAdapterTrainingIntegration.test_load_training_results_integration)
+Test loading training results from adapter config dialog. ... ok
+test_start_training_integration (tests.ui.test_adapter_training_integration.TestAdapterTrainingIntegration.test_start_training_integration)
+Test starting training from adapter config dialog. ... ok
+test_training_parameter_collection (tests.ui.test_adapter_training_integration.TestAdapterTrainingIntegration.test_training_parameter_collection)
+Test collection of training parameters from adapter config dialog. ... ok
+tests.ui.test_benchmark_dialog (unittest.loader._FailedTest.tests.ui.test_benchmark_dialog) ... ERROR
+tests.ui.test_comprehensive_ui (unittest.loader._FailedTest.tests.ui.test_comprehensive_ui) ... ERROR
+test_handle_error (tests.ui.test_error_handler.TestUIErrorHandler.test_handle_error)
+Test handle_error method. ... ok
+test_handle_error_no_dialog (tests.ui.test_error_handler.TestUIErrorHandler.test_handle_error_no_dialog)
+Test handle_error method with show_dialog=False. ... ok
+test_handle_exception (tests.ui.test_error_handler.TestUIErrorHandler.test_handle_exception)
+Test handle_exception method. ... ok
+test_handle_exception_no_dialog (tests.ui.test_error_handler.TestUIErrorHandler.test_handle_exception_no_dialog)
+Test handle_exception method with show_dialog=False. ... ok
+test_handle_exception_with_context (tests.ui.test_error_handler.TestUIErrorHandler.test_handle_exception_with_context)
+Test handle_exception method with context. ... ok
+test_singleton_pattern (tests.ui.test_error_handler.TestUIErrorHandler.test_singleton_pattern)
+Test that get_error_handler returns the same instance each time. ... ok
+test_document_created_event (tests.ui.test_event_bus.TestUIEventBus.test_document_created_event)
+Test document_created event. ... ok
+test_document_deleted_event (tests.ui.test_event_bus.TestUIEventBus.test_document_deleted_event)
+Test document_deleted event. ... ok
+test_document_loaded_event (tests.ui.test_event_bus.TestUIEventBus.test_document_loaded_event)
+Test document_loaded event. ... ok
+test_document_modified_event (tests.ui.test_event_bus.TestUIEventBus.test_document_modified_event)
+Test document_modified event. ... ok
+test_document_saved_event (tests.ui.test_event_bus.TestUIEventBus.test_document_saved_event)
+Test document_saved event. ... ok
+test_document_selected_event (tests.ui.test_event_bus.TestUIEventBus.test_document_selected_event)
+Test document_selected event. ... ok
+test_error_occurred_event (tests.ui.test_event_bus.TestUIEventBus.test_error_occurred_event)
+Test error_occurred event. ... ok
+test_project_closed_event (tests.ui.test_event_bus.TestUIEventBus.test_project_closed_event)
+Test project_closed event. ... ok
+test_project_created_event (tests.ui.test_event_bus.TestUIEventBus.test_project_created_event)
+Test project_created event. ... ok
+test_project_loaded_event (tests.ui.test_event_bus.TestUIEventBus.test_project_loaded_event)
+Test project_loaded event. ... ok
+test_project_saved_event (tests.ui.test_event_bus.TestUIEventBus.test_project_saved_event)
+Test project_saved event. ... ok
+test_singleton_pattern (tests.ui.test_event_bus.TestUIEventBus.test_singleton_pattern)
+Test that get_event_bus returns the same instance each time. ... ok
+test_ui_state_changed_event (tests.ui.test_event_bus.TestUIEventBus.test_ui_state_changed_event)
+Test ui_state_changed event. ... ok
+test_ui_theme_changed_event (tests.ui.test_event_bus.TestUIEventBus.test_ui_theme_changed_event)
+Test ui_theme_changed event. ... ok
+tests.ui.test_main_window (unittest.loader._FailedTest.tests.ui.test_main_window) ... ERROR
+tests.ui.test_main_window_ai_actions (unittest.loader._FailedTest.tests.ui.test_main_window_ai_actions) ... ERROR
+tests.ui.test_main_window_enhanced (unittest.loader._FailedTest.tests.ui.test_main_window_enhanced) ... ERROR
+test_clear_all_state (tests.ui.test_state_manager.TestUIStateManager.test_clear_all_state)
+Test clear_all_state method. ... ok
+test_clear_state (tests.ui.test_state_manager.TestUIStateManager.test_clear_state)
+Test clear_state method. ... ok
+test_clear_state_non_existent (tests.ui.test_state_manager.TestUIStateManager.test_clear_state_non_existent)
+Test clear_state method with non-existent key. ... ok
+test_get_state (tests.ui.test_state_manager.TestUIStateManager.test_get_state)
+Test get_state method. ... ok
+test_get_state_default (tests.ui.test_state_manager.TestUIStateManager.test_get_state_default)
+Test get_state method with default value. ... ok
+test_set_state (tests.ui.test_state_manager.TestUIStateManager.test_set_state)
+Test set_state method. ... ok
+test_set_state_no_change (tests.ui.test_state_manager.TestUIStateManager.test_set_state_no_change)
+Test set_state method with no change. ... ok
+test_singleton_pattern (tests.ui.test_state_manager.TestUIStateManager.test_singleton_pattern)
+Test that get_state_manager returns the same instance each time. ... ok
+test_on_epoch_complete (tests.ui.test_training_visualization_dialog.TestTrainingProgressCallback.test_on_epoch_complete)
+Test on_epoch_complete method. ... ok
+test_on_progress_update (tests.ui.test_training_visualization_dialog.TestTrainingProgressCallback.test_on_progress_update)
+Test on_progress_update method. ... ok
+test_on_step_complete (tests.ui.test_training_visualization_dialog.TestTrainingProgressCallback.test_on_step_complete)
+Test on_step_complete method. ... ok
+test_on_training_end (tests.ui.test_training_visualization_dialog.TestTrainingProgressCallback.test_on_training_end)
+Test on_training_end method. ... ok
+test_on_training_start (tests.ui.test_training_visualization_dialog.TestTrainingProgressCallback.test_on_training_start)
+Test on_training_start method. ... ok
+test_init (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_init)
+Test initialization of the dialog. ... ok
+test_load_training_results (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_load_training_results)
+Test loading training results. ... ok
+test_on_epoch_completed (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_on_epoch_completed)
+Test handling epoch completed. ... ok
+test_on_export_report_clicked (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_on_export_report_clicked)
+Test clicking the export report button. ... ok
+test_on_progress_updated (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_on_progress_updated)
+Test handling progress updated. ... ok
+test_on_save_results_clicked (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_on_save_results_clicked)
+Test clicking the save results button. ... ok
+test_on_start_stop_clicked_start (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_on_start_stop_clicked_start)
+Test clicking the start button. ... ok
+test_on_start_stop_clicked_stop (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_on_start_stop_clicked_stop)
+Test clicking the stop button. ... ok
+test_on_step_completed (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_on_step_completed)
+Test handling step completed. ... ok
+test_on_training_ended (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_on_training_ended)
+Test handling training ended. ... ok
+test_on_training_started (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_on_training_started)
+Test handling training started. ... ok
+test_set_training_config (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_set_training_config)
+Test setting the training configuration. ... ok
+test_start_training (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_start_training)
+Test starting training. ... ok
+test_stop_training (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_stop_training)
+Test stopping training. ... ok
+test_update_visualizations (tests.ui.test_training_visualization_dialog.TestTrainingVisualizationDialog.test_update_visualizations)
+Test updating visualizations. ... ok
+
+======================================================================
+ERROR: tests.ui.test_benchmark_dialog (unittest.loader._FailedTest.tests.ui.test_benchmark_dialog)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.ui.test_benchmark_dialog
+Traceback (most recent call last):
+  File "C:\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\tests\ui\test_benchmark_dialog.py", line 16, in <module>
+    from src.ui.main_window import MainWindow
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 50, in <module>
+    class MainWindow(QMainWindow):
+    ...<1527 lines>...
+            )
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 1541, in MainWindow
+    def _on_ui_state_changed(self, state_key: str, state_value: Any):
+                                                                ^^^
+NameError: name 'Any' is not defined. Did you mean: 'any'?
+
+
+======================================================================
+ERROR: tests.ui.test_comprehensive_ui (unittest.loader._FailedTest.tests.ui.test_comprehensive_ui)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.ui.test_comprehensive_ui
+Traceback (most recent call last):
+  File "C:\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\tests\ui\test_comprehensive_ui.py", line 28, in <module>
+    from src.ui.main_window import MainWindow
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 50, in <module>
+    class MainWindow(QMainWindow):
+    ...<1527 lines>...
+            )
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 1541, in MainWindow
+    def _on_ui_state_changed(self, state_key: str, state_value: Any):
+                                                                ^^^
+NameError: name 'Any' is not defined. Did you mean: 'any'?
+
+
+======================================================================
+ERROR: tests.ui.test_main_window (unittest.loader._FailedTest.tests.ui.test_main_window)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.ui.test_main_window
+Traceback (most recent call last):
+  File "C:\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\tests\ui\test_main_window.py", line 18, in <module>
+    from src.ui.main_window import MainWindow
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 50, in <module>
+    class MainWindow(QMainWindow):
+    ...<1527 lines>...
+            )
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 1541, in MainWindow
+    def _on_ui_state_changed(self, state_key: str, state_value: Any):
+                                                                ^^^
+NameError: name 'Any' is not defined. Did you mean: 'any'?
+
+
+======================================================================
+ERROR: tests.ui.test_main_window_ai_actions (unittest.loader._FailedTest.tests.ui.test_main_window_ai_actions)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.ui.test_main_window_ai_actions
+Traceback (most recent call last):
+  File "C:\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\tests\ui\test_main_window_ai_actions.py", line 19, in <module>
+    from src.ui.main_window import MainWindow
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 50, in <module>
+    class MainWindow(QMainWindow):
+    ...<1527 lines>...
+            )
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 1541, in MainWindow
+    def _on_ui_state_changed(self, state_key: str, state_value: Any):
+                                                                ^^^
+NameError: name 'Any' is not defined. Did you mean: 'any'?
+
+
+======================================================================
+ERROR: tests.ui.test_main_window_enhanced (unittest.loader._FailedTest.tests.ui.test_main_window_enhanced)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: tests.ui.test_main_window_enhanced
+Traceback (most recent call last):
+  File "C:\Python313\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Python313\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\tests\ui\test_main_window_enhanced.py", line 22, in <module>
+    from src.ui.main_window import MainWindow
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 50, in <module>
+    class MainWindow(QMainWindow):
+    ...<1527 lines>...
+            )
+  File "C:\Users\snowm\Desktop\RebelSCRIBE\src\ui\main_window.py", line 1541, in MainWindow
+    def _on_ui_state_changed(self, state_key: str, state_value: Any):
+                                                                ^^^
+NameError: name 'Any' is not defined. Did you mean: 'any'?
+
+
+----------------------------------------------------------------------
+Ran 78 tests in 4.547s
+
+FAILED (errors=5)
