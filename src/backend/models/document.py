@@ -15,6 +15,8 @@ from typing import Dict, List, Optional, Any, Union
 import logging
 logger = logging.getLogger(__name__)
 
+from .document_version import DocumentVersion
+
 
 class Document:
     """
@@ -73,6 +75,11 @@ class Document:
         self.status = kwargs.get('status', "Draft")
         self.color = kwargs.get('color', None)
         
+        # Versioning
+        self.versions = kwargs.get('versions', [])
+        self.max_versions = kwargs.get('max_versions', 10)
+        self.current_version = kwargs.get('current_version', 1)
+        
         # Update word and character counts
         self.update_counts()
     
@@ -102,14 +109,40 @@ class Document:
             # Count characters (excluding whitespace)
             self.character_count = len(re.sub(r'\s', '', self.content))
     
-    def set_content(self, content: str) -> None:
-        """Set the content of the document and update counts."""
+    def set_content(self, content: str, create_version: bool = True, 
+                   created_by: Optional[str] = None, comment: Optional[str] = None) -> None:
+        """
+        Set the content of the document and update counts.
+        
+        Args:
+            content: The new content.
+            create_version: Whether to create a new version.
+            created_by: The user who created the version.
+            comment: A comment describing the changes.
+        """
+        # Create a new version if requested
+        if create_version and self.content != content:
+            self.create_version(created_by=created_by, comment=comment)
+        
         self.content = content
         self.updated_at = datetime.datetime.now()
         self.update_counts()
     
-    def append_content(self, content: str) -> None:
-        """Append content to the document and update counts."""
+    def append_content(self, content: str, create_version: bool = True,
+                      created_by: Optional[str] = None, comment: Optional[str] = None) -> None:
+        """
+        Append content to the document and update counts.
+        
+        Args:
+            content: The content to append.
+            create_version: Whether to create a new version.
+            created_by: The user who created the version.
+            comment: A comment describing the changes.
+        """
+        # Create a new version if requested
+        if create_version and content:
+            self.create_version(created_by=created_by, comment=comment)
+        
         self.content += content
         self.updated_at = datetime.datetime.now()
         self.update_counts()
@@ -194,6 +227,119 @@ class Document:
         """Return a string representation of the document."""
         return f"Document(title='{self.title}', type='{self.type}', words={self.word_count})"
     
+    def create_version(self, created_by: Optional[str] = None, comment: Optional[str] = None) -> DocumentVersion:
+        """
+        Create a new version of the document.
+        
+        Args:
+            created_by: The user who created the version.
+            comment: A comment describing the changes.
+            
+        Returns:
+            The created document version.
+        """
+        # Increment version number
+        version_number = self.current_version + 1
+        self.current_version = version_number
+        
+        # Create new version
+        version = DocumentVersion(
+            document_id=self.id,
+            content=self.content,
+            title=self.title,
+            created_by=created_by,
+            comment=comment,
+            version_number=version_number
+        )
+        
+        # Add to versions list
+        self.versions.append(version.to_dict())
+        
+        # Limit number of versions
+        if len(self.versions) > self.max_versions:
+            self.versions = self.versions[-self.max_versions:]
+        
+        logger.debug(f"Created version {version_number} for document '{self.title}'")
+        
+        return version
+    
+    def get_version(self, version_number: int) -> Optional[DocumentVersion]:
+        """
+        Get a specific version of the document.
+        
+        Args:
+            version_number: The version number to get.
+            
+        Returns:
+            The document version, or None if not found.
+        """
+        for version_dict in self.versions:
+            if version_dict.get("version_number") == version_number:
+                return DocumentVersion.from_dict(version_dict)
+        
+        return None
+    
+    def get_versions(self) -> List[DocumentVersion]:
+        """
+        Get all versions of the document.
+        
+        Returns:
+            A list of document versions.
+        """
+        return [DocumentVersion.from_dict(version_dict) for version_dict in self.versions]
+    
+    def restore_version(self, version_number: int, create_version: bool = True,
+                       created_by: Optional[str] = None, comment: Optional[str] = None) -> bool:
+        """
+        Restore a previous version of the document.
+        
+        Args:
+            version_number: The version number to restore.
+            create_version: Whether to create a new version before restoring.
+            created_by: The user who created the version.
+            comment: A comment describing the changes.
+            
+        Returns:
+            True if successful, False otherwise.
+        """
+        # Get the version to restore
+        version = self.get_version(version_number)
+        if not version:
+            logger.warning(f"Version {version_number} not found for document '{self.title}'")
+            return False
+        
+        # Create a new version if requested
+        if create_version:
+            self.create_version(
+                created_by=created_by,
+                comment=comment or f"Before restoring version {version_number}"
+            )
+        
+        # Restore content and title
+        self.content = version.content
+        self.title = version.title
+        self.updated_at = datetime.datetime.now()
+        self.update_counts()
+        
+        logger.debug(f"Restored version {version_number} for document '{self.title}'")
+        
+        return True
+    
+    def set_max_versions(self, max_versions: int) -> None:
+        """
+        Set the maximum number of versions to keep.
+        
+        Args:
+            max_versions: The maximum number of versions.
+        """
+        self.max_versions = max(1, max_versions)
+        
+        # Limit existing versions if needed
+        if len(self.versions) > self.max_versions:
+            self.versions = self.versions[-self.max_versions:]
+        
+        logger.debug(f"Set max versions to {self.max_versions} for document '{self.title}'")
+    
     def to_dict(self) -> Dict[str, Any]:
         """Convert the document to a dictionary."""
         return {
@@ -213,7 +359,10 @@ class Document:
             "is_included_in_compile": self.is_included_in_compile,
             "synopsis": self.synopsis,
             "status": self.status,
-            "color": self.color
+            "color": self.color,
+            "versions": self.versions,
+            "max_versions": self.max_versions,
+            "current_version": self.current_version
         }
     
     @classmethod
@@ -253,6 +402,12 @@ class Document:
             doc.status = data["status"]
         if "color" in data:
             doc.color = data["color"]
+        if "versions" in data:
+            doc.versions = data["versions"]
+        if "max_versions" in data:
+            doc.max_versions = data["max_versions"]
+        if "current_version" in data:
+            doc.current_version = data["current_version"]
         
         return doc
     

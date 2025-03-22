@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Utilities package for RebelSCRIBE.
+RebelSCRIBE - Utils Package
 
-This package contains utility modules that provide helper functions
-and common functionality used throughout the application.
+This package contains utility modules for RebelSCRIBE.
 """
-
-import logging
-logger = logging.getLogger(__name__)

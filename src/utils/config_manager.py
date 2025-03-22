@@ -1,33 +1,118 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Configuration Manager for RebelSCRIBE.
+Configuration manager for RebelSCRIBE.
 
-This module provides functions and classes for loading and managing application configuration.
+This module provides configuration management functionality for the application.
 """
 
 import os
+import json
 import yaml
-from typing import Dict, Any, Optional
-
 import logging
+from typing import Dict, List, Optional, Any, Union
+
+# Get logger
 logger = logging.getLogger(__name__)
 
-from src.utils.config_migration import migrate_config, get_config_version
+# Default configuration path
+DEFAULT_CONFIG_PATH = os.path.join(os.path.expanduser("~"), ".rebelscribe", "config.yaml")
+
+# Singleton instance
+_config_manager_instance = None
 
 
-# Default configuration file path
-DEFAULT_CONFIG_PATH = "config.yaml"
+def get_config(config_path: Optional[str] = None) -> 'ConfigManager':
+    """
+    Get the ConfigManager instance.
+    
+    Args:
+        config_path: The configuration file path. If None, uses the default path.
+        
+    Returns:
+        The ConfigManager instance.
+    """
+    global _config_manager_instance
+    
+    # If the instance doesn't exist or a different path is specified, create a new instance
+    if _config_manager_instance is None or (config_path is not None and config_path != _config_manager_instance.config_path):
+        _config_manager_instance = ConfigManager(config_path)
+    
+    return _config_manager_instance
 
-# Current application version
-CURRENT_APP_VERSION = "0.3.0"
+
+def save_config(config: Dict[str, Any], config_path: Optional[str] = None) -> bool:
+    """
+    Save a configuration to a file.
+    
+    Args:
+        config: The configuration data.
+        config_path: The configuration file path. If None, uses the default path.
+        
+    Returns:
+        True if successful, False otherwise.
+    """
+    # Use the default path if none is specified
+    if config_path is None:
+        config_path = DEFAULT_CONFIG_PATH
+    
+    try:
+        # Ensure the directory exists
+        os.makedirs(os.path.dirname(config_path), exist_ok=True)
+        
+        # Save the configuration
+        with open(config_path, "w", encoding="utf-8") as f:
+            yaml.dump(config, f, default_flow_style=False)
+        
+        return True
+    except Exception as e:
+        logger.error(f"Error saving configuration: {e}", exc_info=True)
+        return False
+
+
+def get_config_value(key: str, default: Any = None, config_path: Optional[str] = None) -> Any:
+    """
+    Get a configuration value.
+    
+    Args:
+        key: The configuration key (dot notation for nested keys).
+        default: The default value to return if the key doesn't exist.
+        config_path: The configuration file path. If None, uses the default path.
+        
+    Returns:
+        The configuration value, or the default if the key doesn't exist.
+    """
+    # Get the ConfigManager instance
+    config_manager = get_config(config_path)
+    
+    # Get the value
+    return config_manager.get_value(key, default)
+
+
+def set_config_value(key: str, value: Any, config_path: Optional[str] = None) -> bool:
+    """
+    Set a configuration value.
+    
+    Args:
+        key: The configuration key (dot notation for nested keys).
+        value: The configuration value.
+        config_path: The configuration file path. If None, uses the default path.
+        
+    Returns:
+        True if successful, False otherwise.
+    """
+    # Get the ConfigManager instance
+    config_manager = get_config(config_path)
+    
+    # Set the value
+    return config_manager.set_value(key, value)
 
 
 class ConfigManager:
     """
-    Manages application configuration.
+    Configuration manager for RebelSCRIBE.
     
-    This class provides methods for loading, saving, and accessing configuration values.
+    This class provides functionality for loading, saving, and accessing configuration settings.
     """
     
     def __init__(self, config_path: Optional[str] = None):
@@ -35,66 +120,86 @@ class ConfigManager:
         Initialize the ConfigManager.
         
         Args:
-            config_path: The path to the configuration file. If None, uses the default path.
+            config_path: The configuration file path. If None, uses the default path.
         """
         self.config_path = config_path or DEFAULT_CONFIG_PATH
         self.config = self._load_config()
     
     def _load_config(self) -> Dict[str, Any]:
         """
-        Load the configuration from file.
+        Load the configuration from the file.
         
         Returns:
-            The configuration data, or a default config if the configuration could not be loaded.
+            The configuration data.
         """
         try:
-            # Check if file exists
-            if not os.path.isfile(self.config_path):
+            if os.path.exists(self.config_path):
+                with open(self.config_path, "r", encoding="utf-8") as f:
+                    # Determine the file format based on the extension
+                    if self.config_path.endswith(".json"):
+                        return json.load(f)
+                    elif self.config_path.endswith(".yaml") or self.config_path.endswith(".yml"):
+                        return yaml.safe_load(f)
+                    else:
+                        # Default to YAML
+                        return yaml.safe_load(f)
+            else:
                 logger.warning(f"Configuration file not found: {self.config_path}")
-                # Create a default configuration
-                default_config = self._create_default_config()
-                # Save the default configuration
-                self._save_config_without_logging(default_config)
-                return default_config
-            
-            # Load configuration
-            with open(self.config_path, "r", encoding="utf-8") as f:
-                config = yaml.safe_load(f)
-            
-            if config is None:
-                config = {}
-            
-            # Check if migration is needed
-            config_version = get_config_version(config)
-            if config_version != CURRENT_APP_VERSION:
-                logger.info(f"Configuration version {config_version} needs migration to {CURRENT_APP_VERSION}")
-                # Migrate configuration
-                config = self._migrate_config(config)
-                # Save migrated configuration
-                self._save_config_without_logging(config)
-            
-            return config
-        
+                return self._create_default_config()
         except Exception as e:
             logger.error(f"Error loading configuration: {e}", exc_info=True)
-            return {}
+            return self._create_default_config()
     
     def _create_default_config(self) -> Dict[str, Any]:
         """
-        Create a default configuration.
+        Create the default configuration.
         
         Returns:
             The default configuration data.
         """
-        return {
+        config = {
             "application": {
                 "name": "RebelSCRIBE",
-                "version": CURRENT_APP_VERSION
+                "version": "0.3.0",
+                "data_directory": os.path.join(os.path.expanduser("~"), ".rebelscribe"),
+                "autosave_interval": 300,  # 5 minutes
+                "backup": {
+                    "enabled": True,
+                    "interval": 3600,  # 1 hour
+                    "max_backups": 10,
+                    "directory": os.path.join(os.path.expanduser("~"), ".rebelscribe", "backups")
+                }
             },
             "ui": {
-                "color_theme": "light",
+                "color_theme": "system",
+                "colors": {
+                    "primary": "#007bff",
+                    "secondary": "#6c757d",
+                    "success": "#28a745",
+                    "danger": "#dc3545",
+                    "warning": "#ffc107",
+                    "info": "#17a2b8"
+                },
+                "font": {
+                    "ui": "Segoe UI",
+                    "ui_size": 10,
+                    "editor": "Consolas",
+                    "editor_size": 12
+                },
                 "show_toolbar": True,
-                "show_statusbar": True
+                "show_statusbar": True,
+                "editor": {
+                    "line_numbers": True,
+                    "word_wrap": True,
+                    "spell_check": True,
+                    "auto_save": True,
+                    "highlight_current_line": True
+                },
+                "distraction_free_mode": {
+                    "hide_ui_elements": True,
+                    "background_color": "#2d2d2d",
+                    "text_color": "#f8f8f2"
+                }
             },
             "editor": {
                 "font_family": "Courier New",
@@ -102,216 +207,203 @@ class ConfigManager:
                 "line_spacing": 1.5,
                 "show_line_numbers": True,
                 "auto_save": True,
-                "auto_save_interval": 60  # seconds
-            },
-            "ai": {
-                "provider": "openai",
-                "model": "gpt-3.5-turbo",
-                "temperature": 0.7,
-                "max_tokens": 1000,
-                "use_local_models": False,
-                "local_model_path": ""
+                "auto_save_interval": 60  # 1 minute
             },
             "export": {
                 "default_format": "docx",
-                "include_metadata": True,
-                "include_notes": False,
-                "include_comments": False,
-                "page_size": "A4",
-                "margin": 2.54  # cm
+                "markdown": {
+                    "flavor": "github"
+                },
+                "html": {
+                    "include_css": True,
+                    "template": ""
+                },
+                "docx": {
+                    "include_metadata": True,
+                    "template": "",
+                    "page_size": "A4"
+                },
+                "pdf": {
+                    "include_metadata": True,
+                    "template": "",
+                    "page_size": "A4"
+                },
+                "epub": {
+                    "include_cover": True,
+                    "include_toc": True
+                }
+            },
+            "ai": {
+                "provider": "openai",
+                "models": {
+                    "openai": {
+                        "chat": "gpt-4-turbo",
+                        "completion": "gpt-4-turbo",
+                        "embedding": "text-embedding-3-small",
+                        "image": "dall-e-3"
+                    },
+                    "anthropic": {
+                        "chat": "claude-3-opus-20240229",
+                        "completion": "claude-3-opus-20240229"
+                    },
+                    "google": {
+                        "chat": "gemini-1.5-pro",
+                        "completion": "gemini-1.5-pro",
+                        "embedding": "embedding-001"
+                    },
+                    "local": {
+                        "chat": "llama3-70b",
+                        "completion": "llama3-70b",
+                        "embedding": "all-MiniLM-L6-v2",
+                        "image": "stable-diffusion-3"
+                    }
+                },
+                "api_keys": {
+                    "openai": "",
+                    "anthropic": "",
+                    "google": ""
+                },
+                "default_params": {
+                    "temperature": 0.7,
+                    "max_tokens": 1000,
+                    "top_p": 0.9,
+                    "frequency_penalty": 0.5,
+                    "presence_penalty": 0.5
+                },
+                "local": {
+                    "model_path": "",
+                    "device": "cpu"
+                },
+                "rate_limits": {
+                    "openai": 10,
+                    "anthropic": 5,
+                    "google": 10,
+                    "local": 20
+                }
+            },
+            "cloud_storage": {
+                "enabled": False,
+                "provider": "dropbox",
+                "dropbox": {
+                    "api_key": "",
+                    "folder": "/RebelSCRIBE"
+                },
+                "google_drive": {
+                    "credentials_file": "",
+                    "folder": "RebelSCRIBE"
+                },
+                "onedrive": {
+                    "client_id": "",
+                    "folder": "RebelSCRIBE"
+                }
+            },
+            "error_handler": {
+                "ui_treatments": {
+                    "INFO": {
+                        "dialog_type": "NOTIFICATION",
+                        "use_non_blocking": True,
+                        "timeout": 5000,
+                        "position": "TOP_RIGHT"
+                    },
+                    "WARNING": {
+                        "dialog_type": "NOTIFICATION",
+                        "use_non_blocking": True,
+                        "timeout": 10000,
+                        "position": "TOP_RIGHT"
+                    },
+                    "ERROR": {
+                        "dialog_type": "MODAL",
+                        "use_non_blocking": False,
+                        "timeout": None,
+                        "position": None
+                    },
+                    "CRITICAL": {
+                        "dialog_type": "MODAL",
+                        "use_non_blocking": False,
+                        "timeout": None,
+                        "position": None
+                    }
+                },
+                "error_aggregation": {
+                    "enabled": True,
+                    "timeout": 5000,
+                    "pattern_matching": False
+                },
+                "rate_limiting": {
+                    "enabled": True,
+                    "threshold": 5,
+                    "time_window": 60000,
+                    "use_exponential_backoff": True
+                },
+                "notification_manager": {
+                    "max_notifications": 5,
+                    "spacing": 10,
+                    "animation_duration": 250,
+                    "fade_effect": True,
+                    "slide_effect": True,
+                    "stacking_order": "newest_on_top",
+                    "default_timeouts": {
+                        "INFO": 5000,
+                        "WARNING": 10000,
+                        "ERROR": 15000,
+                        "CRITICAL": None
+                    }
+                },
+                "error_reporting": {
+                    "service": "local",
+                    "endpoint_url": "",
+                    "api_key": "",
+                    "smtp_server": "",
+                    "smtp_port": 587,
+                    "smtp_username": "",
+                    "smtp_password": "",
+                    "from_email": "",
+                    "to_email": ""
+                }
             }
         }
-    
-    def _save_config_without_logging(self, config: Dict[str, Any]) -> bool:
-        """
-        Save the configuration to file without logging errors.
         
-        Args:
-            config: The configuration data to save.
-            
-        Returns:
-            True if the configuration was saved successfully, False otherwise.
-        """
+        # Ensure config directory exists
+        os.makedirs(os.path.dirname(self.config_path), exist_ok=True)
+        
+        # Save default config
         try:
-            # Create directory if it doesn't exist
-            directory = os.path.dirname(self.config_path)
-            if directory and not os.path.exists(directory):
-                os.makedirs(directory)
-            
-            # Save configuration
-            with open(self.config_path, "w", encoding="utf-8") as f:
-                yaml.dump(config, f, default_flow_style=False)
-            
-            return True
-        
-        except Exception:
-            return False
-    
-    def _migrate_config(self, config: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Migrate the configuration to the current version.
-        
-        Args:
-            config: The configuration data to migrate.
-            
-        Returns:
-            The migrated configuration data.
-        """
-        try:
-            # Create a backup of the original config
-            from src.utils.config_migration import backup_config
-            backup_path = backup_config(self.config_path)
-            if backup_path:
-                logger.info(f"Configuration backup created at {backup_path}")
-            
-            # Migrate the configuration
-            migrated_config = migrate_config(config, CURRENT_APP_VERSION)
-            
-            return migrated_config
-        
+            # Determine the file format based on the extension
+            if self.config_path.endswith(".json"):
+                with open(self.config_path, "w", encoding="utf-8") as f:
+                    json.dump(config, f, indent=2)
+            else:
+                # Default to YAML
+                with open(self.config_path, "w", encoding="utf-8") as f:
+                    yaml.dump(config, f, default_flow_style=False)
         except Exception as e:
-            logger.error(f"Error migrating configuration: {e}", exc_info=True)
-            return config
-
+            logger.error(f"Error saving default configuration: {e}", exc_info=True)
+        
+        return config
+    
     def save_config(self) -> bool:
         """
-        Save the configuration to file.
+        Save the configuration to the file.
         
         Returns:
-            True if the configuration was saved successfully, False otherwise.
+            bool: True if successful, False otherwise.
         """
         try:
-            # Ensure the configuration has the correct version
-            if "application" not in self.config:
-                self.config["application"] = {}
-            self.config["application"]["version"] = CURRENT_APP_VERSION
+            # Ensure config directory exists
+            os.makedirs(os.path.dirname(self.config_path), exist_ok=True)
             
-            # Save configuration
-            with open(self.config_path, "w", encoding="utf-8") as f:
-                yaml.dump(self.config, f, default_flow_style=False)
+            # Determine the file format based on the extension
+            if self.config_path.endswith(".json"):
+                with open(self.config_path, "w", encoding="utf-8") as f:
+                    json.dump(self.config, f, indent=2)
+            else:
+                # Default to YAML
+                with open(self.config_path, "w", encoding="utf-8") as f:
+                    yaml.dump(self.config, f, default_flow_style=False)
             
             return True
-        
         except Exception as e:
             logger.error(f"Error saving configuration: {e}", exc_info=True)
-            return False
-    
-    def get_value(self, key: str, default: Any = None) -> Any:
-        """
-        Get a value from the configuration.
-        
-        Args:
-            key: The key to get the value for. Can be a dot-separated path (e.g., "section.subsection.key").
-            default: The default value to return if the key is not found.
-            
-        Returns:
-            The value for the key, or the default value if the key is not found.
-        """
-        try:
-            # Split key into parts
-            parts = key.split(".")
-            
-            # Navigate through config
-            value = self.config
-            for part in parts:
-                if not isinstance(value, dict) or part not in value:
-                    return default
-                value = value[part]
-            
-            return value
-        
-        except Exception as e:
-            logger.error(f"Error getting configuration value: {e}", exc_info=True)
-            return default
-    
-    def get(self, key: str, subkey: Optional[str] = None, default: Any = None) -> Any:
-        """
-        Get a value from the configuration.
-        
-        Args:
-            key: The section key.
-            subkey: The subkey within the section. If None, returns the entire section.
-            default: The default value to return if the key is not found.
-            
-        Returns:
-            The value for the key, or the default value if the key is not found.
-        """
-        try:
-            # If subkey is provided, get the value from the section
-            if subkey is not None:
-                if key not in self.config or not isinstance(self.config[key], dict):
-                    return default
-                if subkey not in self.config[key]:
-                    return default
-                return self.config[key][subkey]
-            
-            # If no subkey, return the entire section
-            if key not in self.config:
-                return default
-            
-            return self.config[key]
-        
-        except Exception as e:
-            logger.error(f"Error getting configuration value: {e}", exc_info=True)
-            return default
-    
-    def set(self, section: str, key: str, value: Any) -> bool:
-        """
-        Set a value in the configuration.
-        
-        Args:
-            section: The section to set the value in.
-            key: The key to set the value for.
-            value: The value to set.
-            
-        Returns:
-            True if the value was set successfully, False otherwise.
-        """
-        try:
-            # Ensure section exists
-            if section not in self.config or not isinstance(self.config[section], dict):
-                self.config[section] = {}
-            
-            # Set value
-            self.config[section][key] = value
-            
-            # Save configuration
-            return self.save_config()
-        
-        except Exception as e:
-            logger.error(f"Error setting configuration value: {e}", exc_info=True)
-            return False
-    
-    def set_value(self, key: str, value: Any) -> bool:
-        """
-        Set a value in the configuration.
-        
-        Args:
-            key: The key to set the value for. Can be a dot-separated path (e.g., "section.subsection.key").
-            value: The value to set.
-            
-        Returns:
-            True if the value was set successfully, False otherwise.
-        """
-        try:
-            # Split key into parts
-            parts = key.split(".")
-            
-            # Navigate through config
-            current = self.config
-            for i, part in enumerate(parts[:-1]):
-                if part not in current or not isinstance(current[part], dict):
-                    current[part] = {}
-                current = current[part]
-            
-            # Set value
-            current[parts[-1]] = value
-            
-            # Save configuration
-            return self.save_config()
-        
-        except Exception as e:
-            logger.error(f"Error setting configuration value: {e}", exc_info=True)
             return False
     
     def get_config(self) -> Dict[str, Any]:
@@ -322,100 +414,145 @@ class ConfigManager:
             The configuration data.
         """
         return self.config
-
-
-# Singleton instance of ConfigManager
-_config_manager_instance = None
-
-def get_config(config_path: Optional[str] = None) -> ConfigManager:
-    """
-    Get the singleton instance of ConfigManager.
     
-    Args:
-        config_path: The path to the configuration file. If None, uses the default path.
+    def get(self, section: str, key: str = None, default: Any = None) -> Any:
+        """
+        Get a configuration value.
         
-    Returns:
-        The singleton instance of ConfigManager.
-    """
-    global _config_manager_instance
+        Args:
+            section: The configuration section.
+            key: The configuration key. If None, returns the entire section.
+            default: The default value to return if the key doesn't exist.
+            
+        Returns:
+            The configuration value, or the default if the key doesn't exist.
+        """
+        try:
+            if key is None:
+                return self.config.get(section, {})
+            return self.config.get(section, {}).get(key, default)
+        except Exception as e:
+            logger.error(f"Error getting configuration value: {e}", exc_info=True)
+            return default
     
-    # If the instance doesn't exist or a new config path is provided, create a new instance
-    if _config_manager_instance is None or (config_path and config_path != _config_manager_instance.config_path):
-        _config_manager_instance = ConfigManager(config_path)
-    
-    return _config_manager_instance
-
-
-def save_config(config: Dict[str, Any], config_path: Optional[str] = None) -> bool:
-    """
-    Save the application configuration.
-    
-    Args:
-        config: The configuration data to save.
-        config_path: The path to the configuration file. If None, uses the default path.
+    def set(self, section: str, key: str, value: Any) -> bool:
+        """
+        Set a configuration value.
         
-    Returns:
-        True if the configuration was saved successfully, False otherwise.
-    """
-    try:
-        # Use default path if not specified
-        if not config_path:
-            config_path = DEFAULT_CONFIG_PATH
-        
-        # Save configuration
-        with open(config_path, "w", encoding="utf-8") as f:
-            yaml.dump(config, f, default_flow_style=False)
-        
-        return True
+        Args:
+            section: The configuration section.
+            key: The configuration key.
+            value: The configuration value.
+            
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        try:
+            if section not in self.config:
+                self.config[section] = {}
+            
+            self.config[section][key] = value
+            return self.save_config()
+        except Exception as e:
+            logger.error(f"Error setting configuration value: {e}", exc_info=True)
+            return False
     
-    except Exception as e:
-        logger.error(f"Error saving configuration: {e}", exc_info=True)
-        return False
-
-
-def get_config_value(key: str, default: Any = None, config_path: Optional[str] = None) -> Any:
-    """
-    Get a value from the application configuration.
-    
-    Args:
-        key: The key to get the value for. Can be a dot-separated path (e.g., "section.subsection.key").
-        default: The default value to return if the key is not found.
-        config_path: The path to the configuration file. If None, uses the default path.
+    def get_section(self, section: str) -> Dict[str, Any]:
+        """
+        Get a configuration section.
         
-    Returns:
-        The value for the key, or the default value if the key is not found.
-    """
-    try:
-        # Get the singleton instance
-        config_manager = get_config(config_path)
-        
-        # Get the value
-        return config_manager.get_value(key, default)
+        Args:
+            section: The configuration section.
+            
+        Returns:
+            The configuration section, or an empty dictionary if the section doesn't exist.
+        """
+        return self.config.get(section, {})
     
-    except Exception as e:
-        logger.error(f"Error getting configuration value: {e}", exc_info=True)
-        return default
-
-
-def set_config_value(key: str, value: Any, config_path: Optional[str] = None) -> bool:
-    """
-    Set a value in the application configuration.
-    
-    Args:
-        key: The key to set the value for. Can be a dot-separated path (e.g., "section.subsection.key").
-        value: The value to set.
-        config_path: The path to the configuration file. If None, uses the default path.
+    def set_section(self, section: str, values: Dict[str, Any]) -> bool:
+        """
+        Set a configuration section.
         
-    Returns:
-        True if the value was set successfully, False otherwise.
-    """
-    try:
-        # Get the singleton instance
-        config_manager = get_config(config_path)
-        
-        # Set the value
-        return config_manager.set_value(key, value)
+        Args:
+            section: The configuration section.
+            values: The configuration values.
+            
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        try:
+            self.config[section] = values
+            return self.save_config()
+        except Exception as e:
+            logger.error(f"Error setting configuration section: {e}", exc_info=True)
+            return False
     
-    except Exception as e:
-        logger.error(f"Error setting configuration value: {e}", exc_info=True)
-        return False
+    def get_value(self, key: str, default: Any = None) -> Any:
+        """
+        Get a configuration value using dot notation.
+        
+        Args:
+            key: The configuration key (dot notation for nested keys).
+            default: The default value to return if the key doesn't exist.
+            
+        Returns:
+            The configuration value, or the default if the key doesn't exist.
+        """
+        try:
+            # Split the key into parts
+            parts = key.split(".")
+            
+            # Start with the entire config
+            value = self.config
+            
+            # Traverse the config
+            for part in parts:
+                if isinstance(value, dict) and part in value:
+                    value = value[part]
+                else:
+                    return default
+            
+            return value
+        except Exception as e:
+            logger.error(f"Error getting configuration value: {e}", exc_info=True)
+            return default
+    
+    def set_value(self, key: str, value: Any) -> bool:
+        """
+        Set a configuration value using dot notation.
+        
+        Args:
+            key: The configuration key (dot notation for nested keys).
+            value: The configuration value.
+            
+        Returns:
+            bool: True if successful, False otherwise.
+        """
+        try:
+            # Split the key into parts
+            parts = key.split(".")
+            
+            # Start with the entire config
+            config = self.config
+            
+            # Traverse the config
+            for i, part in enumerate(parts[:-1]):
+                # If the part doesn't exist, create it
+                if part not in config:
+                    config[part] = {}
+                
+                # If the part is not a dictionary, make it one
+                if not isinstance(config[part], dict):
+                    config[part] = {}
+                
+                # Move to the next level
+                config = config[part]
+            
+            # Set the value
+            config[parts[-1]] = value
+            
+            # Save the config
+            return self.save_config()
+        except Exception as e:
+            logger.error(f"Error setting configuration value: {e}", exc_info=True)
+            return False
