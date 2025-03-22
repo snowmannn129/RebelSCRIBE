@@ -1,0 +1,19 @@
+{
+  "id": "76764269-3910-4e47-acb5-79731952d121",
+  "title": "Manuscript",
+  "content": "",
+  "type": "folder",
+  "parent_id": null,
+  "children_ids": [],
+  "order": 0,
+  "created_at": "2025-03-13T00:09:11.732484",
+  "updated_at": "2025-03-13T00:09:11.732484",
+  "word_count": 0,
+  "character_count": 0,
+  "tags": [],
+  "metadata": {},
+  "is_included_in_compile": true,
+  "synopsis": "",
+  "status": "Draft",
+  "color": null
+}
