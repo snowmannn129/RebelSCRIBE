@@ -1,0 +1,113 @@
+# RebelSCRIBE Configuration File
+
+# Application Settings
+application:
+  name: RebelSCRIBE
+  version: 0.1.0
+  data_directory: ~/.rebelscribe
+  autosave_interval: 300  # seconds
+  backup:
+    enabled: true
+    interval: 3600  # seconds
+    max_backups: 10
+    directory: ~/.rebelscribe/backups
+
+# UI Settings
+ui:
+  theme: system  # Options: light, dark, system
+  font:
+    editor: Consolas
+    editor_size: 12
+    ui: Segoe UI
+    ui_size: 10
+  colors:
+    primary: "#007bff"
+    secondary: "#6c757d"
+    success: "#28a745"
+    danger: "#dc3545"
+    warning: "#ffc107"
+    info: "#17a2b8"
+  distraction_free_mode:
+    background_color: "#2d2d2d"
+    text_color: "#f8f8f2"
+    hide_ui_elements: true
+  editor:
+    line_numbers: true
+    highlight_current_line: true
+    word_wrap: true
+    spell_check: true
+    auto_save: true
+
+# AI Settings
+ai:
+  provider: openai  # Options: openai, anthropic, google, local
+  api_keys:
+    openai: ""  # To be filled by user or use environment variable OPENAI_API_KEY
+    anthropic: ""  # To be filled by user or use environment variable ANTHROPIC_API_KEY
+    google: ""  # To be filled by user or use environment variable GOOGLE_API_KEY
+  models:
+    openai:
+      completion: "gpt-4-turbo"
+      chat: "gpt-4-turbo"
+      embedding: "text-embedding-3-small"
+      image: "dall-e-3"
+    anthropic:
+      completion: "claude-3-opus-20240229"
+      chat: "claude-3-opus-20240229"
+    google:
+      completion: "gemini-1.5-pro"
+      chat: "gemini-1.5-pro"
+      embedding: "embedding-001"
+    local:
+      completion: "llama3-70b"
+      chat: "llama3-70b"
+      embedding: "all-MiniLM-L6-v2"
+      image: "stable-diffusion-3"
+  rate_limits:
+    openai: 10  # Requests per second
+    anthropic: 5
+    google: 10
+    local: 20
+  default_params:
+    temperature: 0.7
+    max_tokens: 1000
+    top_p: 0.9
+    frequency_penalty: 0.5
+    presence_penalty: 0.5
+  local:
+    model_path: ""  # Path to local model
+    device: "cpu"  # Options: cpu, cuda
+
+# Cloud Storage Settings
+cloud_storage:
+  enabled: false
+  provider: dropbox  # Options: dropbox, google_drive, onedrive
+  dropbox:
+    api_key: ""  # To be filled by user
+    folder: /RebelSCRIBE
+  google_drive:
+    credentials_file: ""  # Path to credentials file
+    folder: RebelSCRIBE
+  onedrive:
+    client_id: ""  # To be filled by user
+    folder: RebelSCRIBE
+
+# Export Settings
+export:
+  default_format: docx  # Options: docx, pdf, markdown, html, epub
+  docx:
+    template: ""  # Path to template file
+    include_metadata: true
+    page_size: A4
+  pdf:
+    template: ""  # Path to template file
+    include_metadata: true
+    page_size: A4
+  markdown:
+    flavor: github  # Options: github, commonmark, multimarkdown
+  html:
+    template: ""  # Path to template file
+    include_css: true
+  epub:
+    include_cover: true
+    include_toc: true
