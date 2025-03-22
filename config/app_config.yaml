@@ -1,0 +1,119 @@
+# Application Configuration
+
+# General settings
+app:
+  name: RebelSCRIBE
+  version: 1.0.0
+  organization: RebelSUITE
+  domain: rebelsuite.com
+
+# Window settings
+window:
+  title: RebelSCRIBE
+  width: 1200
+  height: 800
+  x: 100
+  y: 100
+  maximized: false
+
+# File settings
+files:
+  recent_files: 10
+  auto_save: true
+  auto_save_interval: 300  # seconds
+  backup: true
+  backup_count: 5
+
+# Editor settings
+editor:
+  font: Consolas
+  font_size: 12
+  line_numbers: true
+  syntax_highlighting: true
+  word_wrap: true
+  tab_size: 4
+  use_spaces: true
+  auto_indent: true
+  highlight_current_line: true
+  show_whitespace: false
+
+# Novel writing settings
+novel:
+  default_chapter_template: |
+    # Chapter {number}: {title}
+    
+    {content}
+  
+  default_scene_template: |
+    ## Scene {number}: {title}
+    
+    {content}
+  
+  default_character_template: |
+    # Character: {name}
+    
+    ## Basic Information
+    - **Full Name:** {name}
+    - **Age:** 
+    - **Occupation:** 
+    - **Education:** 
+    
+    ## Physical Appearance
+    - **Height:** 
+    - **Build:** 
+    - **Hair:** 
+    - **Eyes:** 
+    - **Distinctive Features:** 
+    - **Clothing Style:** 
+    
+    ## Personality Traits
+    - **Strengths:** 
+    - **Weaknesses:** 
+    - **Habits:** 
+    - **Quirks:** 
+    
+    ## Background
+    
+    ## Motivations & Goals
+    
+    ## Relationships
+    
+    ## Character Arc
+    
+    ## Character Voice
+
+# Documentation settings
+documentation:
+  default_template: |
+    # {title}
+    
+    ## Overview
+    
+    {overview}
+    
+    ## Installation
+    
+    ```bash
+    pip install {package}
+    ```
+    
+    ## Usage
+    
+    ```python
+    import {package}
+    
+    # Example code
+    ```
+    
+    ## API Reference
+    
+    ## Examples
+    
+    ## Contributing
+    
+    ## License
+  
+  extract_docstrings: true
+  extract_comments: true
+  extract_type_hints: true
+  extract_examples: true

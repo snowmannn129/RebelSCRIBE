@@ -1,0 +1,55 @@
+# AI Configuration
+
+# AI settings
+ai:
+  model: gpt-4
+  temperature: 0.7
+  max_tokens: 2000
+  top_p: 0.95
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+  api_key: ""
+  api_endpoint: "https://api.openai.com/v1"
+  use_local_model: false
+  local_model_path: ""
+
+# Novel writing prompts
+novel:
+  character_prompt: |
+    Generate a detailed character profile for {name}, a {description}.
+    Include basic information, physical appearance, personality traits, background, motivations, goals, relationships, and character voice.
+    Format the profile with Markdown headings and bullet points.
+  
+  plot_prompt: |
+    Generate a detailed plot outline for a {genre} novel about {description}.
+    Include a compelling hook, rising action, climax, falling action, and resolution.
+    Divide the plot into acts and chapters with clear headings.
+    Format the outline with Markdown headings and bullet points.
+  
+  scene_prompt: |
+    Generate a scene where {description}.
+    Include vivid descriptions, engaging dialogue, and character development.
+    The scene should advance the plot and reveal something about the characters.
+    Format the scene with proper paragraphs and dialogue formatting.
+
+# Documentation prompts
+documentation:
+  api_prompt: |
+    Generate API documentation for the following code:
+    
+    ```{language}
+    {code}
+    ```
+    
+    Include a description of the purpose of the code, parameters, return values, and examples.
+    Format the documentation with Markdown headings, code blocks, and bullet points.
+  
+  tutorial_prompt: |
+    Generate a tutorial for using {library} to {task}.
+    Include installation instructions, basic usage, and examples.
+    Format the tutorial with Markdown headings, code blocks, and step-by-step instructions.
+  
+  example_prompt: |
+    Generate example code for using {library} to {task}.
+    Include comments explaining each step.
+    Format the example with proper code formatting and comments.
