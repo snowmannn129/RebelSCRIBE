@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Implementation</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>Implementation</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Constructs a new Shell Tool
+/
+    ShellTool();
+    ~ShellTool();</p>
+<p>/**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>body</span>: The input solid body to shell</li>
+<li><span class='param-name'>thickness</span>: The desired wall thickness of the shell</li>
+<li><span class='param-name'>removedFaces</span>: Optional vector of face indices to remove (create openings)</li>
+</ul>
+<h2>Returns</h2>
+<p>: rebel::core::Error Success or failure with description
+/
+    rebel::core::Error Configure(
+        const std::shared_ptr<SolidBody>& body,
+        double thickness,
+        const std::vector<int>& removedFaces = std::vector<int>()
+    );
+
+    /**</p>
+</body>
+</html>

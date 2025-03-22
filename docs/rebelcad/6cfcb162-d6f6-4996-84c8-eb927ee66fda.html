@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AssemblyTree</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>AssemblyTree</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Create a new assembly node</p>
+<p>/**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>id</span>: Unique identifier for the component</li>
+<li><span class='param-name'>name</span>: New name for the node
+/
+    void setName(const std::string& name) { name_ = name; }
+
+    /**</li>
+<li><span class='param-name'>child</span>: Node to add as a child</li>
+<li><span class='param-name'>childId</span>: ID of child node to remove</li>
+<li><span class='param-name'>visible</span>: New visibility state
+/
+    void setVisible(bool visible) { isVisible_ = visible; }
+
+private:
+    std::string id_;              ///< Unique identifier
+    std::string name_;            ///< Display name
+    bool isVisible_ = true;       ///< Visibility state
+    WeakPtr parent_;              ///< Parent node
+    std::vector<Ptr> children_;   ///< Child nodes
+    glm::vec3 explodeOffset_{0}; ///< Offset vector for exploded view
+    float explodeFactor_ = 1.0f; ///< Multiplier for explosion effect
+
+    friend class AssemblyTree;
+};
+
+/**</li>
+</ul>
+<h2>Returns</h2>
+<p>: true if successful, false if child already exists
+/
+    bool addChild(Ptr child);
+
+    /**</p>
+</body>
+</html>

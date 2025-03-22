@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>updateKnotVectorCache</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>updateKnotVectorCache</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Generate a uniform knot vector for the B-spline</p>
+<p>std::vector<std::pair<double, double>> controlPoints_; ///< Control points defining the spline
+    std::vector<double> weights_;                         ///< Weights for rational B-spline (NURBS)
+    std::vector<double> customKnots_;                     ///< Custom knot vector for non-uniform B-spline
+    unsigned int degree_;                                 ///< Degree of the B-spline
+    Graphics::Color color_;                               ///< Color for rendering
+    bool useCustomKnots_;                                 ///< Flag indicating use of custom knot vector
+    bool isRational_;                                     ///< Flag indicating if curve is rational (NURBS)
+    
+    // Cache for performance optimization
+    mutable std::vector<double> knotVectorCache_;        ///< Cached knot vector
+    mutable bool knotVectorDirty_;                       ///< Flag indicating if knot vector needs regeneration
+    
+    /**</p>
+</div>
+<h2>Returns</h2>
+<p>: Vector of knot values
+/
+    std::vector<double> generateKnotVector() const;
+
+    std::vector<std::pair<double, double>> controlPoints_; ///< Control points defining the spline
+    std::vector<double> weights_;                         ///< Weights for rational B-spline (NURBS)
+    std::vector<double> customKnots_;                     ///< Custom knot vector for non-uniform B-spline
+    unsigned int degree_;                                 ///< Degree of the B-spline
+    Graphics::Color color_;                               ///< Color for rendering
+    bool useCustomKnots_;                                 ///< Flag indicating use of custom knot vector
+    bool isRational_;                                     ///< Flag indicating if curve is rational (NURBS)
+    
+    // Cache for performance optimization
+    mutable std::vector<double> knotVectorCache_;        ///< Cached knot vector
+    mutable bool knotVectorDirty_;                       ///< Flag indicating if knot vector needs regeneration
+    
+    /**</p>
+</body>
+</html>

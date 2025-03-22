@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PerpendicularConstraint</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>PerpendicularConstraint</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Represents a perpendicular constraint between two line segments</p>
+<p>The PerpendicularConstraint ensures that two line segments remain perpendicular 
+(90 degrees) to each other. A line segment is defined by two points (x1,y1) and 
+(x2,y2). The constraint uses vector mathematics to determine perpendicularity 
+and enforce the constraint.
+/
+class PerpendicularConstraint : public Constraint {
+public:
+    /**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>line1_start</span>: First point of first line {x,y}</li>
+<li><span class='param-name'>line1_end</span>: Second point of first line {x,y}</li>
+<li><span class='param-name'>line2_start</span>: First point of second line {x,y}</li>
+<li><span class='param-name'>line2_end</span>: Second point of second line {x,y}</li>
+<li><span class='param-name'>tolerance</span>: Maximum allowed angular deviation from 90 degrees in radians</li>
+</ul>
+</body>
+</html>

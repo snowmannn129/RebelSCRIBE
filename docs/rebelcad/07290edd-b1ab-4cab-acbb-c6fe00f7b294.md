@@ -1,0 +1,47 @@
+# PatternTool
+
+**API Version:** 1.0.0
+
+**Component:** RebelCAD
+
+* @brief Enumeration of pattern types
+ */
+enum class PatternType {
+    Linear,     ///< Linear pattern along a direction
+    Circular,   ///< Circular pattern around an axis
+    Mirror      ///< Mirror pattern across a plane
+};
+
+/**
+ * @brief Parameters for linear pattern
+ */
+struct LinearPatternParams {
+    glm::dvec3 direction;      ///< Direction vector for pattern
+    double spacing;            ///< Distance between instances
+    size_t count;             ///< Number of instances
+    bool includeOriginal;     ///< Whether to include original body
+};
+
+/**
+ * @brief Parameters for circular pattern
+ */
+struct CircularPatternParams {
+    glm::dvec3 axis;          ///< Axis of rotation
+    glm::dvec3 center;        ///< Center point of rotation
+    double angle;             ///< Total angle to distribute instances over
+    size_t count;             ///< Number of instances
+    bool includeOriginal;     ///< Whether to include original body
+};
+
+/**
+ * @brief Parameters for mirror pattern
+ */
+struct MirrorPatternParams {
+    glm::dvec3 normal;        ///< Normal vector of mirror plane
+    glm::dvec3 point;         ///< Point on mirror plane
+    bool includeOriginal;     ///< Whether to include original body
+};
+
+/**
+ * @brief Class for creating patterns of 3D bodies
+

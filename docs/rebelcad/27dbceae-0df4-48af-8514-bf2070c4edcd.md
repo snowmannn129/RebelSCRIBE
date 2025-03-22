@@ -1,0 +1,16 @@
+# Config
+
+**API Version:** 1.0.0
+
+**Component:** RebelCAD
+
+Tool for creating parallel copies of sketch geometry at a specified distance
+
+The OffsetTool creates offset copies of existing geometry (lines, arcs, circles)
+at a user-specified distance. It handles both internal and external offsets and
+maintains geometric relationships between connected elements.
+/
+class OffsetTool {
+public:
+    /**
+

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RebelSUITE Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .component-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .component-card h2 {
+            margin-top: 0;
+            color: #3498db;
+        }
+        
+        .component-card a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .component-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .component-card.implemented {
+            background-color: #e8f4f8;
+        }
+        
+        .component-card.not-implemented {
+            background-color: #f9f9f9;
+            color: #999;
+        }
+        
+        .status {
+            font-size: 0.8em;
+            margin-top: 5px;
+            color: #666;
+        }
+        
+        .status.implemented {
+            color: #27ae60;
+        }
+        
+        .status.not-implemented {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <h1>RebelSUITE Documentation</h1>
+    
+    <p>
+        Welcome to the RebelSUITE documentation. This is the central hub for documentation on all RebelSUITE components.
+        Each component has its own documentation section, which you can access by clicking on the links below.
+    </p>
+    
+    <div style="background-color: #e8f4f8; border-left: 4px solid #3498db; padding: 15px; margin-bottom: 20px;">
+        <h2 style="margin-top: 0;">Latest Updates</h2>
+        <ul>
+            <li><strong>March 19, 2025:</strong> Improved RebelCAD documentation extraction with enhanced regex patterns</li>
+            <li><strong>March 19, 2025:</strong> Added HTML generation for RebelCAD documentation with proper formatting</li>
+            <li><strong>March 19, 2025:</strong> Implemented search functionality in the documentation browser</li>
+            <li><strong>March 19, 2025:</strong> Fixed issues with documentation extraction for classes, enums, and structs</li>
+        </ul>
+    </div>
+    
+    <div class="component-grid">
+        <div class="component-card implemented">
+            <h2>RebelCAD</h2>
+            <p>Advanced CAD system for 3D modeling and design.</p>
+            <div class="status implemented">Documentation Available</div>
+            <a href="rebelcad/index.html">View Documentation</a>
+        </div>
+        
+        <div class="component-card not-implemented">
+            <h2>RebelCODE</h2>
+            <p>Coding environment with AI-powered features.</p>
+            <div class="status not-implemented">Documentation Coming Soon</div>
+            <a href="#" style="color: #999; cursor: not-allowed;">View Documentation</a>
+        </div>
+        
+        <div class="component-card not-implemented">
+            <h2>RebelENGINE</h2>
+            <p>Game and simulation engine for interactive experiences.</p>
+            <div class="status not-implemented">Documentation Coming Soon</div>
+            <a href="#" style="color: #999; cursor: not-allowed;">View Documentation</a>
+        </div>
+        
+        <div class="component-card not-implemented">
+            <h2>RebelFLOW</h2>
+            <p>Node-based automation system for workflows.</p>
+            <div class="status not-implemented">Documentation Coming Soon</div>
+            <a href="#" style="color: #999; cursor: not-allowed;">View Documentation</a>
+        </div>
+        
+        <div class="component-card not-implemented">
+            <h2>RebelDESK</h2>
+            <p>AI-powered IDE for development and project management.</p>
+            <div class="status not-implemented">Documentation Coming Soon</div>
+            <a href="#" style="color: #999; cursor: not-allowed;">View Documentation</a>
+        </div>
+        
+        <div class="component-card not-implemented">
+            <h2>RebelSCRIBE</h2>
+            <p>Documentation and content management system.</p>
+            <div class="status not-implemented">Documentation Coming Soon</div>
+            <a href="#" style="color: #999; cursor: not-allowed;">View Documentation</a>
+        </div>
+    </div>
+    
+    <h2>Integration Documentation</h2>
+    
+    <p>
+        RebelSUITE components are designed to work together seamlessly. The integration documentation
+        provides information on how the components interact and how to use them together.
+    </p>
+    
+    <p>
+        <a href="https://github.com/snowmannn129/RebelSUITE-Integration" target="_blank">View Integration Documentation on GitHub</a>
+    </p>
+    
+    <h2>Contributing</h2>
+    
+    <p>
+        The documentation is generated from source code and other sources using the RebelSCRIBE documentation
+        generation system. To contribute to the documentation, update the source code documentation and
+        run the documentation generation scripts.
+    </p>
+    
+    <p>
+        For more information, see the <a href="https://github.com/snowmannn129/RebelSCRIBE" target="_blank">RebelSCRIBE GitHub repository</a>.
+    </p>
+    
+    <footer style="margin-top: 50px; border-top: 1px solid #eee; padding-top: 20px; color: #666;">
+        <p>Generated by RebelSCRIBE on March 19, 2025</p>
+    </footer>
+</body>
+</html>

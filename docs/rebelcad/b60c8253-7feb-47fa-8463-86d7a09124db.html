@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FindSpan</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>FindSpan</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Calculate basis functions at parameter value</p>
+<p>// Calculate basis functions
+        std::vector<float> values(degree + 1, 0.0f);
+        std::vector<float> left(degree + 1);
+        std::vector<float> right(degree + 1);</p>
+<p>// Initialize degree 0
+        values[0] = 1.0f;</p>
+<p>// Calculate up to requested degree
+        for (int j = 1; j <= degree; ++j) {
+            left[j] = t - knots[span + 1 - j];
+            right[j] = knots[span + j] - t;
+            float saved = 0.0f;</p>
+<p>for (int r = 0; r < j; ++r) {
+                float temp = values[r] / (right[r + 1] + left[j - r]);
+                values[r] = saved + right[r + 1] * temp;
+                saved = left[j - r] * temp;
+            }</p>
+<p>values[j] = saved;
+        }</p>
+<p>// Cache result
+        cache.push_back({t, span, values, {}});
+        if (cache.size() > 100) { // Limit cache size
+            cache.erase(cache.begin());
+        }</p>
+<p>return values;
+    }</p>
+<p>/**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>t</span>: Parameter value</li>
+<li><span class='param-name'>span</span>: Knot span containing t</li>
+<li><span class='param-name'>order</span>: Maximum derivative order</li>
+</ul>
+<h2>Returns</h2>
+<p>: Vector of basis function values
+/
+    std::vector<float> Evaluate(float t, int span) const {
+        // Check cache first
+        for (const auto& entry : cache) {
+            if (std::abs(entry.t - t) <= 1e-6f && entry.span == span) {
+                return entry.values;
+            }
+        }
+
+        // Calculate basis functions
+        std::vector<float> values(degree + 1, 0.0f);
+        std::vector<float> left(degree + 1);
+        std::vector<float> right(degree + 1);
+
+        // Initialize degree 0
+        values[0] = 1.0f;
+
+        // Calculate up to requested degree
+        for (int j = 1; j <= degree; ++j) {
+            left[j] = t - knots[span + 1 - j];
+            right[j] = knots[span + j] - t;
+            float saved = 0.0f;
+
+            for (int r = 0; r < j; ++r) {
+                float temp = values[r] / (right[r + 1] + left[j - r]);
+                values[r] = saved + right[r + 1] * temp;
+                saved = left[j - r] * temp;
+            }
+
+            values[j] = saved;
+        }
+
+        // Cache result
+        cache.push_back({t, span, values, {}});
+        if (cache.size() > 100) { // Limit cache size
+            cache.erase(cache.begin());
+        }
+
+        return values;
+    }
+
+    /**</p>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# IntersectTool
+
+**API Version:** 1.0.0
+
+**Component:** RebelCAD
+
+Tool for performing boolean intersection operations between solid bodies
+
+The IntersectTool creates a new solid body that represents the volume shared
+between two or more input bodies. The resulting body contains only the space
+that exists in ALL input bodies.
+

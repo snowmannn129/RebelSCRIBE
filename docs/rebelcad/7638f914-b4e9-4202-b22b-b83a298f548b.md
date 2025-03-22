@@ -1,0 +1,13 @@
+# RevolveTool
+
+**API Version:** 1.0.0
+
+**Component:** RebelCAD
+
+Tool for creating 3D solids by revolving 2D sketches around an axis
+
+The RevolveTool takes a 2D sketch profile and creates a 3D solid by rotating
+the profile around a specified axis through a given angle. It supports both
+additive (creating new material) and subtractive (removing material) revolve
+operations, as well as partial and full 360-degree revolutions.
+

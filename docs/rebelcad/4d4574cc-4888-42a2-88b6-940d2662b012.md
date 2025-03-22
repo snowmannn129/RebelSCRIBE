@@ -1,0 +1,8 @@
+# AutoConstraintDetector
+
+**API Version:** 1.0.0
+
+**Component:** RebelCAD
+
+Automatically detects geometric constraints between sketch elements
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>createVertex</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>createVertex</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Half-edge mesh data structure for efficient topology operations</p>
+<p>This class implements a half-edge data structure optimized for subdivision surface
+operations. It provides efficient access to adjacency information and supports
+topology modifications required for Catmull-Clark subdivision.
+/
+class HalfEdgeMesh {
+public:
+    // Forward declarations
+    class Vertex;
+    class Edge;
+    class Face;
+    class HalfEdge;</p>
+<p>using VertexPtr = std::shared_ptr<Vertex>;
+    using EdgePtr = std::shared_ptr<Edge>;
+    using FacePtr = std::shared_ptr<Face>;
+    using HalfEdgePtr = std::shared_ptr<HalfEdge>;
+    using SceneNode = RebelCAD::Graphics::SceneNode;</p>
+<p>/**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>position</span>: The 3D position of the vertex</li>
+<li><span class='param-name'>texCoord</span>: Optional texture coordinates (defaults to (0,0))</li>
+</ul>
+<h2>Returns</h2>
+<p>: Shared pointer to the created vertex</p>
+</body>
+</html>

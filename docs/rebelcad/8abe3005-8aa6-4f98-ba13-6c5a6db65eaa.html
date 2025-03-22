@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Evaluate</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>Evaluate</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>* Creates a NURBS surface with the given control points and degrees.
+     * 
+     * @param controlPoints Control points in row-major order
+     * @param numU Number of control points in U direction
+     * @param numV Number of control points in V direction
+     * @param degreeU Degree in U direction
+     * @param degreeV Degree in V direction
+     * @return std::shared_ptr<NurbsSurface>
+     * @throws RebelCAD::Error if invalid parameters
+     */
+    static std::shared_ptr<NurbsSurface> Create(
+        const ControlPointGrid& controlPoints,
+        size_t numU,
+        size_t numV,
+        size_t degreeU,
+        size_t degreeV
+    );
+
+    /**
+     * Evaluates the surface at the given parameter values.
+     * 
+     * @param u Parameter in U direction [0,1]
+     * @param v Parameter in V direction [0,1]
+     * @return Point3D
+     * @throws RebelCAD::Error if parameters out of range</div>
+</body>
+</html>

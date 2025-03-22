@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SetProfile</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>SetProfile</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Tool for creating 3D solids by revolving 2D sketches around an axis</p>
+<p>The RevolveTool takes a 2D sketch profile and creates a 3D solid by rotating
+the profile around a specified axis through a given angle. It supports both
+additive (creating new material) and subtractive (removing material) revolve
+operations, as well as partial and full 360-degree revolutions.
+/
+class RevolveTool {
+public:
+    using ErrorCode = RebelCAD::Core::ErrorCode;</p>
+<p>RevolveTool();
+    ~RevolveTool();</p>
+<p>/**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>profile_vertices</span>: Vector of vertices defining the sketch profile</li>
+</ul>
+<h2>Returns</h2>
+<p>: ErrorCode::None on success, appropriate error code otherwise</p>
+</body>
+</html>

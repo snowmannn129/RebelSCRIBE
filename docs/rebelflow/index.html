@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RebelFLOW Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #3498db;
+            margin-top: 20px;
+        }
+        
+        .category {
+            margin-bottom: 30px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .search {
+            margin-bottom: 20px;
+        }
+        
+        #search-input {
+            padding: 8px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .filter {
+            margin-bottom: 20px;
+        }
+        
+        .filter select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>RebelFLOW Documentation</h1>
+    
+    <div class="search">
+        <input type="text" id="search-input" placeholder="Search documentation...">
+    </div>
+    
+    <div class="filter">
+        <select id="type-filter">
+            <option value="all">All Types</option>
+            <option value="node">Nodes</option>
+            <option value="class">Classes</option>
+            <option value="interface">Interfaces</option>
+            <option value="function">Functions</option>
+            <option value="code">Code</option>
+        </select>
+        
+        <select id="category-filter">
+            <option value="all">All Categories</option>
+        </select>
+    </div>
+
+    <div class="category" data-type="scene">
+        <h2>Scene</h2>
+        <ul>
+            <li data-category=""><a href="676c7e7d-a414-4cf4-a06a-71ad883bf6eb.html">BaseNode</a></li>
+            <li data-category=""><a href="f123e987-9418-4463-8385-aa53ca5bfba9.html">ConditionFn</a></li>
+            <li data-category=""><a href="d3f1837b-764e-4c96-b9d0-b65a31dcc276.html">Connection</a></li>
+            <li data-category=""><a href="dc10c88e-4b94-48bd-908f-fc90f5148a88.html">Connection</a></li>
+            <li data-category=""><a href="a249c025-9474-4db1-92a3-fb248875bc72.html">ConnectionManager</a></li>
+            <li data-category=""><a href="214c4963-31ee-4dd3-b290-5cadfa5c6f9c.html">ConnectionValidationError</a></li>
+            <li data-category=""><a href="cb40ca35-815c-4eff-b529-c7a7202faf63.html">ControlFlowNode</a></li>
+            <li data-category=""><a href="4891f17d-9fc1-45ae-8afb-3bc7897fa435.html">CoreEventTypes</a></li>
+            <li data-category=""><a href="08827cd8-85a7-479f-9e90-4ba8b6e99874.html">CustomRoutingFn</a></li>
+            <li data-category=""><a href="4c4a2d68-8619-4414-ae58-ec98cf6afc8c.html">DataEventTypes</a></li>
+            <li data-category=""><a href="9324157a-476f-4325-9bcd-1aa76557f890.html">DataNode</a></li>
+            <li data-category=""><a href="99614810-2fa8-4b04-a6aa-620cc08325c5.html">DataTransformationFn</a></li>
+            <li data-category=""><a href="b6744cac-cd14-4399-a2e6-33379bec1765.html">EventBus</a></li>
+            <li data-category=""><a href="146aa7bd-a33d-4efc-b32e-af1f20f80dea.html">EventFilter</a></li>
+            <li data-category=""><a href="83068436-8737-4de5-8265-712fe485c7ae.html">EventPropagator</a></li>
+            <li data-category=""><a href="544bcbdf-62ce-4eb1-b5bd-e768b7dcaed7.html">EventTypes</a></li>
+            <li data-category=""><a href="6a96e643-8645-40c6-a8c6-a4ee39f0ae8b.html">ExecutionContext</a></li>
+            <li data-category=""><a href="5ad095cb-a24b-4b11-bfc9-7174ed06aa7d.html">ExecutionOptions</a></li>
+            <li data-category=""><a href="95510e17-8676-49e9-a868-aa8596cf228e.html">INode</a></li>
+            <li data-category=""><a href="1fcc0347-ee98-4386-80de-6a8768232de6.html">INodePort</a></li>
+            <li data-category=""><a href="8e3284ed-6923-4e80-91e4-626e6962faef.html">InputTransformationFn</a></li>
+            <li data-category=""><a href="46f9ff85-12a3-4b4e-92d1-f2c66b02f3ec.html">InputValidatorFn</a></li>
+            <li data-category=""><a href="39bad8c0-7cd0-47d8-be2b-ad0ce78b3a18.html">Node</a></li>
+            <li data-category=""><a href="b86da7ac-2720-4ad2-8de8-688068203d72.html">Node</a></li>
+            <li data-category=""><a href="543c68a5-7bd4-47b2-9176-6ff884021047.html">NodeConnection</a></li>
+            <li data-category=""><a href="54ef3e63-7ea2-47fc-85ed-d2b7516501e3.html">NodeExecutor</a></li>
+            <li data-category=""><a href="af4cc39b-d7c4-4f35-93d1-84e70acf71d9.html">NodeExecutorFn</a></li>
+            <li data-category=""><a href="3f611939-38ef-4a33-b730-7bb23f40503a.html">NodeInputs</a></li>
+            <li data-category=""><a href="93e08c63-3d24-4552-a459-02227381b37b.html">NodeOutputs</a></li>
+            <li data-category=""><a href="573350e8-c566-47e8-8527-061268425b77.html">NodePort</a></li>
+            <li data-category=""><a href="6ad11184-cc35-42ae-8de0-0593c956d7eb.html">NodePort</a></li>
+            <li data-category=""><a href="3ad67227-f4d8-474d-9172-42dba7b2e2cb.html">NodePortType</a></li>
+            <li data-category=""><a href="9642c2ff-ae6c-4a5d-bc24-2fc56a0e7905.html">NodeStatus</a></li>
+            <li data-category=""><a href="25375cfa-f015-49f7-be88-d6f2a116370d.html">NodeValidationResult</a></li>
+            <li data-category=""><a href="3b2c8d33-97a5-4596-84ec-32af3b264ff9.html">NodeValidator</a></li>
+            <li data-category=""><a href="b6e667ea-fb4e-4680-87b9-c1032d195357.html">OutputTransformationFn</a></li>
+            <li data-category=""><a href="c64c007c-2e1c-4739-9a62-bff2f454d6cb.html">OutputValidatorFn</a></li>
+            <li data-category=""><a href="5a8189b9-c67c-459f-ad32-3493472e0d97.html">PluginEventTypes</a></li>
+            <li data-category=""><a href="20dfc311-b7de-4383-bd49-96282af811fd.html">ProcessFn</a></li>
+            <li data-category=""><a href="1253a89f-47c8-424a-bde5-0af661aae34c.html">ProcessNode</a></li>
+            <li data-category=""><a href="225ed7bb-2b87-4426-b5a7-9f2dd839d2d2.html">PropagationOptions</a></li>
+            <li data-category=""><a href="399a54ed-1b95-4ec5-b6a1-96a66b0c7e83.html">RoutingFn</a></li>
+            <li data-category=""><a href="86165a2e-e405-4318-ba3c-2fc26eccaa4a.html">Subscription</a></li>
+            <li data-category=""><a href="54b594d3-bbef-4c2b-9a9b-90689787f68f.html">SubscriptionImpl</a></li>
+            <li data-category=""><a href="0d8e15fa-ead3-471d-bde0-2f4c022bc97c.html">SubscriptionInfo</a></li>
+            <li data-category=""><a href="f2d323dd-e0c3-4d42-a19d-4c840e9b940a.html">SubscriptionOptions</a></li>
+            <li data-category=""><a href="3ed21b30-6fc2-4ac9-8a90-48a734811d16.html">UIEventTypes</a></li>
+            <li data-category=""><a href="d3a756d4-84ef-46bc-bb75-7e0c2e65c969.html">ValidationError</a></li>
+            <li data-category=""><a href="c8bed3f9-528c-4ade-97b5-ad4bda6b1781.html">ValidationFn</a></li>
+            <li data-category=""><a href="f95aaeee-af3e-44a3-ae3e-085122e2454d.html">ValidationRule</a></li>
+            <li data-category=""><a href="0bb05157-751c-4304-850f-12544d6d36f9.html">Workflow</a></li>
+            <li data-category=""><a href="1d7776ad-c914-4265-8db1-4d4048de9bf2.html">Workflow</a></li>
+            <li data-category=""><a href="064e5b88-e093-41e1-81bf-7cf6fed1e3ba.html">WorkflowEngine</a></li>
+            <li data-category=""><a href="b5a7ee30-bf6c-44bf-b63a-46352ecdaa78.html">WorkflowResult</a></li>
+            <li data-category=""><a href="7235dd85-cefe-4a4d-86a3-956bea37d754.html">WorkflowStatus</a></li>
+            <li data-category=""><a href="3595e889-ff9d-44e7-a542-1b2afd56cf88.html">WorkflowValidationResult</a></li>
+            <li data-category=""><a href="bb9af970-9795-4508-87b5-a942d6788177.html">addDefaultRules</a></li>
+            <li data-category=""><a href="a23bc15c-e3eb-450c-9183-abf750538ba8.html">addEventFilter</a></li>
+            <li data-category=""><a href="87b5cb8b-28d0-4eef-a8cd-c2bcac55e2b9.html">addInput</a></li>
+            <li data-category=""><a href="84d1fe12-2562-40e7-846e-9a2cdd65d0bc.html">addInput</a></li>
+            <li data-category=""><a href="9bfdb8f3-0557-4145-be84-a4eab7ab45ca.html">addOutput</a></li>
+            <li data-category=""><a href="acfcec41-7f36-4843-89b6-5206539dad17.html">addOutput</a></li>
+            <li data-category=""><a href="54c08ace-b65d-44bf-93a7-bd461f0daadd.html">addRule</a></li>
+            <li data-category=""><a href="00549528-1e2e-4994-aaab-ecf59118f2ea.html">applyDefaultValues</a></li>
+            <li data-category=""><a href="87967c58-88dc-4634-bf76-405b27b9683b.html">applyInputTransformations</a></li>
+            <li data-category=""><a href="c2a97a16-8648-498a-bf71-6cc1c96968a4.html">applyOutputTransformations</a></li>
+            <li data-category=""><a href="425e6cce-ad17-4e99-ad37-e245a30c5de5.html">clear</a></li>
+            <li data-category=""><a href="d78aee5e-b575-4b35-b37a-029236a5d5db.html">clearAllSubscriptions</a></li>
+            <li data-category=""><a href="6e0d69d3-2be3-4a98-a604-b824cf5e8497.html">clearEventFilters</a></li>
+            <li data-category=""><a href="9ea212cd-4735-44d0-bcd2-0cb0c752f435.html">clearEventSubscriptions</a></li>
+            <li data-category=""><a href="13aecfd0-d119-4c86-bdf7-5106314f8dcc.html">clearTransformationFunction</a></li>
+            <li data-category=""><a href="a8212f85-c09a-48ff-8c0a-d130de60690b.html">constructor</a></li>
+            <li data-category=""><a href="016238a3-6aa2-4b9a-8112-d50c4147c25e.html">constructor</a></li>
+            <li data-category=""><a href="348c510e-b0e2-4fd1-a36f-dfe86f6f09b2.html">constructor</a></li>
+            <li data-category=""><a href="5d626024-c546-4b76-bf60-ea876b57d562.html">constructor</a></li>
+            <li data-category=""><a href="3d2356f4-134e-4f66-b7ff-f324f04ab947.html">constructor</a></li>
+            <li data-category=""><a href="38e201dd-a3ee-4499-a8c2-9faae7dee19f.html">constructor</a></li>
+            <li data-category=""><a href="fe9be8ab-492d-4474-9be3-53d8ca5586f0.html">constructor</a></li>
+            <li data-category=""><a href="e2698a24-69c9-4850-a985-aac64ff80041.html">constructor</a></li>
+            <li data-category=""><a href="205a1909-dd5d-4c21-921b-5efe7877e29f.html">constructor</a></li>
+            <li data-category=""><a href="49066a2a-771f-42c7-ab40-5310a6d05986.html">constructor</a></li>
+            <li data-category=""><a href="fd547804-ee3f-459b-ac0e-2ac0f06ab0b4.html">constructor</a></li>
+            <li data-category=""><a href="ca1ded6f-5b8e-4abe-98c5-b5523975c07e.html">constructor</a></li>
+            <li data-category=""><a href="49917ab9-5cc7-45c5-a1f4-14e95c1ad2d9.html">constructor</a></li>
+            <li data-category=""><a href="44b0fc5a-b7e3-46ce-81a0-1ca682e972ef.html">constructor</a></li>
+            <li data-category=""><a href="dd45296d-a818-4403-b3b1-75bb44f463d9.html">createBranchingWorkflow</a></li>
+            <li data-category=""><a href="fe6071fe-9b68-49b2-9508-43f4b486350f.html">createConnection</a></li>
+            <li data-category=""><a href="d8339747-446e-4bea-bae6-5ae6c2a82f58.html">createEventPropagator</a></li>
+            <li data-category=""><a href="c3653f82-dd2b-4da2-8754-f9ad6e16b0df.html">createInput</a></li>
+            <li data-category=""><a href="71fa7799-131e-478d-bd1f-c1bdadf2aea8.html">createLinearWorkflow</a></li>
+            <li data-category=""><a href="cbec143e-459f-4fac-ad27-686634cace3e.html">createMockConnection</a></li>
+            <li data-category=""><a href="993b3ea1-7cd7-4816-a2d9-504bfc145c31.html">createMockExecutionContext</a></li>
+            <li data-category=""><a href="5b869204-ff41-4e34-a24e-de463efd96c4.html">createMockNode</a></li>
+            <li data-category=""><a href="b6792c7c-df72-4971-b228-82ee3cf45277.html">createMockWorkflow</a></li>
+            <li data-category=""><a href="4c03b22c-90ce-43c8-a3d6-bd8253ce3543.html">createOutput</a></li>
+            <li data-category=""><a href="b0a43c44-ada0-4975-a51c-1a3f2bb75b08.html">createSubscription</a></li>
+            <li data-category=""><a href="c8f72476-ffbb-4c50-a84f-4e35db5311bc.html">createWorkflowResult</a></li>
+            <li data-category=""><a href="6755c03a-9181-4116-8baa-3fc7e31648ae.html">execute</a></li>
+            <li data-category=""><a href="2b64a7f7-5f9e-4b08-8ab2-62cb2aee7151.html">execute</a></li>
+            <li data-category=""><a href="99e9ee93-4589-4866-90fc-e516e2d14661.html">executeNode</a></li>
+            <li data-category=""><a href="b0b041a5-87fd-47db-a3aa-b53173e3b8ae.html">executeWorkflow</a></li>
+            <li data-category=""><a href="ada4d9dd-2271-4b58-8267-d54155695679.html">findConnection</a></li>
+            <li data-category=""><a href="68533dc3-7f75-45d1-8a76-8eef713cf7a1.html">gatherInputs</a></li>
+            <li data-category=""><a href="430c5cf6-f5df-4e12-993c-3932ad76efa0.html">generateId</a></li>
+            <li data-category=""><a href="c0921f04-d636-42c9-b17a-5ab9c61e9acf.html">getConfig</a></li>
+            <li data-category=""><a href="fb6b4b89-6475-4d0b-a968-ee05542eef74.html">getConfig</a></li>
+            <li data-category=""><a href="ff0ee26d-2de3-4eeb-9159-28993f3a0338.html">getConnectionById</a></li>
+            <li data-category=""><a href="8e22616a-bcf7-4cc0-a3c3-4faaf2eb5c2b.html">getConnections</a></li>
+            <li data-category=""><a href="70052d0b-6c5a-4d0e-b77d-cb2de7706288.html">getConnectionsByNode</a></li>
+            <li data-category=""><a href="926f2820-f5b1-46fd-80d2-5ef60a6be50f.html">getConnectionsByPort</a></li>
+            <li data-category=""><a href="144cd1d8-a84c-4b43-b7e4-c75d9edbd9ed.html">getData</a></li>
+            <li data-category=""><a href="40ed9d20-b0e2-41ec-8e9f-31e35a2e6510.html">getEventBus</a></li>
+            <li data-category=""><a href="ee123c6c-95e3-4aa8-bc42-b6417e593d2c.html">getEventBus</a></li>
+            <li data-category=""><a href="5545d809-90a4-415a-924a-4c5eba5d4be6.html">getId</a></li>
+            <li data-category=""><a href="82c477ba-b592-4f18-a623-b5a2e2ecee9b.html">getId</a></li>
+            <li data-category=""><a href="00cdd2d6-1663-4b55-aa3b-96a2dc94b657.html">getId</a></li>
+            <li data-category=""><a href="e9bae3aa-f281-4a71-bf29-47e67ac6b9d3.html">getId</a></li>
+            <li data-category=""><a href="cb39cae7-c00b-4943-8792-1ea0a1bd8f30.html">getInputPort</a></li>
+            <li data-category=""><a href="57034822-1870-4b9b-b126-59803e0de3d9.html">getInputPort</a></li>
+            <li data-category=""><a href="14c950bb-a8f1-41be-91e9-29c40eed4080.html">getInputs</a></li>
+            <li data-category=""><a href="b528316d-9c54-41b7-aa64-cce506f84809.html">getInputs</a></li>
+            <li data-category=""><a href="610148d4-f6d2-459a-998d-5df7a659aaea.html">getInstance</a></li>
+            <li data-category=""><a href="5a8595e7-2b6b-468d-939f-fc2ae8efbdab.html">getMessage</a></li>
+            <li data-category=""><a href="da5b3058-30ea-43a8-a4c8-a5a28f78f822.html">getName</a></li>
+            <li data-category=""><a href="cae668b1-3d79-4e14-853f-6887de4c20e9.html">getName</a></li>
+            <li data-category=""><a href="c48d143a-aa7b-4eea-af3f-1df8a5fc2b19.html">getName</a></li>
+            <li data-category=""><a href="8fb9c362-2f60-4839-bc5b-1966446844c4.html">getNodeDependencies</a></li>
+            <li data-category=""><a href="76f7e9ca-505c-47ff-b82e-92d755bbbecc.html">getOutputPort</a></li>
+            <li data-category=""><a href="055312cd-0610-4875-8fdc-44883ad5bbde.html">getOutputPort</a></li>
+            <li data-category=""><a href="7ef380a3-aff4-4931-968f-e490dc8d2712.html">getOutputs</a></li>
+            <li data-category=""><a href="af61d44c-3976-4de3-a849-1428b7660bf0.html">getOutputs</a></li>
+            <li data-category=""><a href="86c4a686-438c-41ff-bb16-50caa302aebb.html">getRule</a></li>
+            <li data-category=""><a href="6be58a19-c580-434f-881c-a73682e1ac2c.html">getRules</a></li>
+            <li data-category=""><a href="e01630b7-76ec-4fa0-8e8c-d7b133ef1d89.html">getSourceNode</a></li>
+            <li data-category=""><a href="8bfa60d9-2053-4070-93b8-cfc9652529b6.html">getSourcePortId</a></li>
+            <li data-category=""><a href="f62b3368-807d-4e2d-983c-d839b127003a.html">getStatus</a></li>
+            <li data-category=""><a href="eb8be200-36e5-4212-af3c-bcaacca87cfb.html">getStatus</a></li>
+            <li data-category=""><a href="dac4204a-c270-40af-b7a3-e47495b474df.html">getSubscriberCount</a></li>
+            <li data-category=""><a href="45c09030-3410-4ebe-bc23-c6161badf016.html">getTargetNode</a></li>
+            <li data-category=""><a href="90d94047-e4ad-4bb3-8e04-615c84785bc1.html">getTargetPortId</a></li>
+            <li data-category=""><a href="0b5cae0a-2ecf-42f4-9b45-9cde4fb2af41.html">getType</a></li>
+            <li data-category=""><a href="29a1bc74-e0ea-4b5d-9b61-97fcc7a0f807.html">getType</a></li>
+            <li data-category=""><a href="be238005-1fda-4d3a-9c66-f2ac9a8da083.html">getWorkflowStatus</a></li>
+            <li data-category=""><a href="72171794-aecf-4dbd-88fd-bfdec1a1350a.html">groupNodesByLevel</a></li>
+            <li data-category=""><a href="69b64361-30fc-4dc2-bb05-f29a805a4c97.html">handleWorkflowError</a></li>
+            <li data-category=""><a href="1f858416-9e0c-4a11-ad2f-e93a19126d71.html">hasSubscribers</a></li>
+            <li data-category=""><a href="4f912620-2184-478a-a048-1d12d137b788.html">hasWorkflow</a></li>
+            <li data-category=""><a href="9edac867-ef24-47d4-ae68-5d631d49da44.html">index.ts</a></li>
+            <li data-category=""><a href="11446735-3c0c-4b7d-960d-7c0e63cf4fab.html">isCompatibleWith</a></li>
+            <li data-category=""><a href="61c89b7c-0f16-4a3a-b27b-44635a22c143.html">isInput</a></li>
+            <li data-category=""><a href="44d95a60-5f2b-4c4b-99a4-83ca91031867.html">isOutput</a></li>
+            <li data-category=""><a href="4784f1db-0446-424e-a413-1c9f2d3739a7.html">isValid</a></li>
+            <li data-category=""><a href="7a3628ee-4da1-4c97-b6f9-1db8cb4564a5.html">mockErrorNodeExecutor</a></li>
+            <li data-category=""><a href="84da21de-bb10-46db-8986-2f66509ae3ba.html">mockNodeExecutor</a></li>
+            <li data-category=""><a href="8401788d-eb0e-4afc-9d12-21aecb84ed10.html">passesFilters</a></li>
+            <li data-category=""><a href="86dcab71-a02b-49d4-afd7-da14ac765216.html">pauseWorkflow</a></li>
+            <li data-category=""><a href="8971701b-7450-434a-a41b-1cb70518d580.html">process</a></li>
+            <li data-category=""><a href="28b6b92b-d995-4b5c-815d-5d924d6ee10f.html">process</a></li>
+            <li data-category=""><a href="9ab61adb-d0eb-42a5-807d-d33a49497899.html">process</a></li>
+            <li data-category=""><a href="5f5cc5a1-0f87-4977-9296-8c6c344a9a6e.html">propagateEvent</a></li>
+            <li data-category=""><a href="042fe5d6-7bbb-4c2f-a4c7-ff8d48fa3e83.html">propagateEventToConnectedNodes</a></li>
+            <li data-category=""><a href="5958fcdb-0fbd-4e01-b3ea-30b223bf48a9.html">registerInputTransformation</a></li>
+            <li data-category=""><a href="0dc20bb0-ba63-4f94-afb0-469a55d623dd.html">registerInputValidator</a></li>
+            <li data-category=""><a href="8e613a72-6e7d-4b76-bb1f-f9804fdeddaa.html">registerNodeTypeExecutor</a></li>
+            <li data-category=""><a href="c06ac7a1-f28f-41fc-86eb-10ba84a6fbe7.html">registerOutputTransformation</a></li>
+            <li data-category=""><a href="b60a9e7b-b3e4-47b0-9b91-1bb5d4675526.html">registerOutputValidator</a></li>
+            <li data-category=""><a href="8d6c6ee1-1e05-4e95-8dd9-29712f403df8.html">registerWorkflow</a></li>
+            <li data-category=""><a href="99e28deb-50ba-45b1-be1b-c079de693c62.html">removeConnection</a></li>
+            <li data-category=""><a href="ccd09252-2801-412a-ad85-13d9742ee246.html">removeConnectionsByNode</a></li>
+            <li data-category=""><a href="e53993f0-f189-4f70-9dad-1b2b64a576db.html">removeEventFilter</a></li>
+            <li data-category=""><a href="201f6f8e-6c20-406f-9079-5442bc22656b.html">removeInput</a></li>
+            <li data-category=""><a href="a9357c10-2d29-484d-a5a6-6d7baecb5229.html">removeInput</a></li>
+            <li data-category=""><a href="ef2e3737-3880-4f16-b0bd-880cc1bc00c2.html">removeOutput</a></li>
+            <li data-category=""><a href="aaa544b5-aacd-432f-a178-76ee6892fb42.html">removeOutput</a></li>
+            <li data-category=""><a href="cb6a80ea-c024-461b-800b-76e5089578d4.html">removeRule</a></li>
+            <li data-category=""><a href="60a67d66-78dd-474a-b985-9ceb7de77c0f.html">reset</a></li>
+            <li data-category=""><a href="3958cd84-132e-4aaf-89ef-4ca8e5b32caf.html">reset</a></li>
+            <li data-category=""><a href="5baaf7c7-129b-49cf-85c5-cbda032537fe.html">reset</a></li>
+            <li data-category=""><a href="36695434-2173-47ad-a812-4d6dfb98a2f4.html">resumeWorkflow</a></li>
+            <li data-category=""><a href="875b161c-8cde-473b-9363-573a43c21198.html">setConditionFunction</a></li>
+            <li data-category=""><a href="678e1c74-ed76-4f56-b7b8-c5ede9c60072.html">setConfig</a></li>
+            <li data-category=""><a href="fbe564b2-5abb-41af-9c3b-08a3c61e031f.html">setConfig</a></li>
+            <li data-category=""><a href="ff031972-a4cc-4ef6-a51a-fdf86d1aa8f5.html">setCustomRoutingFunction</a></li>
+            <li data-category=""><a href="b62d4fe0-79d2-48ba-b036-7575a0324c1f.html">setData</a></li>
+            <li data-category=""><a href="779d9a5f-9adc-4afc-90b3-a66f3975cca5.html">setLogger</a></li>
+            <li data-category=""><a href="7f350e5a-a67a-462d-a34d-d5f32ccb575b.html">setMetadata</a></li>
+            <li data-category=""><a href="77c27494-623d-4300-85a4-deb8343e2c8a.html">setMetadata</a></li>
+            <li data-category=""><a href="dd0145ef-3144-4260-a30e-f663d47de9d2.html">setName</a></li>
+            <li data-category=""><a href="d42c12d1-00b9-4514-bfee-33695e7c4fd9.html">setName</a></li>
+            <li data-category=""><a href="1ae89d3d-d9e3-47a0-813d-664c36c49757.html">setProcessFunction</a></li>
+            <li data-category=""><a href="23f3e6ee-a6e2-4361-a212-a4aae05ad15f.html">setRoutingFunction</a></li>
+            <li data-category=""><a href="4c847944-9601-4ae0-b036-d46f258bc01e.html">setStatus</a></li>
+            <li data-category=""><a href="03057dc4-f9ec-41a5-9732-9349c061a821.html">setTransformationFunction</a></li>
+            <li data-category=""><a href="84aaeb54-0236-435d-b349-b9f1b414a546.html">stopWorkflow</a></li>
+            <li data-category=""><a href="30c14520-6a48-4e73-92d9-a13d99eb8d38.html">toJSON</a></li>
+            <li data-category=""><a href="63f96168-e8c1-4535-b6b1-763e46c373aa.html">toJSON</a></li>
+            <li data-category=""><a href="60be9340-22f2-454a-9e6c-bb36e15996fb.html">topologicalSort</a></li>
+            <li data-category=""><a href="2f4dfc48-c378-4d5d-b762-715edb7e8789.html">transferData</a></li>
+            <li data-category=""><a href="abd24c0d-22a1-49a2-a213-3657262c3764.html">unregisterWorkflow</a></li>
+            <li data-category=""><a href="3181bf86-9949-4770-835d-c5fc9a2c2473.html">unsubscribe</a></li>
+            <li data-category=""><a href="1821fbb6-1c9a-4327-932a-7b4c2635aff1.html">unsubscribe</a></li>
+            <li data-category=""><a href="a0284908-4ffc-4627-a147-814b14efa13d.html">unsubscribe</a></li>
+            <li data-category=""><a href="0d978e43-888c-4c8c-a992-f935be9c1499.html">updateConfig</a></li>
+            <li data-category=""><a href="5baad22b-778e-4340-ba96-ed9bde4f4d38.html">updateConfig</a></li>
+            <li data-category=""><a href="0c516370-eec4-4f90-92d4-dd51fc3e4f10.html">validate</a></li>
+            <li data-category=""><a href="3d7b9e9e-9ef9-431a-9513-086222d6a8ad.html">validate</a></li>
+            <li data-category=""><a href="3d01f04a-0082-4f1e-bf67-59e4537c29b0.html">validate</a></li>
+            <li data-category=""><a href="15092715-d477-4424-9d8c-7b3d7428e266.html">validate</a></li>
+            <li data-category=""><a href="c23a63d5-fd7e-4caa-b529-cdff22a098d7.html">validate</a></li>
+            <li data-category=""><a href="5bc6ed33-763b-4508-9eee-4333dc8730c6.html">validate</a></li>
+            <li data-category=""><a href="3a67bd11-a2b0-4550-bdf0-a48ef282233c.html">validateConnection</a></li>
+            <li data-category=""><a href="2bceaeec-cb7d-48a4-8106-9454a388f8a5.html">validateInputs</a></li>
+            <li data-category=""><a href="d154d42a-40c8-498d-bee3-550749fb38b2.html">validateNode</a></li>
+            <li data-category=""><a href="942b20b4-4531-47ab-85df-d158cb3aff27.html">validateOutputs</a></li>
+            <li data-category=""><a href="1e08ee69-d813-47cd-b71b-624578710850.html">validateWorkflow</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // Simple search functionality
+        document.getElementById('search-input').addEventListener('input', function() {
+            filterItems();
+        });
+        
+        // Type filter
+        document.getElementById('type-filter').addEventListener('change', function() {
+            filterItems();
+        });
+        
+        // Category filter
+        document.getElementById('category-filter').addEventListener('change', function() {
+            filterItems();
+        });
+        
+        function filterItems() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const typeFilter = document.getElementById('type-filter').value;
+            const categoryFilter = document.getElementById('category-filter').value;
+            
+            // Filter categories by type
+            const categories = document.querySelectorAll('.category');
+            categories.forEach(function(category) {
+                const categoryType = category.getAttribute('data-type');
+                if (typeFilter === 'all' || categoryType === typeFilter) {
+                    category.style.display = '';
+                } else {
+                    category.style.display = 'none';
+                    return;
+                }
+                
+                // Filter items by search term and category
+                const items = category.querySelectorAll('li');
+                let visibleItems = 0;
+                
+                items.forEach(function(item) {
+                    const text = item.textContent.toLowerCase();
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    if (text.includes(searchTerm) && 
+                        (categoryFilter === 'all' || itemCategory === categoryFilter)) {
+                        item.style.display = '';
+                        visibleItems++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Hide category if no visible items
+                if (visibleItems === 0) {
+                    category.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

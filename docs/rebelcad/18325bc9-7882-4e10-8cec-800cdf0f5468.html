@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>updateTransform</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>updateTransform</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Finds closest point on geometry to given point</p>
+<p>// Clamp point to AABB bounds
+        glm::vec3 closest = glm::clamp(localPoint, m_aabb.min, m_aabb.max);</p>
+<p>// Calculate normal
+        glm::vec3 normal(0.0f);
+        if (localPoint.x < m_aabb.min.x) normal.x = -1.0f;
+        else if (localPoint.x > m_aabb.max.x) normal.x = 1.0f;
+        if (localPoint.y < m_aabb.min.y) normal.y = -1.0f;
+        else if (localPoint.y > m_aabb.max.y) normal.y = 1.0f;
+        if (localPoint.z < m_aabb.min.z) normal.z = -1.0f;
+        else if (localPoint.z > m_aabb.max.z) normal.z = 1.0f;
+        normal = glm::normalize(normal);</p>
+<p>// Transform back to world space
+        closest = glm::vec3(m_worldTransform * glm::vec4(closest, 1.0f));
+        normal = glm::normalize(glm::vec3(m_worldTransform * glm::vec4(normal, 0.0f)));</p>
+<p>return {closest, normal};
+    }</p>
+<p>/**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>point</span>: Point to test against</li>
+<li><span class='param-name'>transform</span>: New world transform matrix</li>
+</ul>
+<h2>Returns</h2>
+<p>: Pair of closest point and surface normal
+/
+    std::pair<glm::vec3, glm::vec3> findClosestPoint(
+        const glm::vec3& point) const override {
+        
+        // Transform point to local space
+        glm::mat4 invTransform = glm::inverse(m_worldTransform);
+        glm::vec3 localPoint = glm::vec3(invTransform * glm::vec4(point, 1.0f));
+
+        // Clamp point to AABB bounds
+        glm::vec3 closest = glm::clamp(localPoint, m_aabb.min, m_aabb.max);
+
+        // Calculate normal
+        glm::vec3 normal(0.0f);
+        if (localPoint.x < m_aabb.min.x) normal.x = -1.0f;
+        else if (localPoint.x > m_aabb.max.x) normal.x = 1.0f;
+        if (localPoint.y < m_aabb.min.y) normal.y = -1.0f;
+        else if (localPoint.y > m_aabb.max.y) normal.y = 1.0f;
+        if (localPoint.z < m_aabb.min.z) normal.z = -1.0f;
+        else if (localPoint.z > m_aabb.max.z) normal.z = 1.0f;
+        normal = glm::normalize(normal);
+
+        // Transform back to world space
+        closest = glm::vec3(m_worldTransform * glm::vec4(closest, 1.0f));
+        normal = glm::normalize(glm::vec3(m_worldTransform * glm::vec4(normal, 0.0f)));
+
+        return {closest, normal};
+    }
+
+    /**</p>
+</body>
+</html>

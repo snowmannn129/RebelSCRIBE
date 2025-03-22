@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>trimPolygonEdge</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>trimPolygonEdge</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Trims a curve at the specified point</p>
+<p>/**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>curve</span>: Curve to trim</li>
+<li><span class='param-name'>x</span>: X coordinate of trim point</li>
+<li><span class='param-name'>y</span>: Y coordinate of trim point</li>
+<li><span class='param-name'>keepStart</span>: If true, keeps the portion from start to trim point</li>
+<li><span class='param-name'>polygon</span>: Polygon to modify</li>
+<li><span class='param-name'>edgeIndex</span>: Index of edge to trim</li>
+</ul>
+<h2>Returns</h2>
+<p>: New trimmed curve</p>
+<h2>Exceptions</h2>
+<ul>
+<li><strong>Error</strong>: if trim point is not on the specified edge</li>
+</ul>
+</body>
+</html>

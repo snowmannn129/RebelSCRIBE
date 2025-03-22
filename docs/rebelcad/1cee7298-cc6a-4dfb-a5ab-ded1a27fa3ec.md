@@ -1,0 +1,27 @@
+# setParameters
+
+**API Version:** 1.0.0
+
+**Component:** RebelCAD
+
+Parameters controlling mesh generation quality and behavior
+/
+struct MeshParameters {
+    float maxElementSize = 1.0f;      // Maximum size of mesh elements
+    float minElementSize = 0.1f;      // Minimum size of mesh elements
+    float aspectRatioLimit = 5.0f;    // Maximum allowed aspect ratio for elements
+    float gradingRate = 1.2f;         // Maximum size ratio between adjacent elements
+    bool preserveFeatures = true;     // Preserve sharp features and boundaries
+    int optimizationPasses = 3;       // Number of optimization passes
+};
+
+/**
+
+## Parameters
+
+- **params**: Parameters controlling mesh generation
+
+## Exceptions
+
+- **MeshGenerationError**: if parameters are invalid
+

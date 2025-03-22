@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>setConfig</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>setConfig</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Tool for creating parallel copies of sketch geometry at a specified distance</p>
+<p>The OffsetTool creates offset copies of existing geometry (lines, arcs, circles)
+at a user-specified distance. It handles both internal and external offsets and
+maintains geometric relationships between connected elements.
+/
+class OffsetTool {
+public:
+    /**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>size</span>: New grid cell size</li>
+<li><span class='param-name'>tol</span>: New tolerance value</li>
+<li><span class='param-name'>threshold</span>: New threshold value</li>
+<li><span class='param-name'>config</span>: New configuration</li>
+</ul>
+<h2>Returns</h2>
+<p>: Reference to this config for chaining
+/
+        Config& setGridCellSize(float size) {
+            if (size <= 0.0f) {
+                throw rebel::core::Error(
+                    ErrorCode::GeometryError,
+                    "Grid cell size must be positive"
+                );
+            }
+            gridCellSize = size;
+            return *this;
+        }
+        
+        /**</p>
+</body>
+</html>

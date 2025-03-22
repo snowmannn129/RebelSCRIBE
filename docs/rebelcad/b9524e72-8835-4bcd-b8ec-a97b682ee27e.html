@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ConvertSolidBodyToRawData</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>ConvertSolidBodyToRawData</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Convert subdivision surface to solid body for boolean operations</p>
+<p>/**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>surface</span>: Surface to optimize</li>
+<li><span class='param-name'>subdivisionLevel</span>: Level of subdivision to apply before conversion</li>
+<li><span class='param-name'>body</span>: Input solid body</li>
+<li><span class='param-name'>detectFeatures</span>: Whether to detect and preserve sharp features</li>
+<li><span class='param-name'>vertices</span>: Output vertex array (x,y,z coordinates)</li>
+<li><span class='param-name'>triangles</span>: Mesh triangles</li>
+<li><span class='param-name'>angleTolerance</span>: Angle threshold for sharp edge detection</li>
+<li><span class='param-name'>indices</span>: Output triangle index array</li>
+</ul>
+<h2>Returns</h2>
+<p>: Solid body representation
+/
+    static std::shared_ptr<SolidBody> ConvertToSolidBody(
+        std::shared_ptr<SubdivisionSurface> surface,
+        size_t subdivisionLevel = 2);
+
+    /**</p>
+</body>
+</html>

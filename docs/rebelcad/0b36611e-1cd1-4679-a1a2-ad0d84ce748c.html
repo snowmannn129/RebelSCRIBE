@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BoundingGeometry</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>BoundingGeometry</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>Result of a sphere intersection test
+/
+struct SphereIntersection {
+    bool hasCollision = false;        ///< Whether intersection occurred
+    float distance = 0.0f;            ///< Distance to intersection point
+    glm::vec3 point;                  ///< Point of intersection
+    glm::vec3 normal;                 ///< Surface normal at intersection
+    float penetration = 0.0f;         ///< Penetration depth
+};
+
+/**</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>validateOffset</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>validateOffset</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Performs the first pass of offsetting elements individually</p>
+<p>/**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>elements</span>: Vector of elements to check</li>
+<li><span class='param-name'>distance</span>: The proposed offset distance</li>
+<li><span class='param-name'>element</span>: The geometry element</li>
+<li><span class='param-name'>atEnd</span>: Whether to get direction at end point (true) or start point (false)</li>
+<li><span class='param-name'>current</span>: First element</li>
+<li><span class='param-name'>next</span>: Second element</li>
+<li><span class='param-name'>intersectPoint</span>: Intersection point
+/
+    template<typename T>
+    static void updateConnectionPoint(
+        const std::shared_ptr<T>& current,
+        const std::shared_ptr<T>& next,
+        const std::array<float, 2>& intersectPoint
+    );
+
+private:
+    static Config sConfig; // Static configuration instance
+
+    /**</li>
+<li><span class='param-name'>minRadius</span>: Minimum radius of any curved geometry being offset</li>
+<li><span class='param-name'>tolerance</span>: Optional tolerance for near-zero comparisons</li>
+</ul>
+<h2>Returns</h2>
+<p>: Vector of offset elements
+/
+    template<typename T>
+    static std::vector<std::shared_ptr<T>> offsetElementsFirstPass(
+        const std::vector<T>& elements,
+        float distance
+    );
+
+    /**</p>
+</body>
+</html>

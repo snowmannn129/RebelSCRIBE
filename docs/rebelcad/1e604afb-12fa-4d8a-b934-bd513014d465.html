@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GenerateGeometry</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>GenerateGeometry</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Evaluate curve derivative at parameter value</p>
+<p>// Find knot span
+        int span = basis->FindSpan(t);
+        if (span < 0) {
+            return {};
+        }</p>
+<p>// Get basis function derivatives
+        auto ders = basis->EvaluateDerivatives(t, span, order);
+        if (ders.empty()) {
+            return {};
+        }</p>
+<p>std::vector<glm::vec3> derivatives(order + 1);
+        if (!params.rational) {
+            // Non-rational case
+            for (int k = 0; k <= order; ++k) {
+                derivatives[k] = glm::vec3(0.0f);
+                for (size_t i = 0; i < ders[k].size(); ++i) {
+                    size_t idx = span - params.degree + i;
+                    if (idx >= control_points.size()) {
+                        continue;
+                    }
+                    derivatives[k] += control_points[idx] * ders[k][i];
+                }
+            }
+        } else {
+            // Rational case - use quotient rule
+            std::vector<glm::vec3> A(order + 1, glm::vec3(0.0f));
+            std::vector<float> w(order + 1, 0.0f);</p>
+<p>// Calculate weighted sum for each derivative
+            for (int k = 0; k <= order; ++k) {
+                for (size_t i = 0; i < ders[k].size(); ++i) {
+                    size_t idx = span - params.degree + i;
+                    if (idx >= control_points.size()) {
+                        continue;
+                    }
+                    A[k] += control_points[idx] * weights[idx] * ders[k][i];
+                    w[k] += weights[idx] * ders[k][i];
+                }
+            }</p>
+<p>// Apply quotient rule
+            float w0 = w[0];
+            if (std::abs(w0) > params.tolerance) {
+                derivatives[0] = A[0] / w0;
+                for (int k = 1; k <= order; ++k) {
+                    glm::vec3 v = A[k];
+                    for (int i = 1; i <= k; ++i) {
+                        float bin = static_cast<float>(BinomialCoefficient(k, i));
+                        v -= derivatives[k-i] * (w[i] * bin);
+                    }
+                    derivatives[k] = v / w0;
+                }
+            }
+        }</p>
+<p>return derivatives;
+    }</p>
+<p>/**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>t</span>: Parameter value</li>
+<li><span class='param-name'>order</span>: Derivative order</li>
+<li><span class='param-name'>segments</span>: Number of segments</li>
+</ul>
+<h2>Returns</h2>
+<p>: Derivative vectors
+/
+    std::vector<glm::vec3> EvaluateDerivatives(float t, int order) const {
+        if (!is_configured || control_points.empty() || order < 1) {
+            return {};
+        }
+
+        // Find knot span
+        int span = basis->FindSpan(t);
+        if (span < 0) {
+            return {};
+        }
+
+        // Get basis function derivatives
+        auto ders = basis->EvaluateDerivatives(t, span, order);
+        if (ders.empty()) {
+            return {};
+        }
+
+        std::vector<glm::vec3> derivatives(order + 1);
+        if (!params.rational) {
+            // Non-rational case
+            for (int k = 0; k <= order; ++k) {
+                derivatives[k] = glm::vec3(0.0f);
+                for (size_t i = 0; i < ders[k].size(); ++i) {
+                    size_t idx = span - params.degree + i;
+                    if (idx >= control_points.size()) {
+                        continue;
+                    }
+                    derivatives[k] += control_points[idx] * ders[k][i];
+                }
+            }
+        } else {
+            // Rational case - use quotient rule
+            std::vector<glm::vec3> A(order + 1, glm::vec3(0.0f));
+            std::vector<float> w(order + 1, 0.0f);
+
+            // Calculate weighted sum for each derivative
+            for (int k = 0; k <= order; ++k) {
+                for (size_t i = 0; i < ders[k].size(); ++i) {
+                    size_t idx = span - params.degree + i;
+                    if (idx >= control_points.size()) {
+                        continue;
+                    }
+                    A[k] += control_points[idx] * weights[idx] * ders[k][i];
+                    w[k] += weights[idx] * ders[k][i];
+                }
+            }
+
+            // Apply quotient rule
+            float w0 = w[0];
+            if (std::abs(w0) > params.tolerance) {
+                derivatives[0] = A[0] / w0;
+                for (int k = 1; k <= order; ++k) {
+                    glm::vec3 v = A[k];
+                    for (int i = 1; i <= k; ++i) {
+                        float bin = static_cast<float>(BinomialCoefficient(k, i));
+                        v -= derivatives[k-i] * (w[i] * bin);
+                    }
+                    derivatives[k] = v / w0;
+                }
+            }
+        }
+
+        return derivatives;
+    }
+
+    /**</p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>distanceToPoint</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>distanceToPoint</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Calculate point at a specific arc length distance</p>
+<p>/**</p>
+</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>distance</span>: Distance along the curve</li>
+<li><span class='param-name'>tolerance</span>: Convergence tolerance for Newton iteration (default: 1e-6)</li>
+<li><span class='param-name'>x</span>: X coordinate of the point</li>
+<li><span class='param-name'>y</span>: Y coordinate of the point</li>
+<li><span class='param-name'>maxIterations</span>: Maximum number of Newton iterations (default: 20)</li>
+<li><span class='param-name'>u</span>: Parameter value on the spline</li>
+</ul>
+<h2>Returns</h2>
+<p>: Point coordinates at the specified distance
+/
+    std::pair<double, double> pointAtLength(double distance, double tolerance = 1e-6) const;
+
+    /**</p>
+</body>
+</html>

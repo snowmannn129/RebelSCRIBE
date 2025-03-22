@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MeshGenerator</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>MeshGenerator</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>
+<p>Represents a 3D mesh element (tetrahedron)
+/
+struct MeshElement {
+    std::array<size_t, 4> vertices;   // Indices of vertices forming the tetrahedron
+    float quality;                    // Quality metric (0-1, higher is better)
+    
+    MeshElement(size_t v1, size_t v2, size_t v3, size_t v4) : quality(0.0f) {
+        vertices[0] = v1;
+        vertices[1] = v2;
+        vertices[2] = v3;
+        vertices[3] = v4;
+    }
+};</p>
+<p>/**</p>
+</div>
+</body>
+</html>
