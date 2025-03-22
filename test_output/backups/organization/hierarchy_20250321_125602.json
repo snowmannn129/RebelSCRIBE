@@ -1,0 +1,110 @@
+{
+  "root_nodes": [
+    {
+      "id": "e964a682-be64-40b1-8f61-22c2f8340a4c",
+      "name": "Project Documentation",
+      "type": "folder",
+      "parent_id": null,
+      "document_id": "a494a53b-1abd-43b6-9b7a-2f164ca18f6d",
+      "metadata": {
+        "title": "Project Documentation",
+        "tags": [
+          "documentation",
+          "project",
+          "overview"
+        ],
+        "word_count": 46,
+        "reading_time": 1,
+        "document_id": "a494a53b-1abd-43b6-9b7a-2f164ca18f6d",
+        "type": "folder",
+        "created_at": "2025-03-21T12:56:02.699591",
+        "updated_at": "2025-03-21T12:56:02.699595",
+        "content": "# Project Documentation\n        \nThis is the root document for the project documentation.\n\n## Overview\n\nThis project is a comprehensive documentation system that provides tools for creating,\nmanaging, and publishing documentation.\n\n## Features\n\n- Markdown support\n- Code documentation extraction\n- Hierarchical organization\n- Tag-based organization\n- Full-text search\n\n## Tags\n\n#documentation #project #overview\n"
+      },
+      "children": [],
+      "created_at": "2025-03-21T12:56:02.700076",
+      "updated_at": "2025-03-21T12:56:02.700076"
+    },
+    {
+      "id": "2a637027-3970-4417-b0ec-b44267180da2",
+      "name": "Installation Guide",
+      "type": "scene",
+      "parent_id": "a494a53b-1abd-43b6-9b7a-2f164ca18f6d",
+      "document_id": "2c77fefb-f933-4585-ac29-adc8c01c68b1",
+      "metadata": {
+        "title": "Installation Guide",
+        "tags": [
+          "installation",
+          "setup",
+          "guide"
+        ],
+        "word_count": 43,
+        "reading_time": 1,
+        "document_id": "2c77fefb-f933-4585-ac29-adc8c01c68b1",
+        "type": "scene",
+        "created_at": "2025-03-21T12:56:02.699670",
+        "updated_at": "2025-03-21T12:56:02.699671",
+        "content": "# Installation Guide\n        \nThis guide provides instructions for installing the software.\n\n## Prerequisites\n\n- Python 3.8 or higher\n- Git\n- Node.js 14 or higher\n\n## Installation Steps\n\n1. Clone the repository\n2. Install dependencies\n3. Configure the application\n4. Run the application\n\n## Tags\n\n#installation #guide #setup\n"
+      },
+      "children": [],
+      "created_at": "2025-03-21T12:56:02.700181",
+      "updated_at": "2025-03-21T12:56:02.700181"
+    },
+    {
+      "id": "9ea9be04-a253-4486-b8f2-0e9f5ecda5c1",
+      "name": "API Reference",
+      "type": "scene",
+      "parent_id": "a494a53b-1abd-43b6-9b7a-2f164ca18f6d",
+      "document_id": "4d68aa6f-4187-4fc0-84e1-b14e7088f50f",
+      "metadata": {
+        "title": "API Reference",
+        "tags": [
+          "reference",
+          "documentation",
+          "api"
+        ],
+        "word_count": 39,
+        "reading_time": 1,
+        "document_id": "4d68aa6f-4187-4fc0-84e1-b14e7088f50f",
+        "type": "scene",
+        "created_at": "2025-03-21T12:56:02.699699",
+        "updated_at": "2025-03-21T12:56:02.699700",
+        "content": "# API Reference\n        \nThis document provides a reference for the API.\n\n## Endpoints\n\n### GET /api/documents\n\nRetrieves a list of documents.\n\n### POST /api/documents\n\nCreates a new document.\n\n### GET /api/documents/{id}\n\nRetrieves a document by ID.\n\n## Tags\n\n#api #reference #documentation\n"
+      },
+      "children": [],
+      "created_at": "2025-03-21T12:56:02.700402",
+      "updated_at": "2025-03-21T12:56:02.700402"
+    },
+    {
+      "id": "566109bd-3648-4477-a18a-2395ed8e2c06",
+      "name": "User Guide",
+      "type": "scene",
+      "parent_id": "a494a53b-1abd-43b6-9b7a-2f164ca18f6d",
+      "document_id": "b2ba7739-82e1-47ee-9c8a-c334fc3a6122",
+      "metadata": {
+        "title": "User Guide",
+        "tags": [
+          "guide",
+          "user",
+          "documentation"
+        ],
+        "word_count": 45,
+        "reading_time": 1,
+        "document_id": "b2ba7739-82e1-47ee-9c8a-c334fc3a6122",
+        "type": "scene",
+        "created_at": "2025-03-21T12:56:02.699720",
+        "updated_at": "2025-03-21T12:56:02.699721",
+        "content": "# User Guide\n        \nThis guide provides instructions for using the software.\n\n## Getting Started\n\n1. Log in to the application\n2. Create a new project\n3. Add documents to the project\n4. Organize documents\n\n## Features\n\n- Document creation\n- Document organization\n- Document search\n- Document export\n\n## Tags\n\n#user #guide #documentation\n"
+      },
+      "children": [],
+      "created_at": "2025-03-21T12:56:02.700698",
+      "updated_at": "2025-03-21T12:56:02.700698"
+    }
+  ],
+  "document_map": {
+    "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": "e964a682-be64-40b1-8f61-22c2f8340a4c",
+    "2c77fefb-f933-4585-ac29-adc8c01c68b1": "2a637027-3970-4417-b0ec-b44267180da2",
+    "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": "9ea9be04-a253-4486-b8f2-0e9f5ecda5c1",
+    "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": "566109bd-3648-4477-a18a-2395ed8e2c06"
+  }
+}

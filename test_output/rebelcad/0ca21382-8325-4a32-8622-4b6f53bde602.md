@@ -1,0 +1,16 @@
+# Preview
+
+**API Version:** 1.0.0
+
+**Component:** RebelCAD
+
+Preview the revolve result without committing it
+
+## Parameters
+
+- **graphics**: Graphics system for rendering the preview
+
+## Returns
+
+: ErrorCode::None on success, appropriate error code otherwise
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GraphicsSystem</title>
+<style>
+body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; }
+h1 { color: #333; }
+h2 { color: #444; margin-top: 20px; }
+code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+pre { background-color: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+.deprecated { background-color: #fff3cd; padding: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px; }
+.version { color: #666; font-style: italic; margin-bottom: 20px; }
+.param-name { font-weight: bold; }
+.param-type { color: #6c757d; }
+</style>
+</head>
+<body>
+<h1>GraphicsSystem</h1>
+<p><strong>API Version:</strong> 1.0.0 | <strong>Component:</strong> RebelCAD</p>
+<div>Supported graphics APIs. Properties for the application window. Constructs a new WindowProperties object. Graphics system for RebelCAD.
+
+enum: GraphicsAPI
+This enum defines the graphics APIs that can be used by the GraphicsSystem.
+/
+enum class GraphicsAPI {
+    OpenGL,     ///< OpenGL API
+    Vulkan,     ///< Vulkan API
+    DirectX11,  ///< DirectX 11 API
+    DirectX12   ///< DirectX 12 API
+};
+/**
+struct: WindowProperties
+This struct defines the properties of the application window,
+including title, dimensions, and display settings.
+/
+struct WindowProperties {
+    std::string title;  ///< Window title
+    int width;          ///< Window width in pixels
+    int height;         ///< Window height in pixels
+    bool fullscreen;    ///< Fullscreen mode flag
+    bool vsync;         ///< Vertical sync flag
+    /**
+/
+    WindowProperties(
+        const std::string& title = "RebelCAD",
+        int width = 1280,
+        int height = 720,
+        bool fullscreen = false,
+        bool vsync = true
+    ) : title(title), width(width), height(height), fullscreen(fullscreen), vsync(vsync) {}
+};
+/**
+class: GraphicsSystem
+The GraphicsSystem class manages the graphics subsystem of RebelCAD,
+including window creation, rendering context setup, and frame rendering.
+It supports multiple graphics APIs and follows the singleton pattern.</div>
+<h2>Parameters</h2>
+<ul>
+<li><span class='param-name'>title</span>: Window title</li>
+<li><span class='param-name'>width</span>: Window width in pixels</li>
+<li><span class='param-name'>height</span>: Window height in pixels</li>
+<li><span class='param-name'>fullscreen</span>: Fullscreen mode flag</li>
+<li><span class='param-name'>vsync</span>: Vertical sync flag</li>
+</ul>
+</body>
+</html>

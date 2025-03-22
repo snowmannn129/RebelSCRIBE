@@ -1,0 +1,12 @@
+# ConcentricConstraint
+
+**API Version:** 1.0.0
+
+**Component:** RebelCAD
+
+Constraint that enforces concentricity between circles and/or arcs
+
+The ConcentricConstraint ensures that two geometric entities (circles or arcs)
+share the same center point. This is a fundamental constraint in CAD systems
+for creating concentric geometry.
+

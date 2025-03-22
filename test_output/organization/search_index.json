@@ -1,0 +1,652 @@
+{
+  "inverted_index": {
+    "project": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        0,
+        4,
+        7,
+        33
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        15,
+        19
+      ]
+    },
+    "documentation": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        1,
+        5,
+        9,
+        16,
+        21,
+        32
+      ],
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        29
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        35
+      ]
+    },
+    "root": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        2
+      ]
+    },
+    "document": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        3
+      ],
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        2,
+        18,
+        24
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        24,
+        26,
+        28,
+        30
+      ]
+    },
+    "overview": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        6,
+        34
+      ]
+    },
+    "comprehensive": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        8
+      ]
+    },
+    "system": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        10
+      ]
+    },
+    "provides": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        11
+      ],
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        3
+      ],
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        3
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        3
+      ]
+    },
+    "tools": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        12
+      ]
+    },
+    "creating": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        13
+      ]
+    },
+    "managing": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        14
+      ]
+    },
+    "publishing": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        15
+      ]
+    },
+    "features": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        17
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        23
+      ]
+    },
+    "markdown": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        18
+      ]
+    },
+    "support": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        19
+      ]
+    },
+    "code": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        20
+      ]
+    },
+    "extraction": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        22
+      ]
+    },
+    "hierarchical": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        23
+      ]
+    },
+    "organization": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        24,
+        27
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        27
+      ]
+    },
+    "tag": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        25
+      ]
+    },
+    "based": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        26
+      ]
+    },
+    "full": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        28
+      ]
+    },
+    "text": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        29
+      ]
+    },
+    "search": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        30
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        29
+      ]
+    },
+    "tags": {
+      "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": [
+        31
+      ],
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        31
+      ],
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        26
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        32
+      ]
+    },
+    "installation": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        0,
+        17,
+        32
+      ]
+    },
+    "guide": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        1,
+        2,
+        33
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        1,
+        2,
+        34
+      ]
+    },
+    "instructions": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        4
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        4
+      ]
+    },
+    "installing": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        5
+      ]
+    },
+    "software": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        6
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        6
+      ]
+    },
+    "prerequisites": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        7
+      ]
+    },
+    "python": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        8
+      ]
+    },
+    "3": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        9,
+        25
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        16
+      ]
+    },
+    "8": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        10
+      ]
+    },
+    "higher": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        11,
+        16
+      ]
+    },
+    "git": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        12
+      ]
+    },
+    "node": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        13
+      ]
+    },
+    "js": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        14
+      ]
+    },
+    "14": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        15
+      ]
+    },
+    "steps": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        18
+      ]
+    },
+    "1": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        19
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        9
+      ]
+    },
+    "clone": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        20
+      ]
+    },
+    "repository": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        21
+      ]
+    },
+    "2": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        22
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        12
+      ]
+    },
+    "install": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        23
+      ]
+    },
+    "dependencies": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        24
+      ]
+    },
+    "configure": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        26
+      ]
+    },
+    "application": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        27,
+        30
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        11
+      ]
+    },
+    "4": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        28
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        20
+      ]
+    },
+    "run": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        29
+      ]
+    },
+    "setup": {
+      "2c77fefb-f933-4585-ac29-adc8c01c68b1": [
+        34
+      ]
+    },
+    "api": {
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        0,
+        5,
+        8,
+        14,
+        20,
+        27
+      ]
+    },
+    "reference": {
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        1,
+        4,
+        28
+      ]
+    },
+    "endpoints": {
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        6
+      ]
+    },
+    "get": {
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        7,
+        19
+      ]
+    },
+    "documents": {
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        9,
+        12,
+        15,
+        21
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        18,
+        22
+      ]
+    },
+    "retrieves": {
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        10,
+        23
+      ]
+    },
+    "list": {
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        11
+      ]
+    },
+    "post": {
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        13
+      ]
+    },
+    "creates": {
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        16
+      ]
+    },
+    "new": {
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        17
+      ],
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        14
+      ]
+    },
+    "id": {
+      "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": [
+        22,
+        25
+      ]
+    },
+    "user": {
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        0,
+        33
+      ]
+    },
+    "using": {
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        5
+      ]
+    },
+    "getting": {
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        7
+      ]
+    },
+    "started": {
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        8
+      ]
+    },
+    "log": {
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        10
+      ]
+    },
+    "create": {
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        13
+      ]
+    },
+    "add": {
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        17
+      ]
+    },
+    "organize": {
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        21
+      ]
+    },
+    "creation": {
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        25
+      ]
+    },
+    "export": {
+      "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": [
+        31
+      ]
+    }
+  },
+  "document_metadata": {
+    "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": {
+      "title": "Project Documentation",
+      "tags": [
+        "documentation",
+        "project",
+        "overview"
+      ],
+      "word_count": 46,
+      "reading_time": 1,
+      "document_id": "a494a53b-1abd-43b6-9b7a-2f164ca18f6d",
+      "type": "folder",
+      "created_at": "2025-03-21T12:56:02.699591",
+      "updated_at": "2025-03-21T12:56:02.699595",
+      "content": "# Project Documentation\n        \nThis is the root document for the project documentation.\n\n## Overview\n\nThis project is a comprehensive documentation system that provides tools for creating,\nmanaging, and publishing documentation.\n\n## Features\n\n- Markdown support\n- Code documentation extraction\n- Hierarchical organization\n- Tag-based organization\n- Full-text search\n\n## Tags\n\n#documentation #project #overview\n"
+    },
+    "2c77fefb-f933-4585-ac29-adc8c01c68b1": {
+      "title": "Installation Guide",
+      "tags": [
+        "installation",
+        "setup",
+        "guide"
+      ],
+      "word_count": 43,
+      "reading_time": 1,
+      "document_id": "2c77fefb-f933-4585-ac29-adc8c01c68b1",
+      "type": "scene",
+      "created_at": "2025-03-21T12:56:02.699670",
+      "updated_at": "2025-03-21T12:56:02.699671",
+      "content": "# Installation Guide\n        \nThis guide provides instructions for installing the software.\n\n## Prerequisites\n\n- Python 3.8 or higher\n- Git\n- Node.js 14 or higher\n\n## Installation Steps\n\n1. Clone the repository\n2. Install dependencies\n3. Configure the application\n4. Run the application\n\n## Tags\n\n#installation #guide #setup\n"
+    },
+    "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": {
+      "title": "API Reference",
+      "tags": [
+        "reference",
+        "documentation",
+        "api"
+      ],
+      "word_count": 39,
+      "reading_time": 1,
+      "document_id": "4d68aa6f-4187-4fc0-84e1-b14e7088f50f",
+      "type": "scene",
+      "created_at": "2025-03-21T12:56:02.699699",
+      "updated_at": "2025-03-21T12:56:02.699700",
+      "content": "# API Reference\n        \nThis document provides a reference for the API.\n\n## Endpoints\n\n### GET /api/documents\n\nRetrieves a list of documents.\n\n### POST /api/documents\n\nCreates a new document.\n\n### GET /api/documents/{id}\n\nRetrieves a document by ID.\n\n## Tags\n\n#api #reference #documentation\n"
+    },
+    "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": {
+      "title": "User Guide",
+      "tags": [
+        "guide",
+        "user",
+        "documentation"
+      ],
+      "word_count": 45,
+      "reading_time": 1,
+      "document_id": "b2ba7739-82e1-47ee-9c8a-c334fc3a6122",
+      "type": "scene",
+      "created_at": "2025-03-21T12:56:02.699720",
+      "updated_at": "2025-03-21T12:56:02.699721",
+      "content": "# User Guide\n        \nThis guide provides instructions for using the software.\n\n## Getting Started\n\n1. Log in to the application\n2. Create a new project\n3. Add documents to the project\n4. Organize documents\n\n## Features\n\n- Document creation\n- Document organization\n- Document search\n- Document export\n\n## Tags\n\n#user #guide #documentation\n"
+    }
+  },
+  "document_term_counts": {
+    "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": {
+      "project": 4,
+      "documentation": 6,
+      "root": 1,
+      "document": 1,
+      "overview": 2,
+      "comprehensive": 1,
+      "system": 1,
+      "provides": 1,
+      "tools": 1,
+      "creating": 1,
+      "managing": 1,
+      "publishing": 1,
+      "features": 1,
+      "markdown": 1,
+      "support": 1,
+      "code": 1,
+      "extraction": 1,
+      "hierarchical": 1,
+      "organization": 2,
+      "tag": 1,
+      "based": 1,
+      "full": 1,
+      "text": 1,
+      "search": 1,
+      "tags": 1
+    },
+    "2c77fefb-f933-4585-ac29-adc8c01c68b1": {
+      "installation": 3,
+      "guide": 3,
+      "provides": 1,
+      "instructions": 1,
+      "installing": 1,
+      "software": 1,
+      "prerequisites": 1,
+      "python": 1,
+      "3": 2,
+      "8": 1,
+      "higher": 2,
+      "git": 1,
+      "node": 1,
+      "js": 1,
+      "14": 1,
+      "steps": 1,
+      "1": 1,
+      "clone": 1,
+      "repository": 1,
+      "2": 1,
+      "install": 1,
+      "dependencies": 1,
+      "configure": 1,
+      "application": 2,
+      "4": 1,
+      "run": 1,
+      "tags": 1,
+      "setup": 1
+    },
+    "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": {
+      "api": 6,
+      "reference": 3,
+      "document": 3,
+      "provides": 1,
+      "endpoints": 1,
+      "get": 2,
+      "documents": 4,
+      "retrieves": 2,
+      "list": 1,
+      "post": 1,
+      "creates": 1,
+      "new": 1,
+      "id": 2,
+      "tags": 1,
+      "documentation": 1
+    },
+    "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": {
+      "user": 2,
+      "guide": 3,
+      "provides": 1,
+      "instructions": 1,
+      "using": 1,
+      "software": 1,
+      "getting": 1,
+      "started": 1,
+      "1": 1,
+      "log": 1,
+      "application": 1,
+      "2": 1,
+      "create": 1,
+      "new": 1,
+      "project": 2,
+      "3": 1,
+      "add": 1,
+      "documents": 2,
+      "4": 1,
+      "organize": 1,
+      "features": 1,
+      "document": 4,
+      "creation": 1,
+      "organization": 1,
+      "search": 1,
+      "export": 1,
+      "tags": 1,
+      "documentation": 1
+    }
+  },
+  "document_lengths": {
+    "a494a53b-1abd-43b6-9b7a-2f164ca18f6d": 35,
+    "2c77fefb-f933-4585-ac29-adc8c01c68b1": 35,
+    "4d68aa6f-4187-4fc0-84e1-b14e7088f50f": 30,
+    "b2ba7739-82e1-47ee-9c8a-c334fc3a6122": 36
+  },
+  "document_count": 4,
+  "term_count": 136
+}
